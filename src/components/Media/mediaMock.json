@@ -1,0 +1,42 @@
+{
+  "metadata": {
+      "tags": []
+  },
+  "sys": {
+      "space": {
+          "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "6aayqp6oiffy"
+          }
+      },
+      "id": "7GMAflKhqNpjAtvFeqD2mB",
+      "type": "Asset",
+      "createdAt": "2021-03-30T14:26:39.443Z",
+      "updatedAt": "2021-03-30T14:26:39.443Z",
+      "environment": {
+          "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+          }
+      },
+      "revision": 1,
+      "locale": "en-US"
+  },
+  "fields": {
+      "title": "Setup-Wax-Wallet",
+      "file": {
+          "url": "//images.ctfassets.net/6aayqp6oiffy/7GMAflKhqNpjAtvFeqD2mB/bc88a4622ed8347590a01f23e3dd3740/Setup-Wax-Wallet.webp",
+          "details": {
+              "size": 18364,
+              "image": {
+                  "width": 600,
+                  "height": 715
+              }
+          },
+          "fileName": "Setup-Wax-Wallet.webp",
+          "contentType": "image/webp"
+      }
+  }
+}

@@ -1,0 +1,288 @@
+{
+  "title": "How Blockchain Tech Takes Video Games to the Next Level",
+  "slug": "blockchain-tech-takes-gaming-next-level",
+  "date": "2020-06-01T00:00",
+  "image": {
+    "metadata": {
+      "tags": []
+    },
+    "sys": {
+      "space": {
+        "sys": {
+          "type": "Link",
+          "linkType": "Space",
+          "id": "6aayqp6oiffy"
+        }
+      },
+      "type": "Asset",
+      "id": "60eXMp0QRCDVuscWP6tJoz",
+      "revision": 1,
+      "createdAt": "2021-03-30T15:42:00.493Z",
+      "updatedAt": "2021-03-30T15:42:17.954Z",
+      "environment": {
+        "sys": {
+          "id": "master",
+          "type": "Link",
+          "linkType": "Environment"
+        }
+      },
+      "locale": "en-US"
+    },
+    "fields": {
+      "title": "game-hall",
+      "file": {
+        "url": "//images.ctfassets.net/6aayqp6oiffy/60eXMp0QRCDVuscWP6tJoz/e362e516ae3336bdd3daa50c08f0d039/post1.jpg",
+        "details": {
+          "size": 223773,
+          "image": {
+            "width": 1506,
+            "height": 1000
+          }
+        },
+        "fileName": "post1.jpg",
+        "contentType": "image/jpeg"
+      }
+    }
+  },
+  "excerpt": "NFTs are the Gaming Industry’s Next Killer App Blockchain tech is one of",
+  "content": [
+    {
+      "metadata": {
+        "tags": []
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "6aayqp6oiffy"
+          }
+        },
+        "type": "Entry",
+        "id": "16pf66xt9RnElhhdrQjghj",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "contentContainer"
+          }
+        },
+        "revision": 1,
+        "createdAt": "2021-03-30T15:42:24.882Z",
+        "updatedAt": "2021-03-30T15:44:19.508Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "locale": "en-US"
+      },
+      "fields": {
+        "internalName": "How Blockchain Tech Takes Video Games to the Next Level",
+        "content": [
+          {
+            "metadata": {
+              "tags": []
+            },
+            "sys": {
+              "space": {
+                "sys": {
+                  "type": "Link",
+                  "linkType": "Space",
+                  "id": "6aayqp6oiffy"
+                }
+              },
+              "type": "Entry",
+              "id": "7IUe1FUofwqF6BYclGuUgY",
+              "contentType": {
+                "sys": {
+                  "type": "Link",
+                  "linkType": "ContentType",
+                  "id": "text"
+                }
+              },
+              "revision": 3,
+              "createdAt": "2021-03-30T15:42:47.396Z",
+              "updatedAt": "2021-03-30T16:14:03.768Z",
+              "environment": {
+                "sys": {
+                  "id": "master",
+                  "type": "Link",
+                  "linkType": "Environment"
+                }
+              },
+              "locale": "en-US"
+            },
+            "fields": {
+              "internalName": "How Blockchain Tech Takes Video Games to the Next Level",
+              "richText": {
+                "nodeType": "document",
+                "data": {},
+                "content": [
+                  {
+                    "nodeType": "heading-2",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "NFTs are the Gaming Industry’s Next Killer App",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "Blockchain tech is one of modern society’s most useful applications.\n\nAnd technology, at its digital core, exists for the sole purpose of enhancing our lives. We build robots to clean our floors and clothes and dishes. Our autos are intelligent enough to know when they’re too close to the car ahead, responding by smoothly applying the brakes.\n\nIf we can dream it, we can create it — eventually. And one of the most profound uses cases of blockchain tech is bitcoin, the world’s first cryptocurrency.\n\nBitcoin’s underlying technology — blockchain — is a creation borne of self-sovereignty. However, the notorious Nakamoto (assumptively) didn’t foresee the positive additions blockchain tech could offer the entertainment industry — Satoshi had his sights locked on centralized finance.\n\nWe no longer have to deal with the swindling bottom dwellers inhabiting any sector. Available today are permanent, distributed, publicly-verifiable records of various datasets. Blockchain shakes fraudsters right out of business because there’s nowhere for them to hide.\n\nNow, you can name almost any industry and chances are high that blockchain can make it better. Voting, health care, ID verification (KYC), loans, land ownership, the list goes on. And one of the industries that’s more than ready for a blockchain upgrade is video games. Especially in the high-stakes realm of competitive esports.\n\nYou see, we’re not talking about Sudoku here. Casual games certainly have their time and place, but nobody’s coming out to watch people play them! Conversely, specific gaming tournaments draw enormous crowds.\n\nFor example, in South Korea, it’s not uncommon for pro StarCraft and League of Legends players to receive an ecstatic welcome from thousands of rabid, screaming fans. Celebrity gamers are whisked to tournaments in speedboats and helicopters, emerging to greet sold-out coliseums.",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "As you can imagine, with that caliber of hysteria and sensation comes huge salaries and oversized prize pools. And we all know that where you find large sums of money, you typically find crooks.\n\nNefarious gamers — as explained in this fan-made article on the rise of esports in Southeast Asia — go to great lengths to hack the system. From aimbots to falsified records, cheaters will try nearly anything to gain an ill-gotten competitive edge.\n\nLucky for us, blockchain tech prevents the problems that siphon the fun right out of our favorite video games. And as you’ll soon see, the advantages of blockchain gaming go far beyond defense from cheating.",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "heading-2",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "Upside Down Tokenomics",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "The original relationship between games and tokens was a one-way street. You traded fiat for tokens then slid those circular pieces of metal into arcade cabinets. Without the token, there was no game.\n\nBut blockchain tech flips that concept on its head. Now, without the game, there is no token. Blockchain gaming means capturing a copy of gameplay within a digital container.",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "Every in-game event, item, and transaction is verified and recorded by blockchain tech. And by tokenizing gameplay, we unlock new potential for capturing value.\n\nBlockchain levels up video games by automatically capturing gameplay in the form of non-fungible tokens (NFTs).\n\nWhen game elements undergo tokenization, they’re easy to trade. And the ability to swap with fellow gamers can open the door to yet-unimagined marketplaces. In other words, we don’t yet know where the value of tokenized gameplay will take us in the long run.\n\ufeff\nBut today, we’re well aware of several blockchain-powered benefits.",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "Validated ownership and scarcity of items are incredibly beneficial in games. But perhaps what gets us the most excited is the potential for cross-game asset transfers. Non-fungible tokens create the ability to use weapons and costumes throughout entire ecosystems of compatible games.",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "Designing and upgrading in-game characters are often a matter of personal preference. It’s often painstaking — yet still fun — to find the right combinations of speed and accuracy, stealth and power. And NFTs may preserve time well spent.",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "Capturing the essence of gamers’ digital personas and progress means some of their hard work needn’t go to waste when it’s time to play a fresh title.",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "Blockchain gaming is still considered an up-and-coming niche. And considering how we operate from Vietnam — one of Southeast Asia’s esports hotspots — RFOX Games is in the right place at the right time.\n\nTruth be told, we may be a bit too early to the party. But we see that as a huge advantage — we have time to create infrastructure before other projects inevitably come rushing into the space.",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "heading-2",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "Conclusion",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "paragraph",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "Video games transform the mundane into the extraordinary. Because in games, anyone can be a superhero. And being a superhero taps into a universal desire to become more than an average human.\n\nDo you know anyone who doesn’t wish they could fly by merely thrusting a fist into the air?\n\nBut when unscrupulous individuals invade our digital realms, they may spoil our attempts to become larger than life. There’s no room for cheating in games — competitive or not — and blockchain tech stifles foul play.\n\nPlus, you may know what it’s like to spend hours on end immersed in your favorite title — building and scraping and experimenting — until your character’s abilities are ultra-powerful. If so, you know exactly how discouraging it can be to leave all that progress trapped within a singular video game.\n\nNon-fungible tokens have the power to change all of that. NFTs are the gaming industry’s next killer app, and RFOX Games has big plans for bringing them to you!\n\nSumming up, by applying blockchain tech to video games, we increase the value to gamers while firewalling those trying to game the system. And that potent combo makes gaming more enjoyable for all of the honest players across the globe.",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
