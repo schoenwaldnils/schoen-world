@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { FC } from 'react'
+import { FC, ImgHTMLAttributes } from 'react'
 
 const AvatarContainer = styled.div`
   display: flex;
@@ -19,10 +19,10 @@ const Image = styled.img`
   }
 `
 
-export const Avatar: FC<{ src: string }> = ({ src }) => {
+export const Avatar: FC<ImgHTMLAttributes<HTMLImageElement>> = (props) => {
   return (
     <AvatarContainer>
-      <Image src={src} />
+      <Image {...props} />
     </AvatarContainer>
   )
 }

@@ -21,8 +21,8 @@ export const ThemeSwitchView: FC<ThemeSwitchViewProps> = ({
 }) => {
   return (
     <Toggle
-      left={<IconDark />}
-      right={<IconLight />}
+      left={<IconDark id="svg-moon" />}
+      right={<IconLight id="svg-sun" />}
       isLeft={isDark}
       toggleIsLeft={toggleTheme}
     />

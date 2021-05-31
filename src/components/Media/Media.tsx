@@ -58,7 +58,7 @@ export const Media: FC<IMediaFields> = ({
     }
 
     if (internalName === 'Nils profile picture') {
-      return <Avatar src={asset.fields?.file?.url} />
+      return <Avatar src={asset.fields?.file?.url} alt="Nils Schönwald" />
     }
 
     const fileType = asset.fields.file.contentType
