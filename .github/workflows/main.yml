@@ -40,7 +40,7 @@ jobs:
           node-version: '14'
 
       - name: npm install
-        run: npm ci
+        run: npm ci --also=dev
 
       - name: build
         run: npm run build
