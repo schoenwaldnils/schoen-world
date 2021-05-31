@@ -71,6 +71,7 @@ export const Article: FC<
           <Image src={imageSrc} alt={imageAlt || undefined} />
         </ImageWrapper>
       )}
+
       <ArticleContainer>
         <Headline1>{title}</Headline1>
 

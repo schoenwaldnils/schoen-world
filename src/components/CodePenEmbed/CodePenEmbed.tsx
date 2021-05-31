@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import Head from 'next/head'
 import { FC, useEffect, useRef } from 'react'
 
 import { ICodePenEmbedFields } from '../../@types/generated/contentful'
@@ -32,6 +33,13 @@ export const CodePenEmbed: FC<ICodePenEmbedFields> = ({
 
   return (
     <>
+      <Head>
+        <link rel="preconnect" href="https://cdpn.io" />
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+        <link rel="preconnect" href="https://codepen.io" />
+        <link rel="preconnect" href="https://cpwebassets.codepen.io" />
+      </Head>
+
       <p
         data-height={height}
         data-theme-id="26304"
