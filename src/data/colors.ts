@@ -1,8 +1,11 @@
 const baseColors = {
-  black: '#323537',
+  black: '#000000',
+  almostblack: '#181818',
+  charcoal: '#323537',
   grayDark: '#444444',
-  gray: '#777777',
-  grayLight: '#cccccc',
+  gray: '#808080',
+  grayLight: '#c0c0c0',
+  grayLightest: '#e6e6e6',
   white: '#ffffff',
 
   brand: '#ba3e48',
@@ -31,15 +34,15 @@ const lightColors = {
   ...baseColors,
 
   bodyBackground: baseColors.white,
-  bodyColor: baseColors.black,
-  headerBackground: baseColors.black,
+  bodyColor: baseColors.charcoal,
+  headerBackground: baseColors.charcoal,
   headerColor: baseColors.white,
 
   socialIconColor: baseColors.white,
   socialIconBackground: baseColors.grayDark,
 
   footerColor: baseColors.white,
-  footerBackground: baseColors.black,
+  footerBackground: baseColors.charcoal,
 
   postTeaserHeadline: baseColors.grayDark,
 
@@ -52,13 +55,13 @@ const lightColors = {
   typographySublineColor: 'inherit',
 
   typographyLinkColor: baseColors.brand,
-  typographyLinkHover: baseColors.black,
-  typographyLinkActive: baseColors.black,
+  typographyLinkHover: baseColors.charcoal,
+  typographyLinkActive: baseColors.charcoal,
 
   typographyHr: baseColors.brand,
 
-  codeInlineColor: baseColors.white,
-  codeInlineBackground: baseColors.black,
+  codeInlineColor: baseColors.black,
+  codeInlineBackground: baseColors.grayLightest,
 
   avatarBackground: baseColors.white,
 }
@@ -68,8 +71,11 @@ export const getColors = (isDark: boolean): typeof lightColors => {
     return {
       ...lightColors,
 
-      bodyBackground: baseColors.grayDark,
-      bodyColor: baseColors.white,
+      bodyBackground: baseColors.almostblack,
+      bodyColor: baseColors.grayLight,
+
+      codeInlineColor: baseColors.white,
+      codeInlineBackground: baseColors.grayDark,
     }
   }
 

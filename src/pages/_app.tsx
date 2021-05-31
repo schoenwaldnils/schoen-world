@@ -6,6 +6,7 @@ import { ReactNode } from 'react'
 import { Favicons } from '../components/Favicons'
 import { GlobalStyles } from '../components/GlobalStyles'
 import { twitter } from '../data/config'
+import { StoreProvider } from '../provider/Store/StoreProvider'
 
 const TimelineApp = ({ Component, pageProps }: AppProps): ReactNode => {
   return (
@@ -13,11 +14,10 @@ const TimelineApp = ({ Component, pageProps }: AppProps): ReactNode => {
       <Head>
         <Favicons />
       </Head>
-      <GlobalStyles />
 
       <DefaultSeo
-        defaultTitle={'Schönwald'}
-        description={'Thoughts on CSS, JS, and overall clean code.'}
+        defaultTitle="Schönwald"
+        description="Thoughts on CSS, JS, and overall clean code."
         defaultOpenGraphImageWidth={200}
         defaultOpenGraphImageHeight={200}
         openGraph={{
@@ -36,7 +36,11 @@ const TimelineApp = ({ Component, pageProps }: AppProps): ReactNode => {
         }}
       />
 
-      <Component {...pageProps} />
+      <StoreProvider>
+        <GlobalStyles />
+
+        <Component {...pageProps} />
+      </StoreProvider>
     </>
   )
 }

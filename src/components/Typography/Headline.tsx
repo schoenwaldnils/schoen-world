@@ -1,14 +1,13 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
-import { colors } from '../../data/colors'
 import { upFromBreakpoint } from '../../utils/mixins'
 
 export const h1Styles = css`
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.1;
-  color: ${colors.typographyHeadline1Color};
+  color: var(--Typography-headline1Color);
 
   ${upFromBreakpoint('small')} {
     font-size: 2.75rem;
@@ -21,9 +20,9 @@ export const Headline1 = styled.h1`
 
 export const h2Styles = css`
   font-size: 1.75rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.2;
-  color: ${colors.typographyHeadline2Color};
+  color: var(--Typography-headline2Color);
 
   ${upFromBreakpoint('small')} {
     font-size: 2.25rem;
@@ -36,8 +35,8 @@ export const Headline2 = styled.h2`
 
 export const h3Styles = css`
   font-size: 1.5rem;
-  font-weight: 400;
-  color: ${colors.typographyHeadline3Color};
+  font-weight: 500;
+  color: var(--Typography-headline3Color);
 
   ${upFromBreakpoint('small')} {
     font-size: 1.75rem;
@@ -50,8 +49,8 @@ export const Headline3 = styled.h3`
 
 export const h4Styles = css`
   font-size: 1.25rem;
-  font-weight: 400;
-  color: ${colors.typographyHeadline4Color};
+  font-weight: 500;
+  color: var(--Typography-headline4Color);
 
   ${upFromBreakpoint('small')} {
     font-size: 1.5rem;
@@ -67,7 +66,7 @@ export const sublineStyles = css`
   font-weight: 500;
   line-height: 1.4;
   letter-spacing: 0.15em;
-  color: ${colors.typographySublineColor};
+  color: var(--Typography-sublineColor);
   text-transform: uppercase;
 `
 

@@ -7,4 +7,6 @@ export default {
   component: VideoComponent,
 }
 
-export const Video: FC = () => <VideoComponent />
+export const Video: FC = () => (
+  <VideoComponent src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" />
+)

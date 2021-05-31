@@ -1,6 +1,8 @@
 import { css } from '@emotion/react'
 
-import { colors } from '../../data/colors'
+import { baseColors } from '../GlobalStyles/theme'
+
+const colors = baseColors
 
 export const highlightJs = css`
   .hljs {

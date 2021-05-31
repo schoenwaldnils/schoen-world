@@ -136,6 +136,15 @@ export interface IMediaFields {
 
   /** Youtube Video ID */
   youtubeVideoId?: string | undefined
+
+  /** Float */
+  float?: 'left' | 'right' | undefined
+
+  /** width */
+  width?: number | undefined
+
+  /** Align horizontal */
+  alignHorizontal?: 'left' | 'center' | 'right' | undefined
 }
 
 export interface IMedia extends Entry<IMediaFields> {

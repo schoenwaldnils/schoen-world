@@ -1,16 +1,30 @@
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { FC } from 'react'
 
 import { IMediaFields } from '../../@types/generated/contentful'
+import { Avatar } from '../Avatar'
 import { Image } from '../Image'
 import { sublineStyles } from '../Typography'
 import { Video } from '../Video'
 import { YoutubeEmbed } from '../YoutubeEmbed'
 
-const Figure = styled.figure`
+const floatCss = (float: 'left' | 'right') => css`
+  display: inline;
+  float: ${float || 'none'};
+  margin-right: ${float === 'left' ? '.5em' : '0'};
+  margin-bottom: 0.5em;
+  margin-left: ${float === 'right' ? '.5em' : '0'};
+`
+
+const Figure = styled.figure<{
+  width?: number
+  float?: 'left' | 'right'
+}>`
   display: inline-block;
-  margin-right: 0;
-  margin-left: 0;
+
+  ${(p) => p.width && `width: ${p.width}px;`}
+  ${(p) => p.float && floatCss(p.float)};
 `
 
 const Figcaption = styled.figcaption`
@@ -18,32 +32,40 @@ const Figcaption = styled.figcaption`
   text-transform: none;
 `
 
-const FigureComponent: FC<{ description?: string }> = ({
-  children,
-  description,
-}) => (
-  <Figure>
+const FigureComponent: FC<{
+  width?: number
+  float?: 'left' | 'right'
+  description?: string
+}> = ({ children, float, width, description }) => (
+  <Figure float={float} width={width}>
     {children}
     {description && <Figcaption>{description}</Figcaption>}
   </Figure>
 )
 
 export const Media: FC<IMediaFields> = ({
+  internalName,
   asset,
   description,
   altText,
   youtubeVideoId,
+  float,
+  width,
 }) => {
   if (asset) {
     if (!asset.fields?.file?.url) {
       return null
     }
 
+    if (internalName === 'Nils profile picture') {
+      return <Avatar src={asset.fields?.file?.url} />
+    }
+
     const fileType = asset.fields.file.contentType
 
     if (fileType.includes('image')) {
       return (
-        <FigureComponent description={description}>
+        <FigureComponent description={description} float={float} width={width}>
           <Image src={asset.fields?.file?.url} alt={altText} />
         </FigureComponent>
       )
@@ -51,7 +73,7 @@ export const Media: FC<IMediaFields> = ({
 
     if (fileType.includes('video')) {
       return (
-        <FigureComponent description={description}>
+        <FigureComponent description={description} float={float} width={width}>
           <Video src={asset.fields?.file?.url} />
         </FigureComponent>
       )

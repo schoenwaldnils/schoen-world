@@ -1,4 +1,3 @@
-import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import qs from 'qs'
 import { FC } from 'react'
@@ -6,9 +5,8 @@ import { FC } from 'react'
 const getParams = (width: number, height?: number, retina = false) => {
   const retinaFactor = 1.5
   const params = {
-    fm: 'jpg', // format
+    fm: 'webp', // format
     q: retina ? 50 : 60, // quality
-    fl: 'progressive',
     w: null,
     h: null,
     fit: null,
@@ -34,16 +32,11 @@ const pictureViewports = {
   sm: 320,
 }
 
-const floatCss = (float: 'left' | 'right') => css`
-  margin-right: ${float === 'left' ? '.5em' : ''};
-  margin-bottom: 0.5em;
-  margin-left: ${float === 'right' ? '.5em' : ''};
-`
-
-const Img = styled.img<{ float?: 'left' | 'right'; backgroundColor?: string }>`
+const Img = styled.img<{
+  backgroundColor?: string
+}>`
   background-color: ${(p) =>
     p.backgroundColor ? p.backgroundColor : 'transparent'};
-  ${(p) => p.float && floatCss(p.float)};
 `
 
 type ImageType = {
@@ -51,18 +44,10 @@ type ImageType = {
   alt?: string
   width?: number
   height?: number
-  float?: 'left' | 'right'
   color?: string
 }
 
-export const Image: FC<ImageType> = ({
-  src,
-  alt,
-  width,
-  height,
-  float,
-  color,
-}) => {
+export const Image: FC<ImageType> = ({ src, alt, width, height, color }) => {
   const viewportKeys = Object.keys(pictureViewports).reverse()
   const maxWidth = width || 2560
 
@@ -112,7 +97,6 @@ export const Image: FC<ImageType> = ({
 
       <Img
         src={`${src}?${getParams(320, null)}`}
-        float={float}
         backgroundColor={color}
         width={width}
         alt={alt}

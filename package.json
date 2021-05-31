@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev -p 3002",
+    "prebuild": "npm run generate-contentful-types",
     "build": "next build",
     "export": "NODE_ENV=production next build && next export",
     "test": "npm run lint",
-    "lint": "npm run lint:css && npm run lint:ts",
+    "lint": "npm run lint:ts && npm run lint:types",
     "lint:css": "stylelint '**/*.tsx'",
     "lint:ts": "eslint . --ext .ts,.tsx",
     "lint:ts-fix": "eslint . --ext .ts,.tsx --fix",
@@ -17,7 +18,7 @@
     "generate-contentful-types": "contentful-typescript-codegen --output src/@types/generated/contentful.d.ts",
     "generate-favicons": "real-favicon generate faviconDescription.json src/components/Favicons/faviconData.json public/images/favicons",
     "storybook": "start-storybook -p 6007",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook -o public/storybook --quiet",
     "snapshot": "build-storybook && percy-storybook --widths=320 -t=500",
     "analyze": "cross-env ANALYZE=true next build",
     "snyk-protect": "snyk protect",
@@ -26,6 +27,7 @@
   "keywords": [
     "next.js",
     "nextjs",
+    "contentful",
     "static"
   ],
   "repository": "github:schoenwaldnils/schoen-world",
@@ -41,7 +43,6 @@
     "@emotion/react": "11.4.0",
     "@emotion/styled": "11.3.0",
     "@material-ui/core": "4.11.4",
-    "@storybook/addon-actions": "6.2.9",
     "@svgr/webpack": "5.5.0",
     "@types/node": "14.14.41",
     "@types/react": "17.0.6",
@@ -123,8 +124,7 @@
   },
   "lint-staged": {
     "**/*.(ts|tsx)": [
-      "eslint --fix",
-      "stylelint --formatter verbose"
+      "eslint --fix"
     ]
   },
   "snyk": true

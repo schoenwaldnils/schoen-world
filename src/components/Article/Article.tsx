@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import { DiscussionEmbed } from 'disqus-react'
 import { FC } from 'react'
 import {
   EmailIcon,
@@ -19,6 +18,7 @@ import {
 import { IPostFields } from '../../@types/generated/contentful'
 import { aspectRatio, maxWidthText, upFromBreakpoint } from '../../utils/mixins'
 import { Author } from '../Author'
+import { GiscusComments } from '../GiscusComments'
 import { Image } from '../Image'
 import { RichText } from '../RichText'
 import { Stack } from '../Stack'
@@ -31,11 +31,11 @@ const ImageWrapper = styled.div`
 const ArticleContainer = styled.div`
   ${maxWidthText}
   margin-top: 2.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 
   ${upFromBreakpoint('small')} {
-    margin-top: 4rem;
-    margin-bottom: 3rem;
+    margin-top: 3rem;
+    margin-bottom: 4rem;
   }
 
   > * + * {
@@ -48,13 +48,16 @@ const ShareButtonContainer = styled.div`
   grid-gap: 1rem;
 `
 
-export const Article: FC<IPostFields & { type?: 'post' | 'page' }> = ({
+export const Article: FC<
+  IPostFields & { type?: 'post' | 'page'; showComments?: boolean }
+> = ({
   slug,
   title,
   image,
   richText,
   type = 'post',
   author,
+  showComments = true,
 }) => {
   const shareUrl = `https://schoen.world/blog/${slug}`
 
@@ -77,7 +80,6 @@ export const Article: FC<IPostFields & { type?: 'post' | 'page' }> = ({
           {type === 'post' && (
             <>
               {author && <Author {...author.fields} />}
-
               <ShareButtonContainer>
                 <TwitterShareButton url={shareUrl} title={title}>
                   <TwitterIcon size={32} round />
@@ -103,15 +105,7 @@ export const Article: FC<IPostFields & { type?: 'post' | 'page' }> = ({
                 </EmailShareButton>
               </ShareButtonContainer>
 
-              <DiscussionEmbed
-                shortname="schoenwaldmedia"
-                config={{
-                  url: shareUrl,
-                  identifier: slug,
-                  title: title,
-                  language: 'en_US',
-                }}
-              />
+              {showComments && <GiscusComments />}
             </>
           )}
         </Stack>

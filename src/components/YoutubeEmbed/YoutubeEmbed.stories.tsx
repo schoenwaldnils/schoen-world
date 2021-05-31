@@ -7,4 +7,4 @@ export default {
   component: YoutubeEmbedComponent,
 }
 
-export const YoutubeEmbed: FC = () => <YoutubeEmbedComponent id="QafdjcSQe4c" />
+export const YoutubeEmbed: FC = () => <YoutubeEmbedComponent id="lX6JcybgDFo" />

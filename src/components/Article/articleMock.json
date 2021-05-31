@@ -1,7 +1,6 @@
 {
-  "title": "How Blockchain Tech Takes Video Games to the Next Level",
-  "slug": "blockchain-tech-takes-gaming-next-level",
-  "date": "2020-06-01T00:00",
+  "slug": "sticky-footer-with-flexbox",
+  "title": "Sticky footer with flexbox",
   "image": {
     "metadata": {
       "tags": []
@@ -11,14 +10,13 @@
         "sys": {
           "type": "Link",
           "linkType": "Space",
-          "id": "6aayqp6oiffy"
+          "id": "lvgw6if4imbu"
         }
       },
+      "id": "3SLaWljI08yOc6IY4Gsok4",
       "type": "Asset",
-      "id": "60eXMp0QRCDVuscWP6tJoz",
-      "revision": 1,
-      "createdAt": "2021-03-30T15:42:00.493Z",
-      "updatedAt": "2021-03-30T15:42:17.954Z",
+      "createdAt": "2018-01-09T18:27:28.527Z",
+      "updatedAt": "2018-01-10T01:41:27.614Z",
       "environment": {
         "sys": {
           "id": "master",
@@ -26,63 +24,56 @@
           "linkType": "Environment"
         }
       },
+      "revision": 2,
       "locale": "en-US"
     },
     "fields": {
-      "title": "game-hall",
+      "title": "glenn-carstens-peters-203007",
+      "description": "Photo by Glenn Carstens-Peters on Unsplash",
       "file": {
-        "url": "//images.ctfassets.net/6aayqp6oiffy/60eXMp0QRCDVuscWP6tJoz/e362e516ae3336bdd3daa50c08f0d039/post1.jpg",
+        "url": "//images.ctfassets.net/lvgw6if4imbu/3SLaWljI08yOc6IY4Gsok4/1c18ae6cc4bd6dd9521e4816a3d62647/glenn-carstens-peters-203007.jpg",
         "details": {
-          "size": 223773,
+          "size": 908677,
           "image": {
-            "width": 1506,
-            "height": 1000
+            "width": 4076,
+            "height": 2712
           }
         },
-        "fileName": "post1.jpg",
+        "fileName": "glenn-carstens-peters-203007.jpg",
         "contentType": "image/jpeg"
       }
     }
   },
-  "excerpt": "NFTs are the Gaming Industry’s Next Killer App Blockchain tech is one of",
-  "content": [
-    {
-      "metadata": {
-        "tags": []
-      },
-      "sys": {
-        "space": {
-          "sys": {
-            "type": "Link",
-            "linkType": "Space",
-            "id": "6aayqp6oiffy"
-          }
-        },
-        "type": "Entry",
-        "id": "16pf66xt9RnElhhdrQjghj",
-        "contentType": {
-          "sys": {
-            "type": "Link",
-            "linkType": "ContentType",
-            "id": "contentContainer"
-          }
-        },
-        "revision": 1,
-        "createdAt": "2021-03-30T15:42:24.882Z",
-        "updatedAt": "2021-03-30T15:44:19.508Z",
-        "environment": {
-          "sys": {
-            "id": "master",
-            "type": "Link",
-            "linkType": "Environment"
-          }
-        },
-        "locale": "en-US"
-      },
-      "fields": {
-        "internalName": "How Blockchain Tech Takes Video Games to the Next Level",
+  "richText": {
+    "data": {},
+    "content": [
+      {
+        "data": {},
         "content": [
           {
+            "data": {},
+            "marks": [],
+            "value": "With flexbox there is now a simple way to let your footer stick to the bottom, when there is not enough content, and make it static when there is.",
+            "nodeType": "text"
+          }
+        ],
+        "nodeType": "paragraph"
+      },
+      {
+        "data": {},
+        "content": [
+          {
+            "data": {},
+            "marks": [],
+            "value": "At first we need the HTML-skeleton. One wrapper, in this case the body-element itself, and at least 2 child-elements. I'm also including the header here, because it is often used in this kind of arrangement.",
+            "nodeType": "text"
+          }
+        ],
+        "nodeType": "paragraph"
+      },
+      {
+        "data": {
+          "target": {
             "metadata": {
               "tags": []
             },
@@ -91,21 +82,13 @@
                 "sys": {
                   "type": "Link",
                   "linkType": "Space",
-                  "id": "6aayqp6oiffy"
+                  "id": "lvgw6if4imbu"
                 }
               },
+              "id": "1Oc2gkswfh7vFMM2yQUCvA",
               "type": "Entry",
-              "id": "7IUe1FUofwqF6BYclGuUgY",
-              "contentType": {
-                "sys": {
-                  "type": "Link",
-                  "linkType": "ContentType",
-                  "id": "text"
-                }
-              },
-              "revision": 3,
-              "createdAt": "2021-03-30T15:42:47.396Z",
-              "updatedAt": "2021-03-30T16:14:03.768Z",
+              "createdAt": "2021-05-26T10:59:57.856Z",
+              "updatedAt": "2021-05-26T10:59:57.856Z",
               "environment": {
                 "sys": {
                   "id": "master",
@@ -113,176 +96,564 @@
                   "linkType": "Environment"
                 }
               },
+              "revision": 1,
+              "contentType": {
+                "sys": {
+                  "type": "Link",
+                  "linkType": "ContentType",
+                  "id": "codeBlock"
+                }
+              },
               "locale": "en-US"
             },
             "fields": {
-              "internalName": "How Blockchain Tech Takes Video Games to the Next Level",
-              "richText": {
-                "nodeType": "document",
+              "internalName": "Flex footer html",
+              "code": "<body>\n  <div class=\"Header\"></div>\n  <div class=\"Content\"></div>\n  <div class=\"Footer\"></div>\n</body>",
+              "syntax": "html"
+            }
+          }
+        },
+        "content": [],
+        "nodeType": "embedded-entry-block"
+      },
+      {
+        "data": {},
+        "content": [
+          {
+            "data": {},
+            "marks": [],
+            "value": "And now give the ",
+            "nodeType": "text"
+          },
+          {
+            "data": {},
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "value": "body",
+            "nodeType": "text"
+          },
+          {
+            "data": {},
+            "marks": [],
+            "value": " ",
+            "nodeType": "text"
+          },
+          {
+            "data": {},
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "value": "display: flex",
+            "nodeType": "text"
+          },
+          {
+            "data": {},
+            "marks": [],
+            "value": " and ",
+            "nodeType": "text"
+          },
+          {
+            "data": {},
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "value": "flex-direction: column",
+            "nodeType": "text"
+          },
+          {
+            "data": {},
+            "marks": [],
+            "value": " to stack the three child elements vertically.\nTo support IE 11 we also need those styles on the ",
+            "nodeType": "text"
+          },
+          {
+            "data": {},
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "value": "html",
+            "nodeType": "text"
+          },
+          {
+            "data": {},
+            "marks": [],
+            "value": " element.\nAlso the ",
+            "nodeType": "text"
+          },
+          {
+            "data": {},
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "value": "body",
+            "nodeType": "text"
+          },
+          {
+            "data": {},
+            "marks": [],
+            "value": " elements need to be at least ",
+            "nodeType": "text"
+          },
+          {
+            "data": {},
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "value": "100vh",
+            "nodeType": "text"
+          },
+          {
+            "data": {},
+            "marks": [],
+            "value": " in height.",
+            "nodeType": "text"
+          }
+        ],
+        "nodeType": "paragraph"
+      },
+      {
+        "data": {
+          "target": {
+            "metadata": {
+              "tags": []
+            },
+            "sys": {
+              "space": {
+                "sys": {
+                  "type": "Link",
+                  "linkType": "Space",
+                  "id": "lvgw6if4imbu"
+                }
+              },
+              "id": "rveQfgptirRw77rpH1HIn",
+              "type": "Entry",
+              "createdAt": "2021-05-26T11:01:05.559Z",
+              "updatedAt": "2021-05-26T11:01:05.559Z",
+              "environment": {
+                "sys": {
+                  "id": "master",
+                  "type": "Link",
+                  "linkType": "Environment"
+                }
+              },
+              "revision": 1,
+              "contentType": {
+                "sys": {
+                  "type": "Link",
+                  "linkType": "ContentType",
+                  "id": "codeBlock"
+                }
+              },
+              "locale": "en-US"
+            },
+            "fields": {
+              "internalName": "flex footer css",
+              "code": "html,\nbody {\n  display: flex;\n  flex-direction: column;\n}\nbody {\n  min-height: 100vh;\n}",
+              "syntax": "css"
+            }
+          }
+        },
+        "content": [],
+        "nodeType": "embedded-entry-block"
+      },
+      {
+        "data": {},
+        "content": [
+          {
+            "data": {},
+            "marks": [],
+            "value": "The trick now is to give the ",
+            "nodeType": "text"
+          },
+          {
+            "data": {},
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "value": ".Content",
+            "nodeType": "text"
+          },
+          {
+            "data": {},
+            "marks": [],
+            "value": "-element the ",
+            "nodeType": "text"
+          },
+          {
+            "data": {},
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "value": "flex-grow: 1",
+            "nodeType": "text"
+          },
+          {
+            "data": {},
+            "marks": [],
+            "value": " so the footer gets pushed to the bottom.\nYou also can add ",
+            "nodeType": "text"
+          },
+          {
+            "data": {},
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "value": "flex-shrink: 0",
+            "nodeType": "text"
+          },
+          {
+            "data": {},
+            "marks": [],
+            "value": " to the other elements so that they don't get squished when the viewport is too small.",
+            "nodeType": "text"
+          }
+        ],
+        "nodeType": "paragraph"
+      },
+      {
+        "data": {
+          "target": {
+            "metadata": {
+              "tags": []
+            },
+            "sys": {
+              "space": {
+                "sys": {
+                  "type": "Link",
+                  "linkType": "Space",
+                  "id": "lvgw6if4imbu"
+                }
+              },
+              "id": "2l5WW5WP6RqtAo5AJRASUO",
+              "type": "Entry",
+              "createdAt": "2021-05-26T11:01:49.803Z",
+              "updatedAt": "2021-05-26T11:01:49.803Z",
+              "environment": {
+                "sys": {
+                  "id": "master",
+                  "type": "Link",
+                  "linkType": "Environment"
+                }
+              },
+              "revision": 1,
+              "contentType": {
+                "sys": {
+                  "type": "Link",
+                  "linkType": "ContentType",
+                  "id": "codeBlock"
+                }
+              },
+              "locale": "en-US"
+            },
+            "fields": {
+              "internalName": "footer flex css 2",
+              "code": ".Header,\n.Footer {\n  flex-shrink: 0;\n}\n.Content {\n  flex-grow: 1;\n}",
+              "syntax": "css"
+            }
+          }
+        },
+        "content": [],
+        "nodeType": "embedded-entry-block"
+      },
+      {
+        "data": {},
+        "content": [
+          {
+            "data": {},
+            "marks": [],
+            "value": "And voilá your footer is at the bottom all the time.",
+            "nodeType": "text"
+          }
+        ],
+        "nodeType": "paragraph"
+      },
+      {
+        "data": {},
+        "content": [
+          {
+            "data": {},
+            "marks": [],
+            "value": "The complete result:",
+            "nodeType": "text"
+          }
+        ],
+        "nodeType": "heading-2"
+      },
+      {
+        "data": {
+          "target": {
+            "metadata": {
+              "tags": []
+            },
+            "sys": {
+              "space": {
+                "sys": {
+                  "type": "Link",
+                  "linkType": "Space",
+                  "id": "lvgw6if4imbu"
+                }
+              },
+              "id": "e5iIZlW6G5FxcBECnb8GP",
+              "type": "Entry",
+              "createdAt": "2021-05-26T11:02:48.977Z",
+              "updatedAt": "2021-05-26T11:43:32.533Z",
+              "environment": {
+                "sys": {
+                  "id": "master",
+                  "type": "Link",
+                  "linkType": "Environment"
+                }
+              },
+              "revision": 3,
+              "contentType": {
+                "sys": {
+                  "type": "Link",
+                  "linkType": "ContentType",
+                  "id": "codePenEmbed"
+                }
+              },
+              "locale": "en-US"
+            },
+            "fields": {
+              "internalName": "flex footer result",
+              "title": "flexbox-sticky-footer",
+              "id": "c00705534da233982aa90ed744e36377",
+              "username": "schoenwaldnils",
+              "defaultPanes": [
+                "css",
+                "result"
+              ],
+              "height": 610
+            }
+          }
+        },
+        "content": [],
+        "nodeType": "embedded-entry-block"
+      },
+      {
+        "data": {},
+        "content": [
+          {
+            "data": {},
+            "marks": [],
+            "value": "Related links:",
+            "nodeType": "text"
+          }
+        ],
+        "nodeType": "heading-2"
+      },
+      {
+        "data": {},
+        "content": [
+          {
+            "data": {},
+            "content": [
+              {
                 "data": {},
                 "content": [
                   {
-                    "nodeType": "heading-2",
-                    "content": [
-                      {
-                        "nodeType": "text",
-                        "value": "NFTs are the Gaming Industry’s Next Killer App",
-                        "marks": [],
-                        "data": {}
-                      }
-                    ],
-                    "data": {}
+                    "data": {},
+                    "marks": [],
+                    "value": "",
+                    "nodeType": "text"
                   },
                   {
-                    "nodeType": "paragraph",
+                    "data": {
+                      "uri": "https://caniuse.com/#feat=viewport-units"
+                    },
                     "content": [
                       {
-                        "nodeType": "text",
-                        "value": "Blockchain tech is one of modern society’s most useful applications.\n\nAnd technology, at its digital core, exists for the sole purpose of enhancing our lives. We build robots to clean our floors and clothes and dishes. Our autos are intelligent enough to know when they’re too close to the car ahead, responding by smoothly applying the brakes.\n\nIf we can dream it, we can create it — eventually. And one of the most profound uses cases of blockchain tech is bitcoin, the world’s first cryptocurrency.\n\nBitcoin’s underlying technology — blockchain — is a creation borne of self-sovereignty. However, the notorious Nakamoto (assumptively) didn’t foresee the positive additions blockchain tech could offer the entertainment industry — Satoshi had his sights locked on centralized finance.\n\nWe no longer have to deal with the swindling bottom dwellers inhabiting any sector. Available today are permanent, distributed, publicly-verifiable records of various datasets. Blockchain shakes fraudsters right out of business because there’s nowhere for them to hide.\n\nNow, you can name almost any industry and chances are high that blockchain can make it better. Voting, health care, ID verification (KYC), loans, land ownership, the list goes on. And one of the industries that’s more than ready for a blockchain upgrade is video games. Especially in the high-stakes realm of competitive esports.\n\nYou see, we’re not talking about Sudoku here. Casual games certainly have their time and place, but nobody’s coming out to watch people play them! Conversely, specific gaming tournaments draw enormous crowds.\n\nFor example, in South Korea, it’s not uncommon for pro StarCraft and League of Legends players to receive an ecstatic welcome from thousands of rabid, screaming fans. Celebrity gamers are whisked to tournaments in speedboats and helicopters, emerging to greet sold-out coliseums.",
+                        "data": {},
                         "marks": [],
-                        "data": {}
+                        "value": "caniuse.com/#feat=viewport-units",
+                        "nodeType": "text"
                       }
                     ],
-                    "data": {}
+                    "nodeType": "hyperlink"
                   },
                   {
-                    "nodeType": "paragraph",
-                    "content": [
-                      {
-                        "nodeType": "text",
-                        "value": "",
-                        "marks": [],
-                        "data": {}
-                      }
-                    ],
-                    "data": {}
-                  },
-                  {
-                    "nodeType": "paragraph",
-                    "content": [
-                      {
-                        "nodeType": "text",
-                        "value": "As you can imagine, with that caliber of hysteria and sensation comes huge salaries and oversized prize pools. And we all know that where you find large sums of money, you typically find crooks.\n\nNefarious gamers — as explained in this fan-made article on the rise of esports in Southeast Asia — go to great lengths to hack the system. From aimbots to falsified records, cheaters will try nearly anything to gain an ill-gotten competitive edge.\n\nLucky for us, blockchain tech prevents the problems that siphon the fun right out of our favorite video games. And as you’ll soon see, the advantages of blockchain gaming go far beyond defense from cheating.",
-                        "marks": [],
-                        "data": {}
-                      }
-                    ],
-                    "data": {}
-                  },
-                  {
-                    "nodeType": "heading-2",
-                    "content": [
-                      {
-                        "nodeType": "text",
-                        "value": "Upside Down Tokenomics",
-                        "marks": [],
-                        "data": {}
-                      }
-                    ],
-                    "data": {}
-                  },
-                  {
-                    "nodeType": "paragraph",
-                    "content": [
-                      {
-                        "nodeType": "text",
-                        "value": "The original relationship between games and tokens was a one-way street. You traded fiat for tokens then slid those circular pieces of metal into arcade cabinets. Without the token, there was no game.\n\nBut blockchain tech flips that concept on its head. Now, without the game, there is no token. Blockchain gaming means capturing a copy of gameplay within a digital container.",
-                        "marks": [],
-                        "data": {}
-                      }
-                    ],
-                    "data": {}
-                  },
-                  {
-                    "nodeType": "paragraph",
-                    "content": [
-                      {
-                        "nodeType": "text",
-                        "value": "Every in-game event, item, and transaction is verified and recorded by blockchain tech. And by tokenizing gameplay, we unlock new potential for capturing value.\n\nBlockchain levels up video games by automatically capturing gameplay in the form of non-fungible tokens (NFTs).\n\nWhen game elements undergo tokenization, they’re easy to trade. And the ability to swap with fellow gamers can open the door to yet-unimagined marketplaces. In other words, we don’t yet know where the value of tokenized gameplay will take us in the long run.\n\ufeff\nBut today, we’re well aware of several blockchain-powered benefits.",
-                        "marks": [],
-                        "data": {}
-                      }
-                    ],
-                    "data": {}
-                  },
-                  {
-                    "nodeType": "paragraph",
-                    "content": [
-                      {
-                        "nodeType": "text",
-                        "value": "Validated ownership and scarcity of items are incredibly beneficial in games. But perhaps what gets us the most excited is the potential for cross-game asset transfers. Non-fungible tokens create the ability to use weapons and costumes throughout entire ecosystems of compatible games.",
-                        "marks": [],
-                        "data": {}
-                      }
-                    ],
-                    "data": {}
-                  },
-                  {
-                    "nodeType": "paragraph",
-                    "content": [
-                      {
-                        "nodeType": "text",
-                        "value": "Designing and upgrading in-game characters are often a matter of personal preference. It’s often painstaking — yet still fun — to find the right combinations of speed and accuracy, stealth and power. And NFTs may preserve time well spent.",
-                        "marks": [],
-                        "data": {}
-                      }
-                    ],
-                    "data": {}
-                  },
-                  {
-                    "nodeType": "paragraph",
-                    "content": [
-                      {
-                        "nodeType": "text",
-                        "value": "Capturing the essence of gamers’ digital personas and progress means some of their hard work needn’t go to waste when it’s time to play a fresh title.",
-                        "marks": [],
-                        "data": {}
-                      }
-                    ],
-                    "data": {}
-                  },
-                  {
-                    "nodeType": "paragraph",
-                    "content": [
-                      {
-                        "nodeType": "text",
-                        "value": "Blockchain gaming is still considered an up-and-coming niche. And considering how we operate from Vietnam — one of Southeast Asia’s esports hotspots — RFOX Games is in the right place at the right time.\n\nTruth be told, we may be a bit too early to the party. But we see that as a huge advantage — we have time to create infrastructure before other projects inevitably come rushing into the space.",
-                        "marks": [],
-                        "data": {}
-                      }
-                    ],
-                    "data": {}
-                  },
-                  {
-                    "nodeType": "heading-2",
-                    "content": [
-                      {
-                        "nodeType": "text",
-                        "value": "Conclusion",
-                        "marks": [],
-                        "data": {}
-                      }
-                    ],
-                    "data": {}
-                  },
-                  {
-                    "nodeType": "paragraph",
-                    "content": [
-                      {
-                        "nodeType": "text",
-                        "value": "Video games transform the mundane into the extraordinary. Because in games, anyone can be a superhero. And being a superhero taps into a universal desire to become more than an average human.\n\nDo you know anyone who doesn’t wish they could fly by merely thrusting a fist into the air?\n\nBut when unscrupulous individuals invade our digital realms, they may spoil our attempts to become larger than life. There’s no room for cheating in games — competitive or not — and blockchain tech stifles foul play.\n\nPlus, you may know what it’s like to spend hours on end immersed in your favorite title — building and scraping and experimenting — until your character’s abilities are ultra-powerful. If so, you know exactly how discouraging it can be to leave all that progress trapped within a singular video game.\n\nNon-fungible tokens have the power to change all of that. NFTs are the gaming industry’s next killer app, and RFOX Games has big plans for bringing them to you!\n\nSumming up, by applying blockchain tech to video games, we increase the value to gamers while firewalling those trying to game the system. And that potent combo makes gaming more enjoyable for all of the honest players across the globe.",
-                        "marks": [],
-                        "data": {}
-                      }
-                    ],
-                    "data": {}
+                    "data": {},
+                    "marks": [],
+                    "value": "",
+                    "nodeType": "text"
                   }
-                ]
+                ],
+                "nodeType": "paragraph"
               }
-            }
+            ],
+            "nodeType": "list-item"
+          },
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "content": [
+                  {
+                    "data": {},
+                    "marks": [],
+                    "value": "",
+                    "nodeType": "text"
+                  },
+                  {
+                    "data": {
+                      "uri": "https://caniuse.com/#feat=flexbox"
+                    },
+                    "content": [
+                      {
+                        "data": {},
+                        "marks": [],
+                        "value": "caniuse.com/#feat=flexbox",
+                        "nodeType": "text"
+                      }
+                    ],
+                    "nodeType": "hyperlink"
+                  },
+                  {
+                    "data": {},
+                    "marks": [],
+                    "value": "\n",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "paragraph"
+              }
+            ],
+            "nodeType": "list-item"
           }
-        ]
+        ],
+        "nodeType": "unordered-list"
+      },
+      {
+        "data": {},
+        "content": [
+          {
+            "data": {},
+            "marks": [],
+            "value": "",
+            "nodeType": "text"
+          }
+        ],
+        "nodeType": "paragraph"
+      }
+    ],
+    "nodeType": "document"
+  },
+  "type": "post",
+  "author": {
+    "metadata": {
+      "tags": []
+    },
+    "sys": {
+      "space": {
+        "sys": {
+          "type": "Link",
+          "linkType": "Space",
+          "id": "lvgw6if4imbu"
+        }
+      },
+      "id": "HixGL5qQtMvIx840fYA0N",
+      "type": "Entry",
+      "createdAt": "2021-05-26T22:22:20.404Z",
+      "updatedAt": "2021-05-26T22:22:20.404Z",
+      "environment": {
+        "sys": {
+          "id": "master",
+          "type": "Link",
+          "linkType": "Environment"
+        }
+      },
+      "revision": 1,
+      "contentType": {
+        "sys": {
+          "type": "Link",
+          "linkType": "ContentType",
+          "id": "author"
+        }
+      },
+      "locale": "en-US"
+    },
+    "fields": {
+      "name": "Nils Schönwald",
+      "richText": {
+        "data": {},
+        "content": [
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "Freelance Frontend Developer based in Hamburg. \nLoves to work with CSS, React, Typescript, Javascript, Next.js, Contentful, etc.\n(As if I didn't wrote this myself 😅)",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "paragraph"
+          }
+        ],
+        "nodeType": "document"
+      },
+      "avatar": {
+        "metadata": {
+          "tags": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "lvgw6if4imbu"
+            }
+          },
+          "id": "2brVPdf2DX9ZwGpaceJH2r",
+          "type": "Asset",
+          "createdAt": "2021-05-26T22:22:16.703Z",
+          "updatedAt": "2021-05-26T22:22:16.703Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "revision": 1,
+          "locale": "en-US"
+        },
+        "fields": {
+          "title": "Nils Schönwald",
+          "file": {
+            "url": "//images.ctfassets.net/lvgw6if4imbu/2brVPdf2DX9ZwGpaceJH2r/b70884a858e9de7395343ad1744069a4/nils-schoenwald-0318-RET_cut_square.jpg",
+            "details": {
+              "size": 820960,
+              "image": {
+                "width": 976,
+                "height": 976
+              }
+            },
+            "fileName": "nils-schoenwald-0318-RET_cut_square.jpg",
+            "contentType": "image/jpeg"
+          }
+        }
       }
     }
-  ]
+  }
 }
