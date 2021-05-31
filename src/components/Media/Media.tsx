@@ -66,7 +66,7 @@ export const Media: FC<IMediaFields> = ({
     if (fileType.includes('image')) {
       return (
         <FigureComponent description={description} float={float} width={width}>
-          <Image src={asset.fields?.file?.url} alt={altText} />
+          <Image src={asset.fields?.file?.url} alt={altText} lazy />
         </FigureComponent>
       )
     }
