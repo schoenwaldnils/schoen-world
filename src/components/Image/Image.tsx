@@ -27,6 +27,8 @@ const getParams = (width: number, height?: number, retina = false) => {
 }
 
 const pictureViewports = {
+  xxl: 1600,
+  xl: 1200,
   lg: 768,
   md: 620,
   sm: 320,
