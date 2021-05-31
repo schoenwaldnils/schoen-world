@@ -66,6 +66,7 @@ jobs:
 
   lighthouse-check:
     runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/main'
     steps:
       - uses: actions/checkout@master
 
@@ -76,7 +77,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: UnlyEd/github-action-await-vercel@v1.1.0
+      - name: Wait for Deployment
+        uses: UnlyEd/github-action-await-vercel@v1.1.0
         id: await-vercel
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
