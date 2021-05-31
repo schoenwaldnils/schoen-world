@@ -26,9 +26,6 @@ jobs:
       - name: lint types
         run: npm run lint:types
 
-      - name: lint css
-        run: npm run lint:css
-
   build:
     runs-on: ubuntu-latest
     env:
