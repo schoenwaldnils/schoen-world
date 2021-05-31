@@ -5,6 +5,7 @@ import { FC } from 'react'
 
 import { IPostFields } from '../../@types/generated/contentful'
 import { aspectRatio } from '../../utils/mixins'
+import { Image } from '../Image'
 import { h4Styles } from '../Typography'
 
 const TeaserContainer = styled.a`
@@ -48,7 +49,7 @@ export const PostTeaser: FC<IPostFields> = ({
         <Paper component={StyledPaper} elevation={2}>
           {imgSrc && (
             <ImageWrapper>
-              <img src={imgSrc} alt="" />
+              <Image src={imgSrc} alt={title} />
             </ImageWrapper>
           )}
 
