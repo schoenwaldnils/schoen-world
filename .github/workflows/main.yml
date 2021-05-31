@@ -30,6 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NODE_ENV: production
+      CONTENTFUL_MANAGEMENT_TOKEN: ${{ secrets.CONTENTFUL_MANAGEMENT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2

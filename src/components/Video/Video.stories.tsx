@@ -5,6 +5,9 @@ import { Video as VideoComponent } from './Video'
 export default {
   title: 'Video',
   component: VideoComponent,
+  parameters: {
+    percy: { skip: true },
+  },
 }
 
 export const Video: FC = () => (
