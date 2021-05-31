@@ -24,7 +24,7 @@ export const Avatar: FC<ImgHTMLAttributes<HTMLImageElement> & { src: string }> =
   ({ src, alt }) => {
     return (
       <AvatarContainer>
-        <Img src={src} alt={alt} width={200} height={200} />
+        <Img src={src} alt={alt} width={200} height={200} lazy />
       </AvatarContainer>
     )
   }

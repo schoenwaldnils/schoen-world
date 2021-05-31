@@ -1,19 +1,17 @@
-import {
-  GetStaticPathsResult,
-  GetStaticProps,
-  GetStaticPropsResult,
-} from 'next'
+import { GetStaticProps, GetStaticPropsResult } from 'next'
 import { ArticleJsonLd, NextSeo } from 'next-seo'
 import { FC } from 'react'
 
 import { IPost } from '../../@types/generated/contentful'
 import { Article } from '../../components/Article'
 import { Page } from '../../components/Page'
-import { getEntryCollection, getPostBySlug } from '../../utils/contentful'
+import mock from '../../data/postMock.json'
 
 const ArticleNews: FC<{ post?: IPost }> = ({ post }) => (
   <>
     <NextSeo
+      noindex
+      nofollow
       title={post.fields.title}
       description={post.fields.description}
       openGraph={{
@@ -52,7 +50,6 @@ const ArticleNews: FC<{ post?: IPost }> = ({ post }) => (
 export default ArticleNews
 
 export const getStaticProps: GetStaticProps = async ({
-  params,
   preview = false,
 }): Promise<
   GetStaticPropsResult<{
@@ -60,7 +57,7 @@ export const getStaticProps: GetStaticProps = async ({
     post?: IPost
   }>
 > => {
-  const post = (await getPostBySlug(params.slug as string, preview)) as IPost
+  const post = mock as unknown as IPost
 
   if (!post) {
     return {
@@ -73,13 +70,5 @@ export const getStaticProps: GetStaticProps = async ({
       preview,
       post,
     },
-  }
-}
-
-export const getStaticPaths = async (): Promise<GetStaticPathsResult> => {
-  const allPosts = await getEntryCollection('post')
-  return {
-    paths: allPosts?.map(({ fields: { slug } }) => `/blog/${slug}`) ?? [],
-    fallback: false,
   }
 }

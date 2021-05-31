@@ -8,5 +8,12 @@ export default {
 }
 
 export const Link: FC = () => (
-  <LinkComponent href="#">Lorem Ipsum</LinkComponent>
+  <>
+    <div>
+      <LinkComponent href="#">Lorem Ipsum</LinkComponent>
+    </div>
+    <div>
+      <LinkComponent href="https://schoen.world/">Lorem Ipsum</LinkComponent>
+    </div>
+  </>
 )

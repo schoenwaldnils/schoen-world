@@ -23,7 +23,7 @@ const TimelineApp = ({ Component, pageProps }: AppProps): ReactNode => {
         openGraph={{
           type: 'website',
           locale: 'en_US',
-          url: 'https://blog.schoen.world',
+          url: 'https://schoen.world',
           images: [
             {
               url: 'https://blog.schoen.world/assets/images/icon-on-black.png',

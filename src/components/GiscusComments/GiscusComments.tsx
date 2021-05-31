@@ -1,4 +1,5 @@
 import { css, Global } from '@emotion/react'
+import Head from 'next/head'
 import { FC, useEffect, useRef, useState } from 'react'
 
 import { useStore } from '../../provider/Store'
@@ -41,8 +42,13 @@ export const GiscusComments: FC = () => {
 
   return (
     <>
+      <Head>
+        <link rel="preconnect" href="https://giscus.app" />
+      </Head>
       <Global styles={giscusStyles} />
+
       {!loaded && <LoadingSpinner />}
+
       <div ref={anchor} />
     </>
   )

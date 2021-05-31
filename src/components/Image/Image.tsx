@@ -49,6 +49,7 @@ type ImageType = {
   width?: number
   height?: number
   color?: string
+  lazy?: boolean
 }
 
 export const Image: FC<ImageType> = ({
@@ -57,6 +58,7 @@ export const Image: FC<ImageType> = ({
   width,
   height,
   color,
+  lazy,
   ...props
 }) => {
   const viewportKeys = Object.keys(pictureViewports)
@@ -112,6 +114,7 @@ export const Image: FC<ImageType> = ({
         width={width}
         height={height}
         alt={alt}
+        loading={lazy ? 'lazy' : 'eager'}
         {...props}
       />
     </picture>
