@@ -72,6 +72,7 @@ const themeLight = css`
 
     --SocialIcon-twitter: ${baseColors.twitter};
 
+    --Toggle-color: var(--Body-textColor);
     --Toggle-background: ${baseColors.grayLight};
 
     --PostTeaser-color: 'inherit';
