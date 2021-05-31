@@ -7,6 +7,4 @@ export default {
   component: FooterComponent,
 }
 
-export const Footer: FC = () => (
-  <FooterComponent />
-)
+export const Footer: FC = () => <FooterComponent />

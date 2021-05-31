@@ -3,7 +3,6 @@ import { Paper } from '@material-ui/core'
 import { FC } from 'react'
 
 import { IAuthorFields } from '../../@types/generated/contentful'
-import { colors } from '../../data/colors'
 import { upFromBreakpoint } from '../../utils/mixins'
 import { Image } from '../Image'
 import { RichText } from '../RichText'
@@ -15,7 +14,8 @@ const AuthorContainer = styled.div`
   grid-template-columns: 1fr;
   grid-gap: 1rem;
   padding: 1rem;
-  background-color: ${colors.avatarBackground};
+  color: var(--Author-color) !important;
+  background-color: var(--Author-background) !important;
 
   ${upFromBreakpoint('small')} {
     grid-template-columns: 160px auto;

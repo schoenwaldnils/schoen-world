@@ -3,17 +3,10 @@ import NextLink, { LinkProps } from 'next/link'
 import { AnchorHTMLAttributes, FC } from 'react'
 import { VscLinkExternal } from 'react-icons/vsc'
 
-import { colors } from '../../data/colors'
 import { timings } from '../../data/config'
 
 const ExternalIcon = styled(VscLinkExternal)`
-  position: absolute;
-  right: 0;
-  bottom: calc(100% - 0.5em);
-  font-size: 0.5em;
-  opacity: 0;
-  transform: translateY(100%);
-  transition: transform ${timings.transition}ms, opacity ${timings.transition}ms;
+  font-size: 0.8em;
 `
 
 const StyledA = styled.a`
@@ -22,25 +15,35 @@ const StyledA = styled.a`
   align-items: center;
   text-decoration: none;
   white-space: nowrap;
+  transition: color ${timings.transition}ms;
+
+  ::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transition: transform ${timings.transition}ms;
+  }
+
+  :hover::after {
+    transform: scaleX(1);
+  }
 
   &,
   &:visited {
-    color: ${colors.typographyLinkColor};
-  }
-
-  :active {
-    color: ${colors.typographyLinkActive};
+    color: var(--Typography-linkColor);
   }
 
   :hover {
-    color: ${colors.typographyLinkHover};
+    color: var(--Typography-linkHover);
+  }
 
-    text-decoration: underline;
-
-    ${ExternalIcon} {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  :active {
+    color: var(--Typography-linkActive);
   }
 `
 
@@ -61,7 +64,7 @@ export const Link: FC<AnchorHTMLAttributes<HTMLAnchorElement> & LinkProps> = ({
         target={isExternal ? '_blank' : '_self'}
       >
         {children}
-        {/* {isExternal && <ExternalIcon />} */}
+        {isExternal && <ExternalIcon />}
       </StyledA>
     )
   }

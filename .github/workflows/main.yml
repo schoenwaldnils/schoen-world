@@ -1,43 +1,109 @@
-name: blog
+name: schoen-world
 
 on:
   push:
     branches:
-      - master
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
       - name: npm install
         run: npm ci
-      - name: lint js
-        run: npm run lint:js
-      - name: lint css
-        run: npm run lint:css
-      - name: export
-        run: npm run export
+
+      - name: lint ts
+        run: npm run lint:ts
+
+      - name: lint types
+        run: npm run lint:types
+
+  build:
+    runs-on: ubuntu-latest
+    env:
+      NODE_ENV: production
+      CONTENTFUL_MANAGEMENT_TOKEN: ${{ secrets.CONTENTFUL_MANAGEMENT_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: npm install
+        run: npm ci --also=dev
+
+      - name: build
+        run: npm run build
+
+  visual-regression-test:
+    runs-on: ubuntu-latest
+    env:
+      PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: npm install
+        run: npm ci
+
+      - name: Percy Test
+        uses: percy/storybook-action@v0.1.6
         env:
-          CONTENTFUL_SPACE: ${{ secrets.CONTENTFUL_SPACE }}
-          CONTENTFUL_TOKEN: ${{ secrets.CONTENTFUL_TOKEN }}
-      - name: lint html
-        run: npm run lint:html
-      - name: S3 Sync
-        uses: jakejarvis/s3-sync-action@v0.5.0
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+        with:
+          custom-command: 'npm run snapshot'
+
+  lighthouse-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Get deployment URL
+        id: deployment
+        uses: schoenwaldnils/get-deployment-url@master
+        timeout-minutes: 5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: UnlyEd/github-action-await-vercel@v1.1.0
+        id: await-vercel
         env:
-          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'eu-central-1'   # optional: defaults to us-east-1
-          SOURCE_DIR: 'out'      # optional: defaults to entire repository
-          DEST_DIR: 'production'
-      - name: Invalidate Cloudfront
-        uses: chetan/invalidate-cloudfront-action@v1.0
-        env:
-          DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
-          PATHS: '/*'
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'eu-central-1'   # optional: defaults to us-east-1
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        with:
+          deployment-url: ${{ steps.deployment.outputs.deployment }}
+          timeout: 150 # Wait for 2.5 minutes before failing
+
+      - name: Run Lighthouse
+        uses: foo-software/lighthouse-check-action@v1.0.10
+        id: lighthouseCheck
+        with:
+          accessToken: ${{ secrets.GITHUB_TOKEN }}
+          author: ${{ github.actor }}
+          awsBucket: ${{ secrets.AWS_S3_BUCKET_LIGHTHOUSE }}
+          awsRegion: 'eu-central-1'
+          awsAccessKeyId: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          awsSecretAccessKey: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          branch: ${{ github.ref }}
+          urls: 'https://${{ steps.deployment.outputs.deployment }}'
+          sha: ${{ github.sha }}
+
+      - name: Handle Lighthouse Check results
+        uses: foo-software/lighthouse-check-status-action@master
+        with:
+          lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
+          minAccessibilityScore: '90'
+          minBestPracticesScore: '50'
+          minPerformanceScore: '70'
+          minProgressiveWebAppScore: '50'
+          minSeoScore: '50'

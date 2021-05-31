@@ -1,6 +1,8 @@
 import { FC } from 'react'
 
+import { IAuthorFields } from '../../@types/generated/contentful'
 import { Author as AuthorComponent } from './Author'
+import mock from './authorMock.json'
 
 export default {
   title: 'Author',
@@ -8,5 +10,5 @@ export default {
 }
 
 export const Author: FC = () => (
-  <AuthorComponent />
+  <AuthorComponent {...(mock as unknown as IAuthorFields)} />
 )

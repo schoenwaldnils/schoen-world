@@ -1,42 +1,46 @@
 {
-  "metadata": {
+  "asset": {
+    "metadata": {
       "tags": []
-  },
-  "sys": {
+    },
+    "sys": {
       "space": {
-          "sys": {
-              "type": "Link",
-              "linkType": "Space",
-              "id": "6aayqp6oiffy"
-          }
+        "sys": {
+          "type": "Link",
+          "linkType": "Space",
+          "id": "lvgw6if4imbu"
+        }
       },
-      "id": "7GMAflKhqNpjAtvFeqD2mB",
+      "id": "2brVPdf2DX9ZwGpaceJH2r",
       "type": "Asset",
-      "createdAt": "2021-03-30T14:26:39.443Z",
-      "updatedAt": "2021-03-30T14:26:39.443Z",
+      "createdAt": "2021-05-26T22:22:16.703Z",
+      "updatedAt": "2021-05-26T22:22:16.703Z",
       "environment": {
-          "sys": {
-              "id": "master",
-              "type": "Link",
-              "linkType": "Environment"
-          }
+        "sys": {
+          "id": "master",
+          "type": "Link",
+          "linkType": "Environment"
+        }
       },
       "revision": 1,
       "locale": "en-US"
-  },
-  "fields": {
-      "title": "Setup-Wax-Wallet",
+    },
+    "fields": {
+      "title": "Nils Schönwald",
       "file": {
-          "url": "//images.ctfassets.net/6aayqp6oiffy/7GMAflKhqNpjAtvFeqD2mB/bc88a4622ed8347590a01f23e3dd3740/Setup-Wax-Wallet.webp",
-          "details": {
-              "size": 18364,
-              "image": {
-                  "width": 600,
-                  "height": 715
-              }
-          },
-          "fileName": "Setup-Wax-Wallet.webp",
-          "contentType": "image/webp"
+        "url": "//images.ctfassets.net/lvgw6if4imbu/2brVPdf2DX9ZwGpaceJH2r/b70884a858e9de7395343ad1744069a4/nils-schoenwald-0318-RET_cut_square.jpg",
+        "details": {
+          "size": 820960,
+          "image": {
+            "width": 976,
+            "height": 976
+          }
+        },
+        "fileName": "nils-schoenwald-0318-RET_cut_square.jpg",
+        "contentType": "image/jpeg"
       }
-  }
+    }
+  },
+  "altText": "Nils Schönwald",
+  "width": 200
 }

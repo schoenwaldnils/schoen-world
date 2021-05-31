@@ -5,7 +5,7 @@ module.exports = (config = {}) => {
       {
         loader: '@svgr/webpack',
         options: {
-          icon: true,
+          // icon: true,
           memo: true,
           svgoConfig: {
             plugins: [

@@ -19,6 +19,7 @@ import { CodeBlock, CodeInline } from '../Code'
 import { CodePenEmbed } from '../CodePenEmbed'
 import { ContentfulMedia } from '../Media'
 import {
+  h4Styles,
   Headline1,
   Headline2,
   Headline3,
@@ -31,6 +32,10 @@ import {
   Quote,
   UL,
 } from '../Typography'
+
+const PageHeadline1 = styled.h1`
+  ${h4Styles}
+`
 
 const RichTextContainer = styled.div`
   > * {
@@ -56,6 +61,9 @@ const RichTextContainer = styled.div`
 
 const options: Options = {
   renderNode: {
+    [BLOCKS.HEADING_1]: (node: unknown, children: ReactNode) => (
+      <PageHeadline1>{children}</PageHeadline1>
+    ),
     [BLOCKS.HEADING_2]: (node: unknown, children: ReactNode) => (
       <Headline2>{children}</Headline2>
     ),

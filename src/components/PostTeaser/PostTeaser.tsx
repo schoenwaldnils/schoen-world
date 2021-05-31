@@ -5,6 +5,7 @@ import { FC } from 'react'
 
 import { IPostFields } from '../../@types/generated/contentful'
 import { aspectRatio } from '../../utils/mixins'
+import { h4Styles } from '../Typography'
 
 const TeaserContainer = styled.a`
   cursor: pointer;
@@ -13,6 +14,9 @@ const TeaserContainer = styled.a`
 const StyledPaper = styled.div`
   height: 100%;
   overflow: hidden;
+
+  color: var(--PostTeaser-color) !important;
+  background-color: var(--PostTeaser-background) !important;
 `
 
 const ImageWrapper = styled.div`
@@ -26,8 +30,8 @@ const Excerpt = styled.div`
 `
 
 const Title = styled.h1`
+  ${h4Styles}
   margin-bottom: 0.5em;
-  font-size: 1.5rem;
 `
 
 export const PostTeaser: FC<IPostFields> = ({
@@ -39,7 +43,7 @@ export const PostTeaser: FC<IPostFields> = ({
   const imgSrc = image?.fields?.file?.url
 
   return (
-    <Link href={`/${slug}`}>
+    <Link href={`/blog/${slug}`}>
       <TeaserContainer>
         <Paper component={StyledPaper} elevation={2}>
           {imgSrc && (

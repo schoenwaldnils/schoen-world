@@ -1,22 +1,23 @@
 import styled from '@emotion/styled'
 import { FC } from 'react'
 
-import { colors } from '../../data/colors'
 import { social } from '../../data/config'
 import { maxWidthText, upFromBreakpoint } from '../../utils/mixins'
 import { SocialIcon } from '../SocialIcon'
+import { ThemeSwitch } from '../ThemeSwitch'
 import { Link } from '../Typography'
 
 const FooterContainer = styled.footer`
   padding-top: 1rem;
   padding-bottom: 1rem;
-  color: ${colors.footerColor};
-  background-color: ${colors.footerBackground};
-  border-bottom: solid 2px ${colors.brand};
+  font-size: 1rem;
+  color: var(--Footer-color);
+  background-color: var(--Footer-background);
+  border-bottom: solid 2px var(--Theme-themeColor);
 
   ${upFromBreakpoint('medium')} {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 `
 
@@ -66,11 +67,11 @@ const Nav = styled.nav`
 const NavItem = styled(Link)`
   &,
   &:visited {
-    color: ${colors.footerColor};
+    color: var(--Footer-color);
   }
 
   &:hover {
-    color: ${colors.footerColor};
+    color: var(--Footer-color);
     text-decoration: underline;
   }
 `
@@ -94,6 +95,8 @@ export const Footer: FC = () => {
             <SocialIcon name={i.name} href={i.href} key={i.href} />
           ))}
         </SocialLinks>
+
+        <ThemeSwitch />
       </Content>
     </FooterContainer>
   )

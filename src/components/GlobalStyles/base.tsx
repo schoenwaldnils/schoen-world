@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 
-import { colors } from '../../data/colors'
+import { upFromBreakpoint } from '../../utils/mixins'
 
 export default css`
   *,
@@ -11,7 +11,7 @@ export default css`
   }
 
   *:focus {
-    outline: solid 2px ${colors.info};
+    outline: solid 2px var(--Typography-focus);
   }
 
   html {
@@ -19,9 +19,13 @@ export default css`
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
       sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1.5;
     font-display: swap;
+
+    ${upFromBreakpoint('medium')} {
+      font-size: 20px;
+    }
   }
 
   body {
@@ -30,9 +34,9 @@ export default css`
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: ${colors.bodyColor};
+    color: var(--Body-textColor);
     text-rendering: optimizeLegibility;
-    background-color: ${colors.bodyBackground};
+    background-color: var(--Body-background);
   }
 
   /* textarea:focus,
@@ -44,7 +48,8 @@ export default css`
   h2,
   h3,
   h4,
-  p {
+  p,
+  figure {
     margin: 0;
     font-weight: inherit;
     line-height: inherit;
@@ -59,7 +64,9 @@ export default css`
     }
   }
 
-  img {
+  img,
+  video,
+  svg {
     max-width: 100%;
     height: auto;
   }

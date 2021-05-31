@@ -1,7 +1,13 @@
-import { FC } from 'react'
+import styled from '@emotion/styled'
+import { FC, useEffect, useRef } from 'react'
 
 import { ICodePenEmbedFields } from '../../@types/generated/contentful'
 import { Link } from '../Typography'
+
+const HiddenScript = styled.div`
+  visibility: hidden;
+  height: 0;
+`
 
 export const CodePenEmbed: FC<ICodePenEmbedFields> = ({
   title,
@@ -10,6 +16,20 @@ export const CodePenEmbed: FC<ICodePenEmbedFields> = ({
   height = 300,
   defaultPanes,
 }) => {
+  const scriptRef = useRef<HTMLDivElement>()
+
+  useEffect(() => {
+    if (scriptRef.current) {
+      const script = document.createElement('script')
+      script.setAttribute(
+        'src',
+        'https://cpwebassets.codepen.io/assets/embed/ei.js',
+      )
+      script.setAttribute('async', 'true')
+      scriptRef.current.appendChild(script)
+    }
+  }, [])
+
   return (
     <>
       <p
@@ -28,7 +48,7 @@ export const CodePenEmbed: FC<ICodePenEmbedFields> = ({
         <Link href={`https://codepen.io/${username}`}>@{username}</Link>) on{' '}
         <Link href="https://codepen.io">CodePen</Link>.
       </p>
-      <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js" />
+      <HiddenScript ref={scriptRef} />
     </>
   )
 }

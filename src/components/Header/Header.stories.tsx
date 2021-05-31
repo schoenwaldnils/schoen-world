@@ -7,6 +7,4 @@ export default {
   component: HeaderComponent,
 }
 
-export const Header: FC = () => (
-  <HeaderComponent />
-)
+export const Header: FC = () => <HeaderComponent />

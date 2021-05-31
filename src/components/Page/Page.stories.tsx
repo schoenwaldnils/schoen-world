@@ -7,6 +7,4 @@ export default {
   component: PageComponent,
 }
 
-export const Page: FC = () => (
-  <PageComponent />
-)
+export const Page: FC = () => <PageComponent />

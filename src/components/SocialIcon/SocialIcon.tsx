@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 import { FC } from 'react'
 import { FaGithub, FaTwitter } from 'react-icons/fa'
 
-import { colors } from '../../data/colors'
 import { timings } from '../../data/config'
 
 const Button = styled.a`
@@ -12,7 +11,7 @@ const Button = styled.a`
   width: 1em;
   height: 1em;
   font-size: 2.5rem;
-  color: ${colors.socialIconColor};
+  color: var(--SocialIcon-color);
   border-radius: 50%;
   box-shadow: inset 0 0 0.3em #000;
 `
@@ -34,8 +33,9 @@ const common = css`
 
 const Front = styled.div<{ color?: string }>`
   ${common}
-  color: ${(p) => (p.color ? colors.white : colors.black)};
-  background-color: ${(p) => p.color || colors.white};
+  color: ${(p) =>
+    p.color ? 'var(--SocialIcon-front)' : 'var(--Body-textColor)'};
+  background-color: ${(p) => p.color || 'var(--SocialIcon-front)'};
   transform: rotateY(180deg);
 
   ${Button}:hover & {
@@ -45,7 +45,7 @@ const Front = styled.div<{ color?: string }>`
 
 const Back = styled.div`
   ${common}
-  background-color: ${colors.socialIconBackground};
+  background-color: var(--SocialIcon-background);
   transform: rotateY(0deg);
 
   ${Button}:hover & {
@@ -59,7 +59,7 @@ const icons = {
 }
 
 const socialColors = {
-  Twitter: colors.twitter,
+  Twitter: 'var(--SocialIcon-twitter)',
 }
 
 export const SocialIcon: FC<{ name: string; href: string }> = ({

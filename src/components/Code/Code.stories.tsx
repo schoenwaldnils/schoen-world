@@ -10,5 +10,11 @@ export default {
 export const Inline: FC = () => <CodeInline>some code</CodeInline>
 
 export const Block: FC = () => (
-  <CodeBlock internalName="lorem" syntax="html" code="some code more code" />
+  <CodeBlock
+    internalName="lorem"
+    syntax="css"
+    code={
+      'html,\nbody {\n  display: flex;\n  flex-direction: column;\n}\nbody {\n  min-height: 100vh;\n}'
+    }
+  />
 )
