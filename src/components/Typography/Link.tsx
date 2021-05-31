@@ -1,14 +1,14 @@
 import styled from '@emotion/styled'
 import NextLink, { LinkProps } from 'next/link'
 import { AnchorHTMLAttributes, FC } from 'react'
-import { VscLinkExternal } from 'react-icons/vsc'
 
+// import { VscLinkExternal } from 'react-icons/vsc'
 import { timings } from '../../data/config'
 
-const ExternalIcon = styled(VscLinkExternal)`
-  font-size: 0.7em;
-  margin-left: 0.5ch;
-`
+// const ExternalIcon = styled(VscLinkExternal)`
+//   font-size: 0.7em;
+//   margin-left: 0.5ch;
+// `
 
 const StyledA = styled.a`
   position: relative;
