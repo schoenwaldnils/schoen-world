@@ -97,7 +97,7 @@ jobs:
           awsAccessKeyId: ${{ secrets.AWS_ACCESS_KEY_ID }}
           awsSecretAccessKey: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           branch: ${{ github.ref }}
-          urls: 'https://${{ steps.deployment.outputs.deployment }},https://${{ steps.deployment.outputs.deployment }}/blog/test'
+          urls: 'https://${{ steps.deployment.outputs.deployment }},https://${{ steps.deployment.outputs.deployment }}/blog,https://${{ steps.deployment.outputs.deployment }}/blog/test'
           sha: ${{ github.sha }}
 
       - name: Handle Lighthouse Check results
@@ -105,7 +105,7 @@ jobs:
         with:
           lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
           minAccessibilityScore: '90'
-          minBestPracticesScore: '50'
-          minPerformanceScore: '70'
+          minBestPracticesScore: '80'
+          minPerformanceScore: '80'
           minProgressiveWebAppScore: '50'
-          minSeoScore: '50'
+          minSeoScore: '80'
