@@ -95,7 +95,9 @@ jobs:
           awsAccessKeyId: ${{ secrets.AWS_ACCESS_KEY_ID }}
           awsSecretAccessKey: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           branch: ${{ github.ref }}
-          urls: 'https://${{ steps.deployment.outputs.deployment }}'
+          urls:
+            - 'https://${{ steps.deployment.outputs.deployment }}'
+            - 'https://${{ steps.deployment.outputs.deployment }}/blog/test'
           sha: ${{ github.sha }}
 
       - name: Handle Lighthouse Check results

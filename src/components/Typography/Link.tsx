@@ -6,7 +6,8 @@ import { VscLinkExternal } from 'react-icons/vsc'
 import { timings } from '../../data/config'
 
 const ExternalIcon = styled(VscLinkExternal)`
-  font-size: 0.8em;
+  font-size: 0.7em;
+  margin-left: 0.5ch;
 `
 
 const StyledA = styled.a`
@@ -56,28 +57,24 @@ export const Link: FC<AnchorHTMLAttributes<HTMLAnchorElement> & LinkProps> = ({
   const isExternal = href.includes('http')
   const isHash = href.startsWith('#')
 
-  if (isHash) {
+  if (isHash || isExternal) {
     return (
       <StyledA
         href={href}
         className={className}
         target={isExternal ? '_blank' : '_self'}
+        {...(isExternal ? { rel: 'noreferrer' } : {})}
       >
         {children}
-        {isExternal && <ExternalIcon />}
+        {/* {isExternal && <ExternalIcon />} */}
       </StyledA>
     )
   }
 
   return (
     <NextLink {...p} href={href} passHref={isExternal}>
-      <StyledA
-        href={href}
-        className={className}
-        target={isExternal ? '_blank' : '_self'}
-      >
+      <StyledA href={href} className={className}>
         {children}
-        {/* {isExternal && <ExternalIcon />} */}
       </StyledA>
     </NextLink>
   )
