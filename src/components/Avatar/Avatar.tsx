@@ -1,16 +1,17 @@
 import styled from '@emotion/styled'
 import { FC, ImgHTMLAttributes } from 'react'
 
+import { Image } from '../Image'
+
 const AvatarContainer = styled.div`
   display: flex;
   justify-content: flex-end;
 `
 
-const Image = styled.img`
+const Img = styled(Image)`
   box-sizing: content-box;
   border: 2px solid var(--Avatar-borderColor);
   border-radius: 50%;
-  width: 12rem;
   filter: saturate(100%) grayscale(100%) contrast(105%) brightness(115%);
   transition: filter 150ms;
 
@@ -19,10 +20,11 @@ const Image = styled.img`
   }
 `
 
-export const Avatar: FC<ImgHTMLAttributes<HTMLImageElement>> = (props) => {
-  return (
-    <AvatarContainer>
-      <Image {...props} />
-    </AvatarContainer>
-  )
-}
+export const Avatar: FC<ImgHTMLAttributes<HTMLImageElement> & { src: string }> =
+  ({ src, alt }) => {
+    return (
+      <AvatarContainer>
+        <Img src={src} alt={alt} width={200} height={200} />
+      </AvatarContainer>
+    )
+  }

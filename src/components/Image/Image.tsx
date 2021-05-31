@@ -6,7 +6,7 @@ const getParams = (width: number, height?: number, retina = false) => {
   const retinaFactor = 1.5
   const params = {
     fm: 'webp', // format
-    q: retina ? 50 : 60, // quality
+    q: retina ? 50 : 70, // quality
     w: null,
     h: null,
     fit: null,
@@ -33,8 +33,12 @@ const pictureViewports = {
 }
 
 const Img = styled.img<{
+  width?: number
+  height?: number
   backgroundColor?: string
 }>`
+  ${(p) => p.width && p.height && `aspect-ratio: ${p.width} / ${p.height};`}
+
   background-color: ${(p) =>
     p.backgroundColor ? p.backgroundColor : 'transparent'};
 `
@@ -47,8 +51,15 @@ type ImageType = {
   color?: string
 }
 
-export const Image: FC<ImageType> = ({ src, alt, width, height, color }) => {
-  const viewportKeys = Object.keys(pictureViewports).reverse()
+export const Image: FC<ImageType> = ({
+  src,
+  alt,
+  width,
+  height,
+  color,
+  ...props
+}) => {
+  const viewportKeys = Object.keys(pictureViewports)
   const maxWidth = width || 2560
 
   const ratio = height && height / width
@@ -99,7 +110,9 @@ export const Image: FC<ImageType> = ({ src, alt, width, height, color }) => {
         src={`${src}?${getParams(320, null)}`}
         backgroundColor={color}
         width={width}
+        height={height}
         alt={alt}
+        {...props}
       />
     </picture>
   )
