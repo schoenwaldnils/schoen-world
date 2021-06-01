@@ -28,6 +28,11 @@ const ArticleNews: FC<{ post?: IPost }> = ({ post }) => (
             width: 1200,
             height: 630,
           },
+          {
+            url: `https:${post.fields.image.fields.file.url}?w=600&h=600&fit=fill`,
+            width: 600,
+            height: 600,
+          },
         ],
       }}
       twitter={{
