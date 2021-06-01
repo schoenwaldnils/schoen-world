@@ -28,11 +28,6 @@ const ArticleNews: FC<{ post?: IPost }> = ({ post }) => (
             width: 1200,
             height: 630,
           },
-          {
-            url: `https:${post.fields.image.fields.file.url}?w=600&h=600&fit=fill`,
-            width: 600,
-            height: 600,
-          },
         ],
       }}
       twitter={{
@@ -45,7 +40,6 @@ const ArticleNews: FC<{ post?: IPost }> = ({ post }) => (
       description={post.fields.description}
       images={[
         `https:${post.fields.image.fields.file.url}?w=1200&h=630&fit=fill`,
-        `https:${post.fields.image.fields.file.url}?w=600&h=600&fit=fill`,
       ]}
       datePublished={`${post.fields.date}Z`}
       dateModified={`${post.sys.updatedAt}Z`}
