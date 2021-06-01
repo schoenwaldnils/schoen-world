@@ -6,7 +6,7 @@ export default {
   title: 'Typography / P',
   component: Paragraph,
   parameters: {
-    percy: { skip: true }, // part of rich text
+    percy: { skip: true }, // part of article
   },
 }
 

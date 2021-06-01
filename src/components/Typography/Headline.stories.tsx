@@ -4,6 +4,9 @@ import { Headline1, Headline2, Headline3, Headline4 } from './Headline'
 
 export default {
   title: 'Typography / Headline',
+  parameters: {
+    percy: { skip: true }, // part of article
+  },
 }
 
 export const Headline: FC = () => (

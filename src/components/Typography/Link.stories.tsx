@@ -5,6 +5,9 @@ import { Link as LinkComponent } from './Link'
 export default {
   title: 'Typography / Link',
   component: LinkComponent,
+  parameters: {
+    percy: { skip: true }, // part of article
+  },
 }
 
 export const Link: FC = () => (

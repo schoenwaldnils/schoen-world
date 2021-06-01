@@ -6,7 +6,7 @@ export default {
   title: 'Video',
   component: VideoComponent,
   parameters: {
-    percy: { skip: true },
+    percy: { skip: true }, // part of article
   },
 }
 

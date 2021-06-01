@@ -7,6 +7,9 @@ import { ThemeSwitchView } from './ThemeSwitchView'
 export default {
   title: 'Theme Switch',
   component: ThemeSwitchView,
+  parameters: {
+    percy: { skip: true }, // part of footer
+  },
 }
 
 const Container = styled.div`

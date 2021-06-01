@@ -4,6 +4,9 @@ import { LI, OL, UL } from './List'
 
 export default {
   title: 'Typography / Lists',
+  parameters: {
+    percy: { skip: true }, // part of article
+  },
 }
 
 export const Lists: FC = () => (
