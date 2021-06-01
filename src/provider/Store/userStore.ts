@@ -1,5 +1,3 @@
-import acceptLanguage from 'accept-language'
-
 import {
   getLocalStorage,
   getSessionStorage,
@@ -8,23 +6,13 @@ import {
 } from '../../utils/localStorage'
 import { Store } from './reducer'
 
-const STORAGE_NAME = 'timeline-store'
+const STORAGE_NAME = 'schoen-world-store'
 
 export const getUserLocalStore = (): Partial<Store> => {
   if (typeof window === 'undefined') return {}
   const storageStoreString = getLocalStorage(STORAGE_NAME)
   const storageStore: Record<string, unknown> =
     JSON.parse(storageStoreString) || {}
-
-  if (!storageStore.locale) {
-    acceptLanguage.languages(['en', 'de'])
-    const userAcceptLanguage = window.navigator.languages
-    const acceptedLanguage = acceptLanguage.get(userAcceptLanguage.join(','))
-
-    storageStore.locale = acceptedLanguage
-
-    setLocalStorage(STORAGE_NAME, JSON.stringify(storageStore))
-  }
 
   return storageStore
 }
