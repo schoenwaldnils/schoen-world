@@ -24,11 +24,14 @@ const ArticleNews: FC<{ post?: IPost }> = ({ post }) => (
         },
         images: [
           {
-            url: `https://${post.fields.image.fields.file.url}?w=1200&h=630&fit=fill`,
+            url: `https:${post.fields.image.fields.file.url}?w=1200&h=630&fit=fill`,
             width: 1200,
             height: 630,
           },
         ],
+      }}
+      twitter={{
+        cardType: 'summary_large_image',
       }}
     />
     <ArticleJsonLd
