@@ -43,7 +43,10 @@ const ArticleNews: FC<{ post?: IPost }> = ({ post }) => (
       url="https://example.com/article"
       title={post.fields.title}
       description={post.fields.description}
-      images={[post.fields.image.fields.file.url]}
+      images={[
+        `https:${post.fields.image.fields.file.url}?w=1200&h=630&fit=fill`,
+        `https:${post.fields.image.fields.file.url}?w=600&h=600&fit=fill`,
+      ]}
       datePublished={`${post.fields.date}Z`}
       dateModified={`${post.sys.updatedAt}Z`}
       authorName={[post.fields.author.fields.name]}
