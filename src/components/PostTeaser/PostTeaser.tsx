@@ -22,8 +22,6 @@ const StyledPaper = styled.div`
 
 const ImageWrapper = styled.div`
   ${aspectRatio(2.5)}
-
-  object-position: center;
 `
 
 const Excerpt = styled.div`
@@ -41,15 +39,21 @@ export const PostTeaser: FC<IPostFields> = ({
   description,
   slug,
 }) => {
-  const imgSrc = image?.fields?.file?.url
+  const file = image?.fields?.file
 
   return (
     <Link href={`/blog/${slug}`}>
       <TeaserContainer>
         <Paper component={StyledPaper} elevation={2}>
-          {imgSrc && (
+          {file.url && (
             <ImageWrapper>
-              <Image src={imgSrc} alt={title} />
+              <Image
+                src={file.url}
+                alt={title}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center"
+              />
             </ImageWrapper>
           )}
 

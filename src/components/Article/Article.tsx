@@ -61,14 +61,21 @@ export const Article: FC<
 }) => {
   const shareUrl = `https://schoen.world/blog/${slug}`
 
-  const imageSrc = image?.fields?.file?.url
+  const imageFile = image?.fields?.file
+  const imageSrc = imageFile.url
   const imageAlt = image?.fields?.description
 
   return (
     <>
       {imageSrc && (
         <ImageWrapper>
-          <Image src={imageSrc} alt={imageAlt || undefined} />
+          <Image
+            src={imageSrc}
+            alt={imageAlt || undefined}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+          />
         </ImageWrapper>
       )}
 

@@ -61,12 +61,13 @@ export const Media: FC<IMediaFields> = ({
       return <Avatar src={asset.fields?.file?.url} alt="Nils Schönwald" />
     }
 
-    const fileType = asset.fields.file.contentType
+    const file = asset.fields.file
+    const fileType = file.contentType
 
     if (fileType.includes('image')) {
       return (
         <FigureComponent description={description} float={float} width={width}>
-          <Image src={asset.fields?.file?.url} alt={altText} lazy />
+          <Image src={file.url} alt={altText} layout="fill" />
         </FigureComponent>
       )
     }

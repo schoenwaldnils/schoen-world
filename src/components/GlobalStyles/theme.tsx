@@ -49,10 +49,10 @@ const themeLight = css`
     --Typography-linkHover: ${baseColors.charcoal};
     --Typography-linkActive: ${baseColors.charcoal};
 
-    --Typography-headline1Color: 'inherit';
-    --Typography-headline2Color: 'inherit';
-    --Typography-headline3Color: 'inherit';
-    --Typography-headline4Color: 'inherit';
+    --Typography-headline1Color: ${baseColors.black};
+    --Typography-headline2Color: ${baseColors.black};
+    --Typography-headline3Color: ${baseColors.black};
+    --Typography-headline4Color: ${baseColors.black};
     --Typography-sublineColor: 'inherit';
 
     --Typography-hr: ${baseColors.brand};
@@ -96,6 +96,11 @@ const themeDark = css`
     --Typography-linkColor: ${baseColors.redPlus1};
     --Typography-linkHover: ${baseColors.white};
     --Typography-linkActive: ${baseColors.white};
+
+    --Typography-headline1Color: ${baseColors.white};
+    --Typography-headline2Color: ${baseColors.white};
+    --Typography-headline3Color: ${baseColors.white};
+    --Typography-headline4Color: ${baseColors.white};
 
     --Typography-blockquoteBackground: ${baseColors.blacklight};
 
