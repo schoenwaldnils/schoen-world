@@ -1,5 +1,6 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import Head from 'next/head'
 import { FC } from 'react'
 
 import { IMediaFields } from '../../@types/generated/contentful'
@@ -66,22 +67,42 @@ export const Media: FC<IMediaFields> = ({
 
     if (fileType.includes('image')) {
       return (
-        <FigureComponent description={description} float={float} width={width}>
-          <Image
-            src={file.url}
-            alt={altText}
-            width={file.details.image.width}
-            height={file.details.image.height}
-          />
-        </FigureComponent>
+        <>
+          <Head>
+            <link rel="preconnect" href="https://images.ctfassets.net" />
+          </Head>
+
+          <FigureComponent
+            description={description}
+            float={float}
+            width={width}
+          >
+            <Image
+              src={file.url}
+              alt={altText}
+              width={file.details.image.width}
+              height={file.details.image.height}
+            />
+          </FigureComponent>
+        </>
       )
     }
 
     if (fileType.includes('video')) {
       return (
-        <FigureComponent description={description} float={float} width={width}>
-          <Video src={asset.fields?.file?.url} />
-        </FigureComponent>
+        <>
+          <Head>
+            <link rel="preconnect" href="https://images.ctfassets.net" />
+          </Head>
+
+          <FigureComponent
+            description={description}
+            float={float}
+            width={width}
+          >
+            <Video src={asset.fields?.file?.url} />
+          </FigureComponent>
+        </>
       )
     }
 
