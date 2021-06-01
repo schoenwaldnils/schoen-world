@@ -18,7 +18,7 @@ const ArticleNews: FC<{ post?: IPost }> = ({ post }) => (
         type: 'article',
         article: {
           publishedTime: `${post.fields.date}Z`,
-          modifiedTime: `${post.sys.updatedAt}Z`,
+          modifiedTime: post.sys.updatedAt,
         },
         images: [
           {
@@ -35,7 +35,7 @@ const ArticleNews: FC<{ post?: IPost }> = ({ post }) => (
       description={post.fields.description}
       images={[post.fields.image.fields.file.url]}
       datePublished={`${post.fields.date}Z`}
-      dateModified={`${post.sys.updatedAt}Z`}
+      dateModified={post.sys.updatedAt}
       authorName={[post.fields.author.fields.name]}
       publisherName="Schönwald"
       publisherLogo="https://schoen.world/images/icon-on-black.png"

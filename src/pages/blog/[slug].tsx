@@ -20,7 +20,7 @@ const ArticleNews: FC<{ post?: IPost }> = ({ post }) => (
         type: 'article',
         article: {
           publishedTime: `${post.fields.date}Z`,
-          modifiedTime: `${post.sys.updatedAt}Z`,
+          modifiedTime: post.sys.updatedAt,
         },
         images: [
           {
@@ -35,12 +35,14 @@ const ArticleNews: FC<{ post?: IPost }> = ({ post }) => (
       }}
     />
     <ArticleJsonLd
-      url="https://example.com/article"
+      url={`https://schoen.world/blog/${post.fields.slug}`}
       title={post.fields.title}
       description={post.fields.description}
-      images={[post.fields.image.fields.file.url]}
+      images={[
+        `https:${post.fields.image.fields.file.url}?w=1200&h=630&fit=fill`,
+      ]}
       datePublished={`${post.fields.date}Z`}
-      dateModified={`${post.sys.updatedAt}Z`}
+      dateModified={post.sys.updatedAt}
       authorName={[post.fields.author.fields.name]}
       publisherName="Schönwald"
       publisherLogo="https://schoen.world/images/icon-on-black.png"
