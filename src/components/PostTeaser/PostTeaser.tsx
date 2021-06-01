@@ -19,13 +19,19 @@ const StyledPaper = styled.div`
   background-color: var(--PostTeaser-background) !important;
 `
 
-const Excerpt = styled.div`
-  padding: 1rem;
+const ImageWrapper = styled.div`
+  > div {
+    display: block !important;
+  }
 `
 
 const Title = styled.h1`
   ${h4Styles}
   margin-bottom: 0.5em;
+`
+
+const Excerpt = styled.div`
+  padding: 1rem;
 `
 
 export const PostTeaser: FC<IPostFields> = ({
@@ -41,14 +47,16 @@ export const PostTeaser: FC<IPostFields> = ({
       <TeaserContainer>
         <Paper component={StyledPaper} elevation={2}>
           {file.url && (
-            <Image
-              src={file.url}
-              alt={title}
-              width={file.details.image.width}
-              height={file.details.image.width / 2.5}
-              objectFit="cover"
-              objectPosition="center"
-            />
+            <ImageWrapper>
+              <Image
+                src={file.url}
+                alt={title}
+                width={file.details.image.width}
+                height={file.details.image.width / 2.5}
+                objectFit="cover"
+                objectPosition="center"
+              />
+            </ImageWrapper>
           )}
 
           <Excerpt>
