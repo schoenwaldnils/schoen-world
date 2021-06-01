@@ -26,7 +26,7 @@ const TimelineApp = ({ Component, pageProps }: AppProps): ReactNode => {
           url: 'https://schoen.world',
           images: [
             {
-              url: 'https://blog.schoen.world/assets/images/icon-on-black.png',
+              url: 'https://schoen.world/images/icon-on-black.png',
             },
           ],
         }}

@@ -40,7 +40,7 @@ const ArticleNews: FC<{ post?: IPost }> = ({ post }) => (
       dateModified={`${post.sys.updatedAt}Z`}
       authorName={[post.fields.author.fields.name]}
       publisherName="Schönwald"
-      publisherLogo="https://schoen.world/assets/images/icon-on-black.png"
+      publisherLogo="https://schoen.world/images/icon-on-black.png"
     />
 
     <Page>
