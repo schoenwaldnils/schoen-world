@@ -24,7 +24,7 @@ const ArticleNews: FC<{ post?: IPost }> = ({ post }) => (
         },
         images: [
           {
-            url: post.fields.image.fields.file.url,
+            url: `https://${post.fields.image.fields.file.url}?w=1200&h=630&fit=fill`,
             width: 1200,
             height: 630,
           },
