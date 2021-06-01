@@ -5,6 +5,9 @@ import { Toggle as ToggleComponent } from './Toggle'
 export default {
   title: 'Toggle',
   component: ToggleComponent,
+  parameters: {
+    percy: { skip: true }, // part of footer
+  },
 }
 
 export const Toggle: FC = () => {
