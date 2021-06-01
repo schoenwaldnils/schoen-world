@@ -10,7 +10,7 @@ const AvatarContainer = styled.div`
 
 const Img = styled(Image)`
   box-sizing: content-box;
-  border: 2px solid var(--Avatar-borderColor);
+  border: 2px solid var(--Avatar-borderColor) !important;
   border-radius: 50%;
   filter: saturate(100%) grayscale(100%) contrast(105%) brightness(115%);
   transition: filter 150ms;
