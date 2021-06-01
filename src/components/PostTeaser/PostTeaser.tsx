@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { FC } from 'react'
 
 import { IPostFields } from '../../@types/generated/contentful'
-import { aspectRatio } from '../../utils/mixins'
 import { Image } from '../Image'
 import { h4Styles } from '../Typography'
 
@@ -18,10 +17,6 @@ const StyledPaper = styled.div`
 
   color: var(--PostTeaser-color) !important;
   background-color: var(--PostTeaser-background) !important;
-`
-
-const ImageWrapper = styled.div`
-  ${aspectRatio(2.5)}
 `
 
 const Excerpt = styled.div`
@@ -46,15 +41,14 @@ export const PostTeaser: FC<IPostFields> = ({
       <TeaserContainer>
         <Paper component={StyledPaper} elevation={2}>
           {file.url && (
-            <ImageWrapper>
-              <Image
-                src={file.url}
-                alt={title}
-                layout="fill"
-                objectFit="cover"
-                objectPosition="center"
-              />
-            </ImageWrapper>
+            <Image
+              src={file.url}
+              alt={title}
+              width={file.details.image.width}
+              height={file.details.image.width / 2.5}
+              objectFit="cover"
+              objectPosition="center"
+            />
           )}
 
           <Excerpt>

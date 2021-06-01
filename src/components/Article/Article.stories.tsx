@@ -7,6 +7,9 @@ import articleMock from './articleMock.json'
 export default {
   title: 'Article',
   component: ArticleComponent,
+  parameters: {
+    layout: 'fullscreen',
+  },
 }
 
 export const Article: FC = () => (

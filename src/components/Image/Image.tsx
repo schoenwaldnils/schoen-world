@@ -14,14 +14,21 @@ const contentfulLoader = ({ src, width, height, quality }) => {
 }
 
 export const Image: FC<ImageProps & { lazy?: boolean }> = ({
+  src,
   lazy = true,
   ...props
 }) => {
-  return (
-    <NextImage
-      loader={contentfulLoader}
-      loading={lazy ? 'lazy' : 'eager'}
-      {...props}
-    />
-  )
+  if (src.includes('ctfassets')) {
+    return (
+      <NextImage
+        loader={contentfulLoader}
+        src={src}
+        loading={lazy ? 'lazy' : 'eager'}
+        {...props}
+      />
+    )
+  }
+
+  // eslint-disable-next-line jsx-a11y/alt-text
+  return <img src={src} {...props} />
 }
