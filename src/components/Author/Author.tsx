@@ -37,6 +37,9 @@ export const Author: FC<IAuthorFields> = ({ name, avatar, richText }) => {
       <Image
         src={imgSrc || 'https://www.gravatar.com/avatar/0?d=mp'}
         width={200}
+        height={200}
+        objectFit="contain"
+        objectPosition="top left"
         alt={name}
         lazy
       />

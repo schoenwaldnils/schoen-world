@@ -16,17 +16,13 @@ import {
 } from 'react-share'
 
 import { IPostFields } from '../../@types/generated/contentful'
-import { aspectRatio, maxWidthText, upFromBreakpoint } from '../../utils/mixins'
+import { maxWidthText, upFromBreakpoint } from '../../utils/mixins'
 import { Author } from '../Author'
 import { GiscusComments } from '../GiscusComments'
 import { Image } from '../Image'
 import { RichText } from '../RichText'
 import { Stack } from '../Stack'
 import { Headline1 } from '../Typography'
-
-const ImageWrapper = styled.div`
-  ${aspectRatio(2.5)}
-`
 
 const ArticleContainer = styled.div`
   ${maxWidthText}
@@ -61,15 +57,21 @@ export const Article: FC<
 }) => {
   const shareUrl = `https://schoen.world/blog/${slug}`
 
-  const imageSrc = image?.fields?.file?.url
+  const imageFile = image?.fields?.file
+  const imageSrc = imageFile?.url
   const imageAlt = image?.fields?.description
 
   return (
     <>
       {imageSrc && (
-        <ImageWrapper>
-          <Image src={imageSrc} alt={imageAlt || undefined} />
-        </ImageWrapper>
+        <Image
+          src={imageSrc}
+          alt={imageAlt || undefined}
+          width={imageFile.details.image.width}
+          height={imageFile.details.image.width / 2.5}
+          objectFit="cover"
+          objectPosition="center"
+        />
       )}
 
       <ArticleContainer>
