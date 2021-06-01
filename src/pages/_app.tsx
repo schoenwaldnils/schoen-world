@@ -31,7 +31,7 @@ const TimelineApp = ({ Component, pageProps }: AppProps): ReactNode => {
           ],
         }}
         twitter={{
-          cardType: 'summary_large_image',
+          cardType: 'summary',
           site: twitter.username,
         }}
       />
