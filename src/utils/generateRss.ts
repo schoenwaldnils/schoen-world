@@ -24,6 +24,10 @@ export const generateRss = async (posts: IPost[]): Promise<void> => {
   posts.forEach((post) => {
     const { fields } = post
 
+    const image =
+      fields.image &&
+      `https:${fields.image?.fields?.file?.url}?w=1200&h=630&fit=fill`
+
     feed.item({
       title: fields.title,
       description: fields.description,
@@ -32,8 +36,8 @@ export const generateRss = async (posts: IPost[]): Promise<void> => {
       author: fields.author.fields.name, // optional - defaults to feed author property
       date: new Date(fields.date), // any format that js Date can parse.
       enclosure: {
-        url: fields.image?.fields?.file?.url,
-        size: fields.image?.fields?.file.details.size,
+        url: image,
+        size: 0,
         type: fields.image?.fields?.file.contentType,
       },
     })
