@@ -10,3 +10,4 @@ out
 .next
 .env.local
 storybook-static
+public/rss.xml

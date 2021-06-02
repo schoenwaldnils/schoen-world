@@ -41,6 +41,7 @@ export const baseColors = {
 const themeLight = css`
   :root {
     --Theme-themeColor: ${baseColors.brand};
+    --Theme-colorRss: ${baseColors.orange};
 
     --Body-background: ${baseColors.white};
     --Body-textColor: ${baseColors.charcoal};
