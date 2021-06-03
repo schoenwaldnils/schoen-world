@@ -2,7 +2,7 @@ import { css } from '@emotion/react'
 
 import { upFromBreakpoint } from '../../utils/mixins'
 
-export default css`
+export const base = css`
   *,
   *::before,
   *::after {
@@ -65,6 +65,7 @@ export default css`
   }
 
   img,
+  figure,
   video,
   svg {
     max-width: 100%;

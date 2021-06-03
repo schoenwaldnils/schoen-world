@@ -8,5 +8,5 @@ export default {
 }
 
 export const Avatar: FC = () => (
-  <AvatarComponent src="https://www.fillmurray.com/200/200" />
+  <AvatarComponent src="https://picsum.photos/id/1074/200/200" />
 )

@@ -24,7 +24,7 @@ const Figure = styled.figure<{
 }>`
   display: inline-block;
 
-  ${(p) => p.width && `width: ${p.width}px;`}
+  ${(p) => p.width && `max-width: ${p.width}px;`}
   ${(p) => p.float && floatCss(p.float)};
 `
 

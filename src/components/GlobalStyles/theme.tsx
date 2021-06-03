@@ -50,6 +50,8 @@ const themeLight = css`
     --Typography-linkHover: ${baseColors.charcoal};
     --Typography-linkActive: ${baseColors.charcoal};
 
+    --Typography-headlineFontFamily: 'Raleway', sans-serif;
+    --Typography-headlineWeight: 600;
     --Typography-headline1Color: ${baseColors.black};
     --Typography-headline2Color: ${baseColors.black};
     --Typography-headline3Color: ${baseColors.black};

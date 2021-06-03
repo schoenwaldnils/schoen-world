@@ -1,5 +1,6 @@
 import { FC } from 'react'
 
+import { Stack } from '../Stack'
 import { Headline1, Headline2, Headline3, Headline4 } from './Headline'
 
 export default {
@@ -10,7 +11,7 @@ export default {
 }
 
 export const Headline: FC = () => (
-  <>
+  <Stack amount={2}>
     <Headline1>
       Heading 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
       dolorum non tempora aperiam temporibus eos.
@@ -27,5 +28,5 @@ export const Headline: FC = () => (
       Heading 4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
       dolorum non tempora aperiam temporibus eos.
     </Headline4>
-  </>
+  </Stack>
 )
