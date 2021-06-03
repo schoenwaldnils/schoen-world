@@ -6,16 +6,12 @@ import {
 import { NextSeo } from 'next-seo'
 import { FC } from 'react'
 
-import { IPage, IPost } from '../@types/generated/contentful'
+import { IPage } from '../@types/generated/contentful'
 import { Article } from '../components/Article'
 import { Page } from '../components/Page'
-import {
-  getEntryCollection,
-  getPageBySlug,
-  getPostBySlug,
-} from '../utils/contentful'
+import { getEntryCollection, getPageBySlug } from '../utils/contentful'
 
-const ArticleNews: FC<{ page?: IPost; post?: IPost }> = ({ page, post }) => {
+const ArticleNews: FC<{ page?: IPage }> = ({ page }) => {
   if (page) {
     return (
       <>
@@ -26,33 +22,6 @@ const ArticleNews: FC<{ page?: IPost; post?: IPost }> = ({ page, post }) => {
 
         <Page>
           <Article {...page.fields} type="page" />
-        </Page>
-      </>
-    )
-  }
-  if (post) {
-    return (
-      <>
-        <NextSeo
-          title={post.fields.title}
-          description={post.fields.description}
-          openGraph={{
-            type: 'article',
-            article: {
-              publishedTime: `${post.fields.date}Z`,
-            },
-            images: [
-              {
-                url: post.fields.image.fields.file.url,
-                width: 1200,
-                height: 630,
-              },
-            ],
-          }}
-        />
-
-        <Page>
-          <Article {...post.fields} />
         </Page>
       </>
     )
@@ -68,13 +37,11 @@ export const getStaticProps: GetStaticProps = async ({
   GetStaticPropsResult<{
     preview: boolean
     page?: IPage
-    post?: IPost
   }>
 > => {
   const page = (await getPageBySlug(params.slug as string, preview)) as IPage
-  const post = (await getPostBySlug(params.slug as string, preview)) as IPost
 
-  if (!page && !post) {
+  if (!page) {
     return {
       notFound: true,
     }
@@ -84,19 +51,21 @@ export const getStaticProps: GetStaticProps = async ({
     props: {
       preview,
       page,
-      post,
     },
   }
 }
 
 export const getStaticPaths = async (): Promise<GetStaticPathsResult> => {
-  const allPosts = await getEntryCollection('post')
   const allPages = await getEntryCollection('page')
+
+  const excludeSlugs = ['/404']
+
+  const pagePaths = allPages
+    ?.map(({ fields: { slug } }) => `/${slug}`)
+    .filter((i) => !excludeSlugs.includes(i))
+
   return {
-    paths: [
-      ...(allPosts?.map(({ fields: { slug } }) => `/${slug}`) ?? []),
-      ...(allPages?.map(({ fields: { slug } }) => `/${slug}`) ?? []),
-    ],
+    paths: pagePaths,
     fallback: false,
   }
 }
