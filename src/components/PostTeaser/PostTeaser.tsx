@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { FC } from 'react'
 
 import { IPostFields } from '../../@types/generated/contentful'
+import { aspectRatio } from '../../utils/mixins'
 import { Image } from '../Image'
 import { h4Styles } from '../Typography'
 
@@ -20,6 +21,7 @@ const StyledPaper = styled.div`
 `
 
 const ImageWrapper = styled.div`
+  ${aspectRatio(2.5)}
   > div {
     display: block !important;
   }
@@ -51,8 +53,7 @@ export const PostTeaser: FC<IPostFields> = ({
               <Image
                 src={file.url}
                 alt={title}
-                width={file.details.image.width}
-                height={file.details.image.width / 2.5}
+                layout="fill"
                 objectFit="cover"
                 objectPosition="center"
               />

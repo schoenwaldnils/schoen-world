@@ -41,7 +41,6 @@ export const Author: FC<IAuthorFields> = ({ name, avatar, richText }) => {
         objectFit="contain"
         objectPosition="top left"
         alt={name}
-        lazy
       />
       <Content>
         <Headline4>Author: {name}</Headline4>

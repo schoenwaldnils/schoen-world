@@ -63,7 +63,7 @@ export const Link: FC<AnchorHTMLAttributes<HTMLAnchorElement> & LinkProps> = ({
         href={href}
         className={className}
         target={isExternal ? '_blank' : '_self'}
-        {...(isExternal ? { rel: 'noreferrer' } : {})}
+        {...(isExternal ? { rel: 'noopener' } : {})}
       >
         {children}
         {/* {isExternal && <ExternalIcon />} */}
