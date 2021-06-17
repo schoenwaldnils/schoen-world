@@ -31,11 +31,10 @@ const common = css`
   backface-visibility: hidden;
 `
 
-const Front = styled.div<{ color?: string }>`
+const Front = styled.div<{ textColor?: string; background: string }>`
   ${common}
-  color: ${(p) =>
-    p.color ? 'var(--SocialIcon-front)' : 'var(--Body-textColor)'};
-  background-color: ${(p) => p.color || 'var(--SocialIcon-front)'};
+  color: ${(p) => p.textColor || 'var(--SocialIcon-front)'};
+  background-color: ${(p) => p.background || 'var(--SocialIcon-front)'};
   transform: rotateY(180deg);
 
   ${Button}:hover & {
@@ -59,7 +58,14 @@ const icons = {
 }
 
 const socialColors = {
-  Twitter: 'var(--SocialIcon-twitter)',
+  Twitter: {
+    background: 'var(--SocialIcon-twitter)',
+    color: '#fff',
+  },
+  Github: {
+    background: '#fff',
+    color: '#000',
+  },
 }
 
 export const SocialIcon: FC<{ name: string; href: string }> = ({
@@ -68,13 +74,15 @@ export const SocialIcon: FC<{ name: string; href: string }> = ({
 }) => {
   let Icon = null
   let color = null
+  let background = null
 
   if (name in icons) {
     Icon = icons[name]
   }
 
   if (name in socialColors) {
-    color = socialColors[name]
+    color = socialColors[name].color
+    background = socialColors[name].background
   }
 
   if (!Icon) return null
@@ -86,7 +94,7 @@ export const SocialIcon: FC<{ name: string; href: string }> = ({
       title={`Show ${name}-profile`}
       rel="noopener noreferrer"
     >
-      <Front color={color}>
+      <Front textColor={color} background={background}>
         <Icon />
       </Front>
       <Back>
