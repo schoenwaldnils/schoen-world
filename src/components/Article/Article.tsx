@@ -63,10 +63,6 @@ export const Article: FC<
 
   const imageFile = image?.fields?.file
 
-  if (!imageFile.url.includes('http')) {
-    imageFile.url = `https:${imageFile.url}`
-  }
-
   const imageSrc = imageFile?.url
   const imageAlt = image?.fields?.description
 

@@ -33,10 +33,6 @@ const Content = styled.div`
 export const Author: FC<IAuthorFields> = ({ name, avatar, richText }) => {
   const file = avatar?.fields?.file
 
-  if (!file.url.includes('http')) {
-    file.url = `https:${file.url}`
-  }
-
   const imgSrc = file?.url
 
   return (

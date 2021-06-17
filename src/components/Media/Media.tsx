@@ -22,8 +22,6 @@ const Figure = styled.figure<{
   width?: number
   float?: 'left' | 'right'
 }>`
-  display: inline-block;
-
   ${(p) => p.width && `max-width: ${p.width}px;`}
   ${(p) => p.float && floatCss(p.float)};
 `
@@ -82,6 +80,7 @@ export const Media: FC<IMediaFields> = ({
               alt={altText}
               width={file.details.image.width}
               height={file.details.image.height}
+              layout="responsive"
             />
           </FigureComponent>
         </>

@@ -51,10 +51,6 @@ export const PostTeaser: FC<IPostFields> = ({
 }) => {
   const file = image?.fields?.file
 
-  if (!file.url.includes('http')) {
-    file.url = `https:${file.url}`
-  }
-
   return (
     <Link href={`/blog/${slug}`} passHref>
       <TeaserContainer>
