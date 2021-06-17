@@ -1,5 +1,8 @@
 {
-  "extends": "@schoenwald/eslint-config-typescript",
+  "extends": [
+    "plugin:@next/next/recommended",
+    "@schoenwald/eslint-config-typescript"
+  ],
   "rules": {
     "react/jsx-curly-brace-presence": ["warn", {
       "props": "never",

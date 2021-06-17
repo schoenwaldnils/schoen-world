@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { FC } from 'react'
 
 import { upFromBreakpoint } from '../../utils/mixins'
+import { Link as TypographyLink } from '../Typography'
 import { ReactComponent as LogoSvg } from './schoenwald-logo.svg'
 
 const HeaderContainer = styled.header`
@@ -35,13 +36,20 @@ const Nav = styled.nav`
   grid-gap: 2rem;
 `
 
-const NavItem = styled.a`
-  padding: 1em;
+const NavItem = styled(TypographyLink)`
+  margin-right: 1em;
+  margin-left: 1em;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.4;
   letter-spacing: 0.15em;
   cursor: pointer;
+
+  &,
+  &:hover,
+  &:visited {
+    color: var(--Header-color);
+  }
 `
 
 const navItems = [
@@ -58,16 +66,16 @@ const navItems = [
 export const Header: FC = () => {
   return (
     <HeaderContainer>
-      <Link href="/">
+      <Link href="/" passHref>
         <LogoWrapper>
           <LogoSvg />
         </LogoWrapper>
       </Link>
       <Nav>
         {navItems.map((item) => (
-          <Link href={item.url} key={`nav-item-${item.url}`}>
-            <NavItem>{item.title}</NavItem>
-          </Link>
+          <NavItem href={item.url} key={`nav-item-${item.url}`}>
+            {item.title}
+          </NavItem>
         ))}
       </Nav>
     </HeaderContainer>

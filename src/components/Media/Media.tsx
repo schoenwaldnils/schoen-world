@@ -58,12 +58,12 @@ export const Media: FC<IMediaFields> = ({
       return null
     }
 
-    if (internalName === 'Nils profile picture') {
-      return <Avatar src={asset.fields?.file?.url} alt="Nils Schönwald" />
-    }
-
     const file = asset.fields.file
     const fileType = file.contentType
+
+    if (internalName === 'Nils profile picture') {
+      return <Avatar src={file.url} alt="Nils Schönwald" />
+    }
 
     if (fileType.includes('image')) {
       return (
@@ -100,7 +100,7 @@ export const Media: FC<IMediaFields> = ({
             float={float}
             width={width}
           >
-            <Video src={asset.fields?.file?.url} />
+            <Video src={file.url} />
           </FigureComponent>
         </>
       )
