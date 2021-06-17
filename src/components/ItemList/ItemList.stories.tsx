@@ -20,14 +20,15 @@ const TestBox = styled.div`
 `
 
 export const ItemList: FC = () => (
-  <ItemListComponent itemMinWidth={200}>
+  <ItemListComponent itemMinWidth={140} gap={1.5}>
     {new Array(12).fill(undefined).map((val, key) => (
       <TestBox key={`test-${key}`}>
         <Image
-          src={`https://picsum.photos/id/${10 + key}/200/200`}
+          src={`https://picsum.photos/id/${10 + key}/320/320`}
           alt=""
-          width={200}
-          height={200}
+          width={320}
+          height={320}
+          isExternal
         />
       </TestBox>
     ))}

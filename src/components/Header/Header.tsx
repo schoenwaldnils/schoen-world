@@ -10,6 +10,7 @@ const HeaderContainer = styled.header`
   display: flex;
   flex-direction: column;
   align-items: center;
+  grid-gap: 1rem;
   padding: 1rem;
   color: var(--Header-color);
   background-color: var(--Header-background);
