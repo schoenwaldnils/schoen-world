@@ -13,10 +13,19 @@ export default {
 export const Link: FC = () => (
   <>
     <div>
-      <LinkComponent href="#">Lorem Ipsum</LinkComponent>
+      Lorem ipsum dolor sit <LinkComponent href="#">Lorem Ipsum</LinkComponent>,
+      consectetur adipisicing elit. Dignissimos minus accusantium odit
+      repudiandae earum sapiente tenetur qui? Modi itaque velit odit adipisci
+      impedit quos excepturi laborum. Accusamus nobis quisquam velit?
     </div>
     <div>
-      <LinkComponent href="https://schoen.world/">Lorem Ipsum</LinkComponent>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure sint cumque,
+      perferendis dolorum autem ab recusandae suscipit molestiae dignissimos
+      evenietimpedit distinctio nobis ut{' '}
+      <LinkComponent href="https://schoen.world/">
+        temporibus nemo
+      </LinkComponent>
+      . Ad debitis voluptate impedit.
     </div>
   </>
 )
