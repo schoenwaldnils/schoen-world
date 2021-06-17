@@ -11,20 +11,20 @@ import { Article } from '../../components/Article'
 import { Page } from '../../components/Page'
 import { getEntryCollection, getPostBySlug } from '../../utils/contentful'
 
-const ArticleNews: FC<{ post?: IPost }> = ({ post }) => (
+const ArticleNews: FC<{ post?: IPost }> = ({ post: { sys, fields } }) => (
   <>
     <NextSeo
-      title={post.fields.title}
-      description={post.fields.description}
+      title={fields.title}
+      description={fields.description}
       openGraph={{
         type: 'article',
         article: {
-          publishedTime: `${post.fields.date}Z`,
-          modifiedTime: post.sys.updatedAt,
+          publishedTime: `${fields.date}Z`,
+          modifiedTime: sys.updatedAt,
         },
         images: [
           {
-            url: `https:${post.fields.image.fields.file.url}?w=1200&h=630&fit=fill`,
+            url: `https:${fields.image.fields.file.url}?w=1200&h=630&fit=fill`,
             width: 1200,
             height: 630,
           },
@@ -35,21 +35,19 @@ const ArticleNews: FC<{ post?: IPost }> = ({ post }) => (
       }}
     />
     <ArticleJsonLd
-      url={`https://schoen.world/blog/${post.fields.slug}`}
-      title={post.fields.title}
-      description={post.fields.description}
-      images={[
-        `https:${post.fields.image.fields.file.url}?w=1200&h=630&fit=fill`,
-      ]}
-      datePublished={`${post.fields.date}Z`}
-      dateModified={post.sys.updatedAt}
-      authorName={[post.fields.author.fields.name]}
+      url={`https://schoen.world/blog/${fields.slug}`}
+      title={fields.title}
+      description={fields.description}
+      images={[`https:${fields.image.fields.file.url}?w=1200&h=630&fit=fill`]}
+      datePublished={`${fields.date}Z`}
+      dateModified={sys.updatedAt}
+      authorName={[fields.author.fields.name]}
       publisherName="Schönwald"
       publisherLogo="https://schoen.world/images/icon-on-black.png"
     />
 
     <Page>
-      <Article {...post.fields} />
+      <Article {...fields} />
     </Page>
   </>
 )
