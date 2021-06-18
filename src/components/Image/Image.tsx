@@ -1,22 +1,36 @@
+/* eslint-disable jsx-a11y/alt-text */
 import NextImage, { ImageProps } from 'next/image'
-import qs from 'qs'
 import { FC } from 'react'
 
-const contentfulLoader = ({ src, width, quality }) => {
-  const params = {
-    fm: 'webp', // format
-    w: width || null,
-    q: quality || 75,
+import { FixedStringImageProps } from '../../@types/NextImage'
+
+type ImageType =
+  | (ImageProps & { isExternal?: never })
+  | (Exclude<ImageProps, 'src'> & {
+      src: string
+      isExternal: boolean
+    })
+
+export const Image: FC<ImageType> = ({ isExternal, ...props }) => {
+  const isContentful = (props.src as string).includes('ctfassets')
+
+  if (isExternal) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img {...props} src={props.src as string} loading="lazy" />
+    )
   }
 
-  return `https:${src}?${qs.stringify(params, { skipNulls: true })}`
-}
+  if (isContentful) {
+    const fixedProps = {
+      ...props,
+      src: `https:${props.src}`,
+      placeholder: 'blur',
+      blurDataURL: `${props.src}?w=50&q=10`,
+    } as FixedStringImageProps
 
-export const Image: FC<ImageProps> = ({ src, ...props }) => {
-  if (src.includes('ctfassets')) {
-    return <NextImage loader={contentfulLoader} src={src} {...props} />
+    return <NextImage {...fixedProps} />
   }
 
-  // eslint-disable-next-line jsx-a11y/alt-text
-  return <img src={src} {...props} />
+  return <NextImage {...props} />
 }

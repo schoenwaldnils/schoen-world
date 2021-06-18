@@ -11,7 +11,7 @@ import { timings } from '../../data/config'
 // `
 
 const StyledA = styled.a`
-  --verticalPadding: 0.3em;
+  --verticalPadding: 0.75em;
   position: relative;
   display: inline-flex;
   align-items: center;

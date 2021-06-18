@@ -22,8 +22,6 @@ const Figure = styled.figure<{
   width?: number
   float?: 'left' | 'right'
 }>`
-  display: inline-block;
-
   ${(p) => p.width && `max-width: ${p.width}px;`}
   ${(p) => p.float && floatCss(p.float)};
 `
@@ -58,12 +56,12 @@ export const Media: FC<IMediaFields> = ({
       return null
     }
 
-    if (internalName === 'Nils profile picture') {
-      return <Avatar src={asset.fields?.file?.url} alt="Nils Schönwald" />
-    }
-
     const file = asset.fields.file
     const fileType = file.contentType
+
+    if (internalName === 'Nils profile picture') {
+      return <Avatar src={file.url} alt="Nils Schönwald" />
+    }
 
     if (fileType.includes('image')) {
       return (
@@ -82,6 +80,7 @@ export const Media: FC<IMediaFields> = ({
               alt={altText}
               width={file.details.image.width}
               height={file.details.image.height}
+              layout="responsive"
             />
           </FigureComponent>
         </>
@@ -100,7 +99,7 @@ export const Media: FC<IMediaFields> = ({
             float={float}
             width={width}
           >
-            <Video src={asset.fields?.file?.url} />
+            <Video src={file.url} />
           </FigureComponent>
         </>
       )

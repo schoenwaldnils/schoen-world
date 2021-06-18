@@ -10,6 +10,13 @@ import { h4Styles } from '../Typography'
 
 const TeaserContainer = styled.a`
   cursor: pointer;
+
+  &,
+  &:hover,
+  &:visited {
+    color: inherit;
+    text-decoration: none;
+  }
 `
 
 const StyledPaper = styled.div`
@@ -45,7 +52,7 @@ export const PostTeaser: FC<IPostFields> = ({
   const file = image?.fields?.file
 
   return (
-    <Link href={`/blog/${slug}`}>
+    <Link href={`/blog/${slug}`} passHref>
       <TeaserContainer>
         <Paper component={StyledPaper} elevation={2}>
           {file.url && (

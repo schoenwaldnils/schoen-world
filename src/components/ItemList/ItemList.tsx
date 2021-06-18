@@ -1,26 +1,32 @@
 import styled from '@emotion/styled'
 import { FC } from 'react'
 
-import { upFromBreakpoint } from '../../utils/mixins'
-
-const List = styled.div<{ minWidth: number }>`
+const List = styled.div<{
+  minWidth: number
+  rowgap: number
+  columngap: number
+}>`
   --minWidth: ${(p) => p.minWidth}px;
   display: grid;
-  grid-gap: 1rem;
+  grid-gap: ${(p) => `${p.rowgap}rem ${p.columngap}rem`};
   grid-template-columns: 1fr;
-
-  ${upFromBreakpoint('medium')} {
-    grid-gap: 2rem;
-  }
 
   @media (min-width: ${(p) => p.minWidth + 32}px) {
     grid-template-columns: repeat(auto-fill, minmax(var(--minWidth), 1fr));
   }
 `
 
-export const ItemList: FC<{ itemMinWidth?: number }> = ({
-  itemMinWidth = 100,
+export const ItemList: FC<{
+  itemMinWidth?: number
+  gap?: number
+  rowgap?: number
+  columngap?: number
+}> = ({
+  itemMinWidth: minWidth = 100,
+  gap = 1,
+  rowgap = gap,
+  columngap = gap,
   children,
 }) => {
-  return <List minWidth={itemMinWidth}>{children}</List>
+  return <List {...{ minWidth, rowgap, columngap }}>{children}</List>
 }

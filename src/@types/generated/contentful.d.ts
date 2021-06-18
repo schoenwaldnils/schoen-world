@@ -132,7 +132,7 @@ export interface IMediaFields {
   description?: string | undefined
 
   /** Asset */
-  asset: Asset
+  asset?: Asset | undefined
 
   /** Youtube Video ID */
   youtubeVideoId?: string | undefined
