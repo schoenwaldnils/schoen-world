@@ -2,6 +2,8 @@
 import NextImage, { ImageProps } from 'next/image'
 import { FC } from 'react'
 
+import { FixedStringImageProps } from '../../@types/NextImage'
+
 type ImageType =
   | (ImageProps & { isExternal?: never })
   | (Exclude<ImageProps, 'src'> & {
@@ -10,6 +12,8 @@ type ImageType =
     })
 
 export const Image: FC<ImageType> = ({ isExternal, ...props }) => {
+  const isContentful = (props.src as string).includes('ctfassets')
+
   if (isExternal) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
@@ -17,10 +21,15 @@ export const Image: FC<ImageType> = ({ isExternal, ...props }) => {
     )
   }
 
-  const isContentful = (props.src as string).includes('ctfassets')
-
   if (isContentful) {
-    props.src = `https:${props.src}` as typeof props.src
+    const fixedProps = {
+      ...props,
+      src: `https:${props.src}`,
+      placeholder: 'blur',
+      blurDataURL: `${props.src}?w=50&q=10`,
+    } as FixedStringImageProps
+
+    return <NextImage {...fixedProps} />
   }
 
   return <NextImage {...props} />
