@@ -68,7 +68,7 @@ export const Header: FC = () => {
   return (
     <HeaderContainer>
       <Link href="/" passHref>
-        <LogoWrapper>
+        <LogoWrapper aria-label="Logo with link to home page">
           <LogoSvg />
         </LogoWrapper>
       </Link>
