@@ -1,12 +1,11 @@
 import styled from '@emotion/styled'
-import { action } from '@storybook/addon-actions'
 import { FC } from 'react'
 
-import { ThemeSwitchView } from './ThemeSwitchView'
+import { ThemeSwitch as ThemeSwitchComponent } from './ThemeSwitch'
 
 export default {
   title: 'Theme Switch',
-  component: ThemeSwitchView,
+  component: ThemeSwitchComponent,
   parameters: {
     percy: { skip: true }, // part of footer
   },
@@ -21,13 +20,8 @@ const Container = styled.div`
   }
 `
 
-const props = {
-  toggleTheme: action('toggle theme'),
-}
-
 export const ThemeSwitch: FC = () => (
   <Container>
-    <ThemeSwitchView {...props} />
-    <ThemeSwitchView {...props} isDark={true} />
+    <ThemeSwitchComponent />
   </Container>
 )

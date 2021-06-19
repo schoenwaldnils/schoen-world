@@ -7,7 +7,7 @@ import {
 } from '../../utils/localStorage'
 import { Theme, ThemeSwitchView } from './ThemeSwitchView'
 
-export const ThemeSwitch: FC = (props) => {
+export const ThemeSwitch: FC = () => {
   const docRef = useRef<HTMLBodyElement>()
   const [theme, setTheme] = useState<Theme>()
 
@@ -32,5 +32,5 @@ export const ThemeSwitch: FC = (props) => {
     }
   }, [theme])
 
-  return <ThemeSwitchView {...props} setTheme={setTheme} theme={theme} />
+  return <ThemeSwitchView setTheme={setTheme} theme={theme} />
 }

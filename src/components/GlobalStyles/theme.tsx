@@ -1,4 +1,4 @@
-import { css, SerializedStyles } from '@emotion/react'
+import { css } from '@emotion/react'
 
 export const baseColors = {
   black: '#0c0c0c',
