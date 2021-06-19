@@ -26,10 +26,10 @@ export const GiscusComments: FC = () => {
       const script = document.createElement('script')
       script.setAttribute('src', 'https://giscus.app/client.js')
       script.setAttribute('data-repo', 'schoenwaldnils/schoen-world')
-      script.setAttribute('data-repo-id', 'MDEwOlJlcG9zaXRvcnkzNzEzNTc0NTA')
+      script.setAttribute('data-repo-id', 'MDEwOlJlcG9zaXRvcnkzNzEzNTc0NTA=')
       script.setAttribute(
         'data-category-id',
-        'MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMyOTgxMzc5',
+        'MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMzMDM4MjA1',
       )
       script.setAttribute('data-mapping', 'pathname')
       script.setAttribute('data-theme', store.themeIsDark ? 'dark' : 'light')
