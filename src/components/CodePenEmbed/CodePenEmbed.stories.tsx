@@ -6,6 +6,9 @@ import { CodePenEmbed as CodePenEmbedComponent } from './CodePenEmbed'
 export default {
   title: 'Code Pen Embed',
   component: CodePenEmbedComponent,
+  parameters: {
+    percy: { skip: true }, // part of article
+  },
 }
 
 const mock = {

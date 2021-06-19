@@ -1,32 +1,27 @@
 import { AppProps } from 'next/dist/next-server/lib/router/router'
-import Head from 'next/head'
 import { DefaultSeo } from 'next-seo'
 import { ReactNode } from 'react'
 
-import { Favicons } from '../components/Favicons'
 import { GlobalStyles } from '../components/GlobalStyles'
 import { twitter } from '../data/config'
+import { seo } from '../data/seo'
 import { StoreProvider } from '../provider/Store/StoreProvider'
 
 const TimelineApp = ({ Component, pageProps }: AppProps): ReactNode => {
   return (
     <>
-      <Head>
-        <Favicons />
-      </Head>
-
       <DefaultSeo
-        defaultTitle="Schönwald"
-        description="Thoughts on CSS, JS, and overall clean code."
+        defaultTitle={seo.title}
+        description={seo.description}
         defaultOpenGraphImageWidth={200}
         defaultOpenGraphImageHeight={200}
         openGraph={{
           type: 'website',
           locale: 'en_US',
-          url: 'https://schoen.world',
+          url: seo.url,
           images: [
             {
-              url: 'https://schoen.world/images/icon-on-black.png',
+              url: seo.images.w200,
             },
           ],
         }}

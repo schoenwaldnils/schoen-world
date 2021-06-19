@@ -5,6 +5,9 @@ import { SocialIcon as SocialIconComponent } from './SocialIcon'
 export default {
   title: 'Social Icon',
   component: SocialIconComponent,
+  parameters: {
+    percy: { skip: true }, // part of footer
+  },
 }
 
 export const SocialIcon: FC = () => (

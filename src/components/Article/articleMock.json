@@ -1,6 +1,6 @@
 {
-  "slug": "sticky-footer-with-flexbox",
-  "title": "Sticky footer with flexbox",
+  "slug": "test-post",
+  "title": "Test post",
   "image": {
     "metadata": {
       "tags": []
@@ -13,9 +13,10 @@
           "id": "lvgw6if4imbu"
         }
       },
-      "id": "3SLaWljI08yOc6IY4Gsok4",
       "type": "Asset",
-      "createdAt": "2018-01-09T18:27:28.527Z",
+      "id": "3SLaWljI08yOc6IY4Gsok4",
+      "revision": 2,
+      "createdAt": "2018-01-09T18:27:11.607Z",
       "updatedAt": "2018-01-10T01:41:27.614Z",
       "environment": {
         "sys": {
@@ -24,7 +25,6 @@
           "linkType": "Environment"
         }
       },
-      "revision": 2,
       "locale": "en-US"
     },
     "fields": {
@@ -45,33 +45,613 @@
     }
   },
   "richText": {
+    "nodeType": "document",
     "data": {},
     "content": [
       {
-        "data": {},
+        "nodeType": "heading-2",
         "content": [
           {
-            "data": {},
+            "nodeType": "text",
+            "value": "Headline 2",
             "marks": [],
-            "value": "With flexbox there is now a simple way to let your footer stick to the bottom, when there is not enough content, and make it static when there is.",
-            "nodeType": "text"
+            "data": {}
           }
         ],
-        "nodeType": "paragraph"
+        "data": {}
       },
       {
-        "data": {},
+        "nodeType": "paragraph",
         "content": [
           {
-            "data": {},
+            "nodeType": "text",
+            "value": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque sed consectetur cumque voluptate natus rem omnis tempore libero quia quidem delectus, quibusdam porro inventore autem! Ad fuga quam praesentium odit!",
             "marks": [],
-            "value": "At first we need the HTML-skeleton. One wrapper, in this case the body-element itself, and at least 2 child-elements. I'm also including the header here, because it is often used in this kind of arrangement.",
-            "nodeType": "text"
+            "data": {}
           }
         ],
-        "nodeType": "paragraph"
+        "data": {}
       },
       {
+        "nodeType": "heading-3",
+        "content": [
+          {
+            "nodeType": "text",
+            "value": "Headline 3",
+            "marks": [],
+            "data": {}
+          }
+        ],
+        "data": {}
+      },
+      {
+        "nodeType": "paragraph",
+        "content": [
+          {
+            "nodeType": "text",
+            "value": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque sed consectetur cumque voluptate natus rem omnis tempore libero quia quidem delectus, quibusdam porro inventore autem! Ad fuga quam praesentium odit!",
+            "marks": [],
+            "data": {}
+          }
+        ],
+        "data": {}
+      },
+      {
+        "nodeType": "heading-4",
+        "content": [
+          {
+            "nodeType": "text",
+            "value": "Headline 4",
+            "marks": [],
+            "data": {}
+          }
+        ],
+        "data": {}
+      },
+      {
+        "nodeType": "paragraph",
+        "content": [
+          {
+            "nodeType": "text",
+            "value": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque sed consectetur cumque voluptate natus rem omnis tempore libero quia quidem delectus, quibusdam porro inventore autem! Ad fuga quam praesentium odit!",
+            "marks": [],
+            "data": {}
+          }
+        ],
+        "data": {}
+      },
+      {
+        "nodeType": "hr",
+        "content": [],
+        "data": {}
+      },
+      {
+        "nodeType": "heading-4",
+        "content": [
+          {
+            "nodeType": "text",
+            "value": "Headline 4",
+            "marks": [],
+            "data": {}
+          }
+        ],
+        "data": {}
+      },
+      {
+        "nodeType": "paragraph",
+        "content": [
+          {
+            "nodeType": "text",
+            "value": "Lorem, ipsum dolor sit ",
+            "marks": [],
+            "data": {}
+          },
+          {
+            "nodeType": "hyperlink",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "amet consectetur adipisicing",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {
+              "uri": "https://schoen.world"
+            }
+          },
+          {
+            "nodeType": "text",
+            "value": " elit. Itaque sed consectetur cumque ",
+            "marks": [],
+            "data": {}
+          },
+          {
+            "nodeType": "text",
+            "value": "voluptate natus",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "text",
+            "value": " rem omnis tempore ",
+            "marks": [],
+            "data": {}
+          },
+          {
+            "nodeType": "text",
+            "value": "libero quia quidem",
+            "marks": [
+              {
+                "type": "italic"
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "text",
+            "value": " delectus, ",
+            "marks": [],
+            "data": {}
+          },
+          {
+            "nodeType": "text",
+            "value": "quibusdam porro",
+            "marks": [
+              {
+                "type": "underline"
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "text",
+            "value": " inventore autem! Ad fuga quam praesentium odit!",
+            "marks": [],
+            "data": {}
+          }
+        ],
+        "data": {}
+      },
+      {
+        "nodeType": "ordered-list",
+        "content": [
+          {
+            "nodeType": "list-item",
+            "content": [
+              {
+                "nodeType": "paragraph",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "List Item",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "list-item",
+            "content": [
+              {
+                "nodeType": "paragraph",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "List Item",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "ordered-list",
+                "content": [
+                  {
+                    "nodeType": "list-item",
+                    "content": [
+                      {
+                        "nodeType": "paragraph",
+                        "content": [
+                          {
+                            "nodeType": "text",
+                            "value": "List Item",
+                            "marks": [],
+                            "data": {}
+                          }
+                        ],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "list-item",
+                    "content": [
+                      {
+                        "nodeType": "paragraph",
+                        "content": [
+                          {
+                            "nodeType": "text",
+                            "value": "List Item",
+                            "marks": [],
+                            "data": {}
+                          }
+                        ],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "list-item",
+            "content": [
+              {
+                "nodeType": "paragraph",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "List Item",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "list-item",
+            "content": [
+              {
+                "nodeType": "paragraph",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "List Item",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "ordered-list",
+                "content": [
+                  {
+                    "nodeType": "list-item",
+                    "content": [
+                      {
+                        "nodeType": "paragraph",
+                        "content": [
+                          {
+                            "nodeType": "text",
+                            "value": "List Item",
+                            "marks": [],
+                            "data": {}
+                          }
+                        ],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "list-item",
+                    "content": [
+                      {
+                        "nodeType": "paragraph",
+                        "content": [
+                          {
+                            "nodeType": "text",
+                            "value": "List Item",
+                            "marks": [],
+                            "data": {}
+                          }
+                        ],
+                        "data": {}
+                      },
+                      {
+                        "nodeType": "ordered-list",
+                        "content": [
+                          {
+                            "nodeType": "list-item",
+                            "content": [
+                              {
+                                "nodeType": "paragraph",
+                                "content": [
+                                  {
+                                    "nodeType": "text",
+                                    "value": "List Item",
+                                    "marks": [],
+                                    "data": {}
+                                  }
+                                ],
+                                "data": {}
+                              }
+                            ],
+                            "data": {}
+                          },
+                          {
+                            "nodeType": "list-item",
+                            "content": [
+                              {
+                                "nodeType": "paragraph",
+                                "content": [
+                                  {
+                                    "nodeType": "text",
+                                    "value": "List Item",
+                                    "marks": [],
+                                    "data": {}
+                                  }
+                                ],
+                                "data": {}
+                              }
+                            ],
+                            "data": {}
+                          }
+                        ],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "list-item",
+                    "content": [
+                      {
+                        "nodeType": "paragraph",
+                        "content": [
+                          {
+                            "nodeType": "text",
+                            "value": "List Item",
+                            "marks": [],
+                            "data": {}
+                          }
+                        ],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "list-item",
+            "content": [
+              {
+                "nodeType": "paragraph",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "List Item",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ],
+        "data": {}
+      },
+      {
+        "nodeType": "unordered-list",
+        "content": [
+          {
+            "nodeType": "list-item",
+            "content": [
+              {
+                "nodeType": "paragraph",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "List Item",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "list-item",
+            "content": [
+              {
+                "nodeType": "paragraph",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "List Item",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "list-item",
+            "content": [
+              {
+                "nodeType": "paragraph",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "List Item",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "unordered-list",
+                "content": [
+                  {
+                    "nodeType": "list-item",
+                    "content": [
+                      {
+                        "nodeType": "paragraph",
+                        "content": [
+                          {
+                            "nodeType": "text",
+                            "value": "List Item",
+                            "marks": [],
+                            "data": {}
+                          }
+                        ],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "list-item",
+                    "content": [
+                      {
+                        "nodeType": "paragraph",
+                        "content": [
+                          {
+                            "nodeType": "text",
+                            "value": "List Item",
+                            "marks": [],
+                            "data": {}
+                          }
+                        ],
+                        "data": {}
+                      },
+                      {
+                        "nodeType": "unordered-list",
+                        "content": [
+                          {
+                            "nodeType": "list-item",
+                            "content": [
+                              {
+                                "nodeType": "paragraph",
+                                "content": [
+                                  {
+                                    "nodeType": "text",
+                                    "value": "List Item",
+                                    "marks": [],
+                                    "data": {}
+                                  }
+                                ],
+                                "data": {}
+                              }
+                            ],
+                            "data": {}
+                          },
+                          {
+                            "nodeType": "list-item",
+                            "content": [
+                              {
+                                "nodeType": "paragraph",
+                                "content": [
+                                  {
+                                    "nodeType": "text",
+                                    "value": "List Item",
+                                    "marks": [],
+                                    "data": {}
+                                  }
+                                ],
+                                "data": {}
+                              }
+                            ],
+                            "data": {}
+                          }
+                        ],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "list-item",
+                    "content": [
+                      {
+                        "nodeType": "paragraph",
+                        "content": [
+                          {
+                            "nodeType": "text",
+                            "value": "List Item",
+                            "marks": [],
+                            "data": {}
+                          }
+                        ],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "list-item",
+            "content": [
+              {
+                "nodeType": "paragraph",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "List Item",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ],
+        "data": {}
+      },
+      {
+        "nodeType": "paragraph",
+        "content": [
+          {
+            "nodeType": "text",
+            "value": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque sed consectetur cumque voluptate natus rem omnis tempore libero quia quidem delectus, quibusdam porro inventore autem! Ad fuga quam praesentium odit!",
+            "marks": [],
+            "data": {}
+          }
+        ],
+        "data": {}
+      },
+      {
+        "nodeType": "embedded-entry-block",
+        "content": [],
         "data": {
           "target": {
             "metadata": {
@@ -85,10 +665,18 @@
                   "id": "lvgw6if4imbu"
                 }
               },
-              "id": "1Oc2gkswfh7vFMM2yQUCvA",
               "type": "Entry",
-              "createdAt": "2021-05-26T10:59:57.856Z",
-              "updatedAt": "2021-05-26T10:59:57.856Z",
+              "id": "2Lxs4tRlsHp83eG4H2nISJ",
+              "contentType": {
+                "sys": {
+                  "type": "Link",
+                  "linkType": "ContentType",
+                  "id": "media"
+                }
+              },
+              "revision": 1,
+              "createdAt": "2021-06-01T11:44:15.585Z",
+              "updatedAt": "2021-06-01T11:44:58.015Z",
               "environment": {
                 "sys": {
                   "id": "master",
@@ -96,135 +684,73 @@
                   "linkType": "Environment"
                 }
               },
-              "revision": 1,
-              "contentType": {
-                "sys": {
-                  "type": "Link",
-                  "linkType": "ContentType",
-                  "id": "codeBlock"
-                }
-              },
               "locale": "en-US"
             },
             "fields": {
-              "internalName": "Flex footer html",
-              "code": "<body>\n  <div class=\"Header\"></div>\n  <div class=\"Content\"></div>\n  <div class=\"Footer\"></div>\n</body>",
-              "syntax": "html"
+              "internalName": "Test Image",
+              "altText": "Antique Typewriter",
+              "description": "Antique Typewriter",
+              "asset": {
+                "metadata": {
+                  "tags": []
+                },
+                "sys": {
+                  "space": {
+                    "sys": {
+                      "type": "Link",
+                      "linkType": "Space",
+                      "id": "lvgw6if4imbu"
+                    }
+                  },
+                  "type": "Asset",
+                  "id": "3EsSMIuASI2yIEGgSQOayI",
+                  "revision": 1,
+                  "createdAt": "2017-10-11T11:35:56.414Z",
+                  "updatedAt": "2017-10-11T11:36:11.192Z",
+                  "environment": {
+                    "sys": {
+                      "id": "master",
+                      "type": "Link",
+                      "linkType": "Environment"
+                    }
+                  },
+                  "locale": "en-US"
+                },
+                "fields": {
+                  "title": "Old typewriter",
+                  "file": {
+                    "url": "//images.ctfassets.net/lvgw6if4imbu/3EsSMIuASI2yIEGgSQOayI/2c51fd763c301cf7f0e42c08875bc9db/sergey-zolkin-403.jpg",
+                    "details": {
+                      "size": 2920160,
+                      "image": {
+                        "width": 3997,
+                        "height": 2665
+                      }
+                    },
+                    "fileName": "sergey-zolkin-403.jpg",
+                    "contentType": "image/jpeg"
+                  }
+                }
+              }
             }
           }
-        },
-        "content": [],
-        "nodeType": "embedded-entry-block"
+        }
       },
       {
-        "data": {},
+        "nodeType": "paragraph",
         "content": [
           {
-            "data": {},
+            "nodeType": "text",
+            "value": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque sed consectetur cumque voluptate natus rem omnis tempore libero quia quidem delectus, quibusdam porro inventore autem! Ad fuga quam praesentium odit!",
             "marks": [],
-            "value": "And now give the ",
-            "nodeType": "text"
-          },
-          {
-            "data": {},
-            "marks": [
-              {
-                "type": "code"
-              }
-            ],
-            "value": "body",
-            "nodeType": "text"
-          },
-          {
-            "data": {},
-            "marks": [],
-            "value": " ",
-            "nodeType": "text"
-          },
-          {
-            "data": {},
-            "marks": [
-              {
-                "type": "code"
-              }
-            ],
-            "value": "display: flex",
-            "nodeType": "text"
-          },
-          {
-            "data": {},
-            "marks": [],
-            "value": " and ",
-            "nodeType": "text"
-          },
-          {
-            "data": {},
-            "marks": [
-              {
-                "type": "code"
-              }
-            ],
-            "value": "flex-direction: column",
-            "nodeType": "text"
-          },
-          {
-            "data": {},
-            "marks": [],
-            "value": " to stack the three child elements vertically.\nTo support IE 11 we also need those styles on the ",
-            "nodeType": "text"
-          },
-          {
-            "data": {},
-            "marks": [
-              {
-                "type": "code"
-              }
-            ],
-            "value": "html",
-            "nodeType": "text"
-          },
-          {
-            "data": {},
-            "marks": [],
-            "value": " element.\nAlso the ",
-            "nodeType": "text"
-          },
-          {
-            "data": {},
-            "marks": [
-              {
-                "type": "code"
-              }
-            ],
-            "value": "body",
-            "nodeType": "text"
-          },
-          {
-            "data": {},
-            "marks": [],
-            "value": " elements need to be at least ",
-            "nodeType": "text"
-          },
-          {
-            "data": {},
-            "marks": [
-              {
-                "type": "code"
-              }
-            ],
-            "value": "100vh",
-            "nodeType": "text"
-          },
-          {
-            "data": {},
-            "marks": [],
-            "value": " in height.",
-            "nodeType": "text"
+            "data": {}
           }
         ],
-        "nodeType": "paragraph"
+        "data": {}
       },
       {
+        "nodeType": "embedded-entry-block",
+        "content": [],
         "data": {
           "target": {
             "metadata": {
@@ -238,23 +764,214 @@
                   "id": "lvgw6if4imbu"
                 }
               },
-              "id": "rveQfgptirRw77rpH1HIn",
               "type": "Entry",
-              "createdAt": "2021-05-26T11:01:05.559Z",
+              "id": "4hFgrdYpNZHYA5yoN40i6e",
+              "contentType": {
+                "sys": {
+                  "type": "Link",
+                  "linkType": "ContentType",
+                  "id": "media"
+                }
+              },
+              "revision": 1,
+              "createdAt": "2021-06-01T11:45:25.195Z",
+              "updatedAt": "2021-06-01T11:46:32.496Z",
+              "environment": {
+                "sys": {
+                  "id": "master",
+                  "type": "Link",
+                  "linkType": "Environment"
+                }
+              },
+              "locale": "en-US"
+            },
+            "fields": {
+              "internalName": "Test Youtube",
+              "youtubeVideoId": "lX6JcybgDFo"
+            }
+          }
+        }
+      },
+      {
+        "nodeType": "paragraph",
+        "content": [
+          {
+            "nodeType": "text",
+            "value": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque sed consectetur cumque voluptate natus rem omnis tempore libero quia quidem delectus, quibusdam porro inventore autem! Ad fuga quam praesentium odit!",
+            "marks": [],
+            "data": {}
+          }
+        ],
+        "data": {}
+      },
+      {
+        "nodeType": "embedded-entry-block",
+        "content": [],
+        "data": {
+          "target": {
+            "metadata": {
+              "tags": []
+            },
+            "sys": {
+              "space": {
+                "sys": {
+                  "type": "Link",
+                  "linkType": "Space",
+                  "id": "lvgw6if4imbu"
+                }
+              },
+              "type": "Entry",
+              "id": "2QfeyaN6E2NykY4WbLINGE",
+              "contentType": {
+                "sys": {
+                  "type": "Link",
+                  "linkType": "ContentType",
+                  "id": "media"
+                }
+              },
+              "revision": 1,
+              "createdAt": "2021-06-01T11:47:08.779Z",
+              "updatedAt": "2021-06-01T11:48:01.967Z",
+              "environment": {
+                "sys": {
+                  "id": "master",
+                  "type": "Link",
+                  "linkType": "Environment"
+                }
+              },
+              "locale": "en-US"
+            },
+            "fields": {
+              "internalName": "Test Video",
+              "asset": {
+                "metadata": {
+                  "tags": []
+                },
+                "sys": {
+                  "space": {
+                    "sys": {
+                      "type": "Link",
+                      "linkType": "Space",
+                      "id": "lvgw6if4imbu"
+                    }
+                  },
+                  "type": "Asset",
+                  "id": "6TaGLE7ymlyr9XP58Nrxzd",
+                  "revision": 1,
+                  "createdAt": "2021-06-01T11:47:17.356Z",
+                  "updatedAt": "2021-06-01T11:47:58.170Z",
+                  "environment": {
+                    "sys": {
+                      "id": "master",
+                      "type": "Link",
+                      "linkType": "Environment"
+                    }
+                  },
+                  "locale": "en-US"
+                },
+                "fields": {
+                  "title": "flower",
+                  "file": {
+                    "url": "//videos.ctfassets.net/lvgw6if4imbu/6TaGLE7ymlyr9XP58Nrxzd/f3bf0b8d91a4eae44e038136cec34837/flower.webm",
+                    "details": {
+                      "size": 554058
+                    },
+                    "fileName": "flower.webm",
+                    "contentType": "video/webm"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "nodeType": "paragraph",
+        "content": [
+          {
+            "nodeType": "text",
+            "value": "",
+            "marks": [],
+            "data": {}
+          }
+        ],
+        "data": {}
+      },
+      {
+        "nodeType": "paragraph",
+        "content": [
+          {
+            "nodeType": "text",
+            "value": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque sed consectetur cumque voluptate natus rem omnis tempore libero quia quidem delectus, quibusdam porro inventore autem! Ad fuga quam praesentium odit!",
+            "marks": [],
+            "data": {}
+          }
+        ],
+        "data": {}
+      },
+      {
+        "nodeType": "blockquote",
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Lorem, ipsum dolor sit amet consectetur adipisicing elit.\n- Lorem",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ],
+        "data": {}
+      },
+      {
+        "nodeType": "paragraph",
+        "content": [
+          {
+            "nodeType": "text",
+            "value": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque sed consectetur cumque voluptate natus rem omnis tempore libero quia quidem delectus, quibusdam porro inventore autem! Ad fuga quam praesentium odit!",
+            "marks": [],
+            "data": {}
+          }
+        ],
+        "data": {}
+      },
+      {
+        "nodeType": "embedded-entry-block",
+        "content": [],
+        "data": {
+          "target": {
+            "metadata": {
+              "tags": []
+            },
+            "sys": {
+              "space": {
+                "sys": {
+                  "type": "Link",
+                  "linkType": "Space",
+                  "id": "lvgw6if4imbu"
+                }
+              },
+              "type": "Entry",
+              "id": "rveQfgptirRw77rpH1HIn",
+              "contentType": {
+                "sys": {
+                  "type": "Link",
+                  "linkType": "ContentType",
+                  "id": "codeBlock"
+                }
+              },
+              "revision": 1,
+              "createdAt": "2021-05-26T11:00:51.029Z",
               "updatedAt": "2021-05-26T11:01:05.559Z",
               "environment": {
                 "sys": {
                   "id": "master",
                   "type": "Link",
                   "linkType": "Environment"
-                }
-              },
-              "revision": 1,
-              "contentType": {
-                "sys": {
-                  "type": "Link",
-                  "linkType": "ContentType",
-                  "id": "codeBlock"
                 }
               },
               "locale": "en-US"
@@ -265,71 +982,39 @@
               "syntax": "css"
             }
           }
-        },
-        "content": [],
-        "nodeType": "embedded-entry-block"
+        }
       },
       {
-        "data": {},
+        "nodeType": "paragraph",
         "content": [
           {
-            "data": {},
+            "nodeType": "text",
+            "value": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque sed consectetur cumque voluptate natus ",
             "marks": [],
-            "value": "The trick now is to give the ",
-            "nodeType": "text"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "text",
+            "value": "rem omnis tempore",
             "marks": [
               {
                 "type": "code"
               }
             ],
-            "value": ".Content",
-            "nodeType": "text"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "text",
+            "value": " libero quia quidem delectus, quibusdam porro inventore autem! Ad fuga quam praesentium odit!",
             "marks": [],
-            "value": "-element the ",
-            "nodeType": "text"
-          },
-          {
-            "data": {},
-            "marks": [
-              {
-                "type": "code"
-              }
-            ],
-            "value": "flex-grow: 1",
-            "nodeType": "text"
-          },
-          {
-            "data": {},
-            "marks": [],
-            "value": " so the footer gets pushed to the bottom.\nYou also can add ",
-            "nodeType": "text"
-          },
-          {
-            "data": {},
-            "marks": [
-              {
-                "type": "code"
-              }
-            ],
-            "value": "flex-shrink: 0",
-            "nodeType": "text"
-          },
-          {
-            "data": {},
-            "marks": [],
-            "value": " to the other elements so that they don't get squished when the viewport is too small.",
-            "nodeType": "text"
+            "data": {}
           }
         ],
-        "nodeType": "paragraph"
+        "data": {}
       },
       {
+        "nodeType": "embedded-entry-block",
+        "content": [],
         "data": {
           "target": {
             "metadata": {
@@ -343,92 +1028,23 @@
                   "id": "lvgw6if4imbu"
                 }
               },
-              "id": "2l5WW5WP6RqtAo5AJRASUO",
               "type": "Entry",
-              "createdAt": "2021-05-26T11:01:49.803Z",
-              "updatedAt": "2021-05-26T11:01:49.803Z",
-              "environment": {
-                "sys": {
-                  "id": "master",
-                  "type": "Link",
-                  "linkType": "Environment"
-                }
-              },
-              "revision": 1,
+              "id": "e5iIZlW6G5FxcBECnb8GP",
               "contentType": {
                 "sys": {
                   "type": "Link",
                   "linkType": "ContentType",
-                  "id": "codeBlock"
+                  "id": "codePenEmbed"
                 }
               },
-              "locale": "en-US"
-            },
-            "fields": {
-              "internalName": "footer flex css 2",
-              "code": ".Header,\n.Footer {\n  flex-shrink: 0;\n}\n.Content {\n  flex-grow: 1;\n}",
-              "syntax": "css"
-            }
-          }
-        },
-        "content": [],
-        "nodeType": "embedded-entry-block"
-      },
-      {
-        "data": {},
-        "content": [
-          {
-            "data": {},
-            "marks": [],
-            "value": "And voilá your footer is at the bottom all the time.",
-            "nodeType": "text"
-          }
-        ],
-        "nodeType": "paragraph"
-      },
-      {
-        "data": {},
-        "content": [
-          {
-            "data": {},
-            "marks": [],
-            "value": "The complete result:",
-            "nodeType": "text"
-          }
-        ],
-        "nodeType": "heading-2"
-      },
-      {
-        "data": {
-          "target": {
-            "metadata": {
-              "tags": []
-            },
-            "sys": {
-              "space": {
-                "sys": {
-                  "type": "Link",
-                  "linkType": "Space",
-                  "id": "lvgw6if4imbu"
-                }
-              },
-              "id": "e5iIZlW6G5FxcBECnb8GP",
-              "type": "Entry",
-              "createdAt": "2021-05-26T11:02:48.977Z",
+              "revision": 3,
+              "createdAt": "2021-05-26T11:02:30.829Z",
               "updatedAt": "2021-05-26T11:43:32.533Z",
               "environment": {
                 "sys": {
                   "id": "master",
                   "type": "Link",
                   "linkType": "Environment"
-                }
-              },
-              "revision": 3,
-              "contentType": {
-                "sys": {
-                  "type": "Link",
-                  "linkType": "ContentType",
-                  "id": "codePenEmbed"
                 }
               },
               "locale": "en-US"
@@ -445,118 +1061,21 @@
               "height": 610
             }
           }
-        },
-        "content": [],
-        "nodeType": "embedded-entry-block"
+        }
       },
       {
-        "data": {},
+        "nodeType": "paragraph",
         "content": [
           {
-            "data": {},
-            "marks": [],
-            "value": "Related links:",
-            "nodeType": "text"
-          }
-        ],
-        "nodeType": "heading-2"
-      },
-      {
-        "data": {},
-        "content": [
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "content": [
-                  {
-                    "data": {},
-                    "marks": [],
-                    "value": "",
-                    "nodeType": "text"
-                  },
-                  {
-                    "data": {
-                      "uri": "https://caniuse.com/#feat=viewport-units"
-                    },
-                    "content": [
-                      {
-                        "data": {},
-                        "marks": [],
-                        "value": "caniuse.com/#feat=viewport-units",
-                        "nodeType": "text"
-                      }
-                    ],
-                    "nodeType": "hyperlink"
-                  },
-                  {
-                    "data": {},
-                    "marks": [],
-                    "value": "",
-                    "nodeType": "text"
-                  }
-                ],
-                "nodeType": "paragraph"
-              }
-            ],
-            "nodeType": "list-item"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "content": [
-                  {
-                    "data": {},
-                    "marks": [],
-                    "value": "",
-                    "nodeType": "text"
-                  },
-                  {
-                    "data": {
-                      "uri": "https://caniuse.com/#feat=flexbox"
-                    },
-                    "content": [
-                      {
-                        "data": {},
-                        "marks": [],
-                        "value": "caniuse.com/#feat=flexbox",
-                        "nodeType": "text"
-                      }
-                    ],
-                    "nodeType": "hyperlink"
-                  },
-                  {
-                    "data": {},
-                    "marks": [],
-                    "value": "\n",
-                    "nodeType": "text"
-                  }
-                ],
-                "nodeType": "paragraph"
-              }
-            ],
-            "nodeType": "list-item"
-          }
-        ],
-        "nodeType": "unordered-list"
-      },
-      {
-        "data": {},
-        "content": [
-          {
-            "data": {},
-            "marks": [],
+            "nodeType": "text",
             "value": "",
-            "nodeType": "text"
+            "marks": [],
+            "data": {}
           }
         ],
-        "nodeType": "paragraph"
+        "data": {}
       }
-    ],
-    "nodeType": "document"
+    ]
   },
   "type": "post",
   "author": {
@@ -571,23 +1090,23 @@
           "id": "lvgw6if4imbu"
         }
       },
-      "id": "HixGL5qQtMvIx840fYA0N",
       "type": "Entry",
-      "createdAt": "2021-05-26T22:22:20.404Z",
+      "id": "HixGL5qQtMvIx840fYA0N",
+      "contentType": {
+        "sys": {
+          "type": "Link",
+          "linkType": "ContentType",
+          "id": "author"
+        }
+      },
+      "revision": 1,
+      "createdAt": "2021-05-26T22:19:24.930Z",
       "updatedAt": "2021-05-26T22:22:20.404Z",
       "environment": {
         "sys": {
           "id": "master",
           "type": "Link",
           "linkType": "Environment"
-        }
-      },
-      "revision": 1,
-      "contentType": {
-        "sys": {
-          "type": "Link",
-          "linkType": "ContentType",
-          "id": "author"
         }
       },
       "locale": "en-US"
@@ -624,9 +1143,10 @@
               "id": "lvgw6if4imbu"
             }
           },
-          "id": "2brVPdf2DX9ZwGpaceJH2r",
           "type": "Asset",
-          "createdAt": "2021-05-26T22:22:16.703Z",
+          "id": "2brVPdf2DX9ZwGpaceJH2r",
+          "revision": 1,
+          "createdAt": "2021-05-26T22:21:20.529Z",
           "updatedAt": "2021-05-26T22:22:16.703Z",
           "environment": {
             "sys": {
@@ -635,7 +1155,6 @@
               "linkType": "Environment"
             }
           },
-          "revision": 1,
           "locale": "en-US"
         },
         "fields": {
@@ -655,5 +1174,6 @@
         }
       }
     }
-  }
+  },
+  "showComments": false
 }

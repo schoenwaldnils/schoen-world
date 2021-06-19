@@ -7,6 +7,9 @@ import mock from './mediaMock.json'
 export default {
   title: 'Media',
   component: MediaComponent,
+  parameters: {
+    percy: { skip: true }, // part of article
+  },
 }
 
 export const Media: FC = () => (

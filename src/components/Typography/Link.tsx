@@ -11,9 +11,14 @@ import { timings } from '../../data/config'
 // `
 
 const StyledA = styled.a`
+  --verticalPadding: 0.75em;
   position: relative;
   display: inline-flex;
   align-items: center;
+  margin-top: calc(var(--verticalPadding) * -1);
+  margin-bottom: calc(var(--verticalPadding) * -1);
+  padding-top: var(--verticalPadding);
+  padding-bottom: var(--verticalPadding);
   text-decoration: none;
   white-space: nowrap;
   transition: color ${timings.transition}ms;
@@ -21,7 +26,7 @@ const StyledA = styled.a`
   ::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: var(--verticalPadding);
     left: 0;
     width: 100%;
     height: 2px;
@@ -63,7 +68,7 @@ export const Link: FC<AnchorHTMLAttributes<HTMLAnchorElement> & LinkProps> = ({
         href={href}
         className={className}
         target={isExternal ? '_blank' : '_self'}
-        {...(isExternal ? { rel: 'noreferrer' } : {})}
+        {...(isExternal ? { rel: 'noopener' } : {})}
       >
         {children}
         {/* {isExternal && <ExternalIcon />} */}

@@ -41,6 +41,7 @@ export const baseColors = {
 const themeLight = css`
   :root {
     --Theme-themeColor: ${baseColors.brand};
+    --Theme-colorRss: ${baseColors.orange};
 
     --Body-background: ${baseColors.white};
     --Body-textColor: ${baseColors.charcoal};
@@ -49,6 +50,8 @@ const themeLight = css`
     --Typography-linkHover: ${baseColors.charcoal};
     --Typography-linkActive: ${baseColors.charcoal};
 
+    --Typography-headlineFontFamily: 'Raleway', sans-serif;
+    --Typography-headlineWeight: 600;
     --Typography-headline1Color: ${baseColors.black};
     --Typography-headline2Color: ${baseColors.black};
     --Typography-headline3Color: ${baseColors.black};

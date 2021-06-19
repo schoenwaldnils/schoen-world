@@ -7,6 +7,9 @@ import mock from './authorMock.json'
 export default {
   title: 'Author',
   component: AuthorComponent,
+  parameters: {
+    percy: { skip: true }, // part of article
+  },
 }
 
 export const Author: FC = () => (

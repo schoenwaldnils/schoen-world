@@ -5,6 +5,9 @@ import { Quote as QuoteComponent } from './Quote'
 export default {
   title: 'Typography / Quote',
   component: QuoteComponent,
+  parameters: {
+    percy: { skip: true }, // part of article
+  },
 }
 
 export const Quote: FC = () => (

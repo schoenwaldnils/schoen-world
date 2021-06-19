@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { FC } from 'react'
 
+import { Image } from '../Image'
 import { ItemList as ItemListComponent } from './ItemList'
 
 export default {
@@ -19,10 +20,16 @@ const TestBox = styled.div`
 `
 
 export const ItemList: FC = () => (
-  <ItemListComponent itemMinWidth={200}>
+  <ItemListComponent itemMinWidth={140} gap={1.5}>
     {new Array(12).fill(undefined).map((val, key) => (
       <TestBox key={`test-${key}`}>
-        <img src={`https://picsum.photos/id/${10 + key}/200/200`} alt="" />
+        <Image
+          src={`https://picsum.photos/id/${10 + key}/320/320`}
+          alt=""
+          width={320}
+          height={320}
+          isExternal
+        />
       </TestBox>
     ))}
   </ItemListComponent>

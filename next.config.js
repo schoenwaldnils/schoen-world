@@ -6,6 +6,9 @@ const sharedConfig = require('./webpack.sharedConfig.js')
 
 let config = {
   webpack: sharedConfig,
+  images: {
+    domains: ['ctfassets.net', 'images.ctfassets.net'],
+  },
 }
 
 console.log('DEPLOY_ENV: ', process.env.NEXT_PUBLIC_DEPLOY_ENV)

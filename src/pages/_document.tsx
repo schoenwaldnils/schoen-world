@@ -1,10 +1,14 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 import { ReactNode } from 'react'
 
+import { Favicons } from '../components/Favicons'
+
 const SchoenWorldDoc = (): ReactNode => {
   return (
     <Html lang="en">
-      <Head />
+      <Head>
+        <Favicons />
+      </Head>
       <body>
         <Main />
 

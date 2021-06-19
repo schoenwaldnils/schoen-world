@@ -5,6 +5,9 @@ import { CodeInline } from './CodeInline'
 
 export default {
   title: 'Code',
+  parameters: {
+    percy: { skip: true }, // part of article
+  },
 }
 
 export const Inline: FC = () => <CodeInline>some code</CodeInline>

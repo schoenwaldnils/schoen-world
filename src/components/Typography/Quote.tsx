@@ -3,8 +3,8 @@ import styled from '@emotion/styled'
 export const Quote = styled.blockquote`
   position: relative;
   padding: 1em 1em 1em 2.5em;
-  margin-right: calc(var(--maxWidthPadding, 0) * -1);
-  margin-left: calc(var(--maxWidthPadding, 0) * -1);
+  margin-right: 0;
+  margin-left: 0;
   font-size: 1.25rem;
   font-weight: 300;
   background-color: var(--Typography-blockquoteBackground);

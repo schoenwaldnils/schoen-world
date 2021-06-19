@@ -31,7 +31,10 @@ const Content = styled.div`
 `
 
 export const Author: FC<IAuthorFields> = ({ name, avatar, richText }) => {
-  const imgSrc = avatar?.fields?.file?.url
+  const file = avatar?.fields?.file
+
+  const imgSrc = file?.url
+
   return (
     <Paper component={AuthorContainer} elevation={3}>
       <Image
@@ -41,7 +44,6 @@ export const Author: FC<IAuthorFields> = ({ name, avatar, richText }) => {
         objectFit="contain"
         objectPosition="top left"
         alt={name}
-        lazy
       />
       <Content>
         <Headline4>Author: {name}</Headline4>
