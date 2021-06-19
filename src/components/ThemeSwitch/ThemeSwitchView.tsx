@@ -1,30 +1,54 @@
 import styled from '@emotion/styled'
-import { FC } from 'react'
-import { WiDaySunny, WiMoonAltWaningCrescent5 } from 'react-icons/wi'
+import { ChangeEvent, FC, useCallback } from 'react'
 
-import { Toggle } from '../Toggle'
+import { Radio } from '../Form/Radio'
 
-const IconLight = WiDaySunny
-
-const IconDark = styled(WiMoonAltWaningCrescent5)`
-  transform: rotate(-30deg);
+const RadioWrapper = styled.fieldset`
+  display: flex;
+  grid-gap: 1rem;
+  border: 0;
+  padding: 0;
 `
 
+export type Theme = 'dark' | 'light' | 'auto'
+
 interface ThemeSwitchViewProps {
-  toggleTheme: () => void
+  theme: Theme
+  setTheme: (theme: Theme) => void
   isDark?: boolean
 }
 
 export const ThemeSwitchView: FC<ThemeSwitchViewProps> = ({
-  toggleTheme,
-  isDark = false,
+  theme = 'auto',
+  setTheme,
 }) => {
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      if (e.target.checked) {
+        setTheme(e.target.value as Theme)
+      }
+    },
+    [setTheme],
+  )
+
+  const itemList = ['dark', 'light', 'auto']
+
   return (
-    <Toggle
-      left={<IconDark id="svg-moon" />}
-      right={<IconLight id="svg-sun" />}
-      isLeft={isDark}
-      toggleIsLeft={toggleTheme}
-    />
+    <div>
+      Theme
+      <RadioWrapper>
+        {itemList.map((type) => (
+          <Radio
+            id={`theme-${type}`}
+            name="theme"
+            value={type}
+            label={type}
+            onChange={handleChange}
+            checked={theme === type}
+            key={`radio-${type}`}
+          />
+        ))}
+      </RadioWrapper>
+    </div>
   )
 }

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { FC, ReactNode } from 'react'
+import { FC, forwardRef, LegacyRef, ReactNode } from 'react'
 
 import { timings } from '../../data/config'
 
@@ -40,15 +40,18 @@ const ToggleSide = styled.div`
 `
 
 export const Toggle: FC<{
+  ref?: LegacyRef<HTMLDivElement>
   left: ReactNode | string
   right: ReactNode | string
   isLeft: boolean
   toggleIsLeft: () => void
-}> = ({ left, right, isLeft, toggleIsLeft }) => {
+}> = forwardRef(({ left, right, isLeft, toggleIsLeft }, ref) => {
   return (
-    <ToggleContainer isLeft={isLeft} onClick={toggleIsLeft}>
+    <ToggleContainer ref={ref} isLeft={isLeft} onClick={toggleIsLeft}>
       <ToggleSide>{left}</ToggleSide>
       <ToggleSide>{right}</ToggleSide>
     </ToggleContainer>
   )
-}
+})
+
+Toggle.displayName = 'Toggle'

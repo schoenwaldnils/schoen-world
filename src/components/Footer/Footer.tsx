@@ -18,6 +18,7 @@ const FooterContainer = styled.footer`
   ${upFromBreakpoint('medium')} {
     padding-top: 2rem;
     padding-bottom: 2rem;
+    font-size: 0.8rem;
   }
 `
 
@@ -29,7 +30,7 @@ const Content = styled.div`
   grid-gap: 1rem;
   align-items: center;
 
-  ${upFromBreakpoint('small')} {
+  ${upFromBreakpoint('medium')} {
     flex-direction: row;
   }
 `

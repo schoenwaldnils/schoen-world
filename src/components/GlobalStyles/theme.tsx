@@ -128,14 +128,31 @@ const themeDark = css`
   }
 `
 
-export const theme = (isDark: boolean): SerializedStyles => {
-  if (isDark) {
-    return css`
-      ${themeLight}
+export const theme = css`
+  :root {
+    color-scheme: light;
 
-      ${themeDark}
-    `
+    /* set defaults */
+    ${themeLight}
   }
 
-  return themeLight
-}
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+
+      ${themeDark}
+    }
+  }
+
+  [color-scheme='light'] {
+    color-scheme: light;
+
+    ${themeLight}
+  }
+
+  [color-scheme='dark'] {
+    color-scheme: dark;
+
+    ${themeDark}
+  }
+`
