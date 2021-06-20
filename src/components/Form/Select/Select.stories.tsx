@@ -7,6 +7,9 @@ import { Select as SelectComponent } from './Select'
 export default {
   title: 'Form / Select',
   component: SelectComponent,
+  parameters: {
+    percy: { skip: true },
+  },
 }
 
 const Table = styled.div`

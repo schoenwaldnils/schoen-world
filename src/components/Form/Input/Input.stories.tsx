@@ -8,6 +8,9 @@ import { Input as InputComponent } from './Input'
 export default {
   title: 'Form / Input',
   component: InputComponent,
+  parameters: {
+    percy: { skip: true },
+  },
 }
 
 const Table = styled.div`

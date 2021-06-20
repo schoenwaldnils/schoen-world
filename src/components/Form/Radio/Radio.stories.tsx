@@ -6,7 +6,7 @@ export default {
   title: 'Form / Radio',
   component: RadioComponent,
   parameters: {
-    percy: { skip: true }, //TODO fix when using checkbox
+    percy: { skip: true },
   },
 }
 
