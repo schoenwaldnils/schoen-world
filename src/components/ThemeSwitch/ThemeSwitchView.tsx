@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { FC } from 'react'
 import { WiDaySunny, WiMoonAltWaningCrescent5 } from 'react-icons/wi'
 
+import { Theme } from '../../@types/Theme'
 import { MulToggle } from '../MulToggle'
 
 const Toggle = styled(MulToggle)`
@@ -16,8 +17,6 @@ const IconDark = styled(WiMoonAltWaningCrescent5)`
   font-size: 1.5em;
   transform: rotate(-30deg);
 `
-
-export type Theme = 'dark' | 'light' | 'auto'
 
 interface ThemeSwitchViewProps {
   theme: Theme
