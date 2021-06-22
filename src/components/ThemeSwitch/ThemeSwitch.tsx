@@ -1,36 +1,18 @@
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, useCallback } from 'react'
 
-import {
-  getLocalStorage,
-  removeLocalStorage,
-  setLocalStorage,
-} from '../../utils/localStorage'
-import { Theme, ThemeSwitchView } from './ThemeSwitchView'
+import { Theme } from '../../@types/Theme'
+import { SET_THEME, useStore } from '../../provider/Store'
+import { ThemeSwitchView } from './ThemeSwitchView'
 
 export const ThemeSwitch: FC = () => {
-  const docRef = useRef<HTMLBodyElement>()
-  const [theme, setTheme] = useState<Theme>()
+  const { store, dispatch } = useStore()
 
-  useEffect(() => {
-    if (!docRef.current) {
-      docRef.current = document.firstElementChild as HTMLBodyElement
-    }
-  }, [])
+  const setTheme = useCallback(
+    (theme: Theme) => {
+      dispatch({ type: SET_THEME, theme })
+    },
+    [dispatch],
+  )
 
-  useEffect(() => {
-    docRef.current.setAttribute('color-scheme', theme)
-  }, [theme])
-
-  useEffect(() => {
-    if (!theme) {
-      const localTheme = getLocalStorage('theme')
-      setTheme((localTheme as Theme) || 'auto')
-    } else if (theme !== 'auto') {
-      setLocalStorage('theme', theme)
-    } else {
-      removeLocalStorage('theme')
-    }
-  }, [theme])
-
-  return <ThemeSwitchView setTheme={setTheme} theme={theme} />
+  return <ThemeSwitchView setTheme={setTheme} theme={store.theme} />
 }

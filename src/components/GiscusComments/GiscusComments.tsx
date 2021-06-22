@@ -32,13 +32,16 @@ export const GiscusComments: FC = () => {
         'MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMzMDM4MjA1',
       )
       script.setAttribute('data-mapping', 'pathname')
-      script.setAttribute('data-theme', store.themeIsDark ? 'dark' : 'light')
+      script.setAttribute(
+        'data-theme',
+        store.theme === 'dark' ? 'dark' : 'light',
+      )
       script.setAttribute('crossorigin', 'anonymous')
       script.setAttribute('async', 'true')
       anchor.current.appendChild(script)
       setLoaded(true)
     }
-  }, [store.themeIsDark])
+  }, [store.theme])
 
   return (
     <>

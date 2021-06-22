@@ -3,7 +3,7 @@ import { createContext, Dispatch, useContext } from 'react'
 import { Action, Store } from './reducer'
 
 export const initialState: Store = {
-  themeIsDark: false,
+  theme: 'auto',
 }
 
 type Context = {
