@@ -8,7 +8,7 @@ export const h1Styles = css`
   font-size: 2rem;
   font-weight: var(--Typography-headlineWeight);
   line-height: 1.1;
-  color: var(--Typography-headline1Color);
+  color: var(--Typography-headlineColor, inherit);
 
   ${upFromBreakpoint('small')} {
     font-size: 2.75rem;
@@ -24,7 +24,7 @@ export const h2Styles = css`
   font-size: 1.75rem;
   font-weight: var(--Typography-headlineWeight);
   line-height: 1.2;
-  color: var(--Typography-headline2Color);
+  color: var(--Typography-headlineColor, inherit);
 
   ${upFromBreakpoint('small')} {
     font-size: 2.25rem;
@@ -40,7 +40,7 @@ export const h3Styles = css`
   font-size: 1.5rem;
   font-weight: var(--Typography-headlineWeight);
   line-height: 1.3;
-  color: var(--Typography-headline3Color);
+  color: var(--Typography-headlineColor, inherit);
 
   ${upFromBreakpoint('small')} {
     font-size: 1.75rem;
@@ -56,7 +56,7 @@ export const h4Styles = css`
   font-size: 1.25rem;
   font-weight: var(--Typography-headlineWeight);
   line-height: 1.2;
-  color: var(--Typography-headline4Color);
+  color: var(--Typography-headlineColor, inherit);
 
   ${upFromBreakpoint('small')} {
     font-size: 1.5rem;
@@ -73,7 +73,7 @@ export const sublineStyles = css`
   font-weight: var(--Typography-headlineWeight);
   line-height: 1.4;
   letter-spacing: 0.15em;
-  color: var(--Typography-sublineColor);
+  color: var(--Typography-headlineColor, inherit);
   text-transform: uppercase;
 `
 
