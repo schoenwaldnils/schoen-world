@@ -1,38 +1,50 @@
 import styled from '@emotion/styled'
 import { FC } from 'react'
+import { WebVitals } from 'web-vitals-react-hook'
 
 import { social } from '../../data/config'
-import { maxWidthText, upFromBreakpoint } from '../../utils/mixins'
+import { upFromBreakpoint } from '../../utils/mixins'
+import { baseColors } from '../GlobalStyles/theme'
 import { SocialIcon } from '../SocialIcon'
 import { ThemeSwitch } from '../ThemeSwitch'
-import { Link } from '../Typography'
+import { Headline4, Link } from '../Typography'
 
 const FooterContainer = styled.footer`
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   color: var(--Footer-color);
   background-color: var(--Footer-background);
   border-bottom: solid 2px var(--Theme-themeColor);
 
   ${upFromBreakpoint('medium')} {
+    flex-direction: row;
+    justify-content: space-around;
     padding-top: 2rem;
     padding-bottom: 2rem;
     font-size: 0.8rem;
   }
+
+  --Typography-headlineColor: var(--Footer-color);
+  --Typography-linkColor: ${baseColors.redPlus2};
+  --Typography-linkHover: ${baseColors.redPlus2};
+  --Typography-linkActive: ${baseColors.redPlus2};
+
+  [color-scheme='dark'] {
+    --Typography-linkColor: ${baseColors.redPlus1};
+    --Typography-linkHover: ${baseColors.white};
+    --Typography-linkActive: ${baseColors.white};
+  }
 `
 
 const Content = styled.div`
-  ${maxWidthText}
   display: flex;
-  flex-direction: column-reverse;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   grid-gap: 1rem;
   align-items: center;
-
-  ${upFromBreakpoint('medium')} {
-    flex-direction: row;
-  }
 `
 
 const SocialLinks = styled.div`
@@ -51,7 +63,13 @@ const socialLinks = [
   },
 ]
 
-const Copy = styled.div``
+const Copy = styled.div`
+  text-align: center;
+
+  span {
+    white-space: nowrap;
+  }
+`
 
 const footerNav = [
   {
@@ -77,12 +95,32 @@ const NavItem = styled(Link)`
   }
 `
 
+const StyledWebVitals = styled(WebVitals)`
+  --metricGood: lightgreen;
+
+  grid-row-gap: 0.5em;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  > * {
+    white-space: nowrap;
+  }
+`
+
 export const Footer: FC = () => {
   return (
     <FooterContainer>
       <Content>
-        <Copy>{`© ${new Date().getFullYear()} Nils Schönwald`}</Copy>
+        <ThemeSwitch />
 
+        <SocialLinks>
+          {socialLinks.map((i) => (
+            <SocialIcon name={i.name} href={i.href} key={i.href} />
+          ))}
+        </SocialLinks>
+      </Content>
+
+      <Content>
         <Nav>
           {footerNav.map((item) => (
             <NavItem href={item.url} title={item.text} key={item.text}>
@@ -91,13 +129,15 @@ export const Footer: FC = () => {
           ))}
         </Nav>
 
-        <SocialLinks>
-          {socialLinks.map((i) => (
-            <SocialIcon name={i.name} href={i.href} key={i.href} />
-          ))}
-        </SocialLinks>
+        <Copy>
+          <span>{`© ${new Date().getFullYear()}`}</span>{' '}
+          <span>Nils Schönwald</span>
+        </Copy>
+      </Content>
 
-        <ThemeSwitch />
+      <Content>
+        <Headline4>Web Vitals</Headline4>
+        <StyledWebVitals LinkComponent={Link} />
       </Content>
     </FooterContainer>
   )

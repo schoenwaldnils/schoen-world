@@ -89,7 +89,8 @@
     "snyk": "1.649.0",
     "typescript": "4.3.4",
     "url-loader": "4.1.1",
-    "use-http": "1.0.21"
+    "use-http": "1.0.21",
+    "web-vitals-react-hook": "1.0.2"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "11.0.0",

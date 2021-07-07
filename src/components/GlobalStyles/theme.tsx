@@ -26,6 +26,7 @@ export const baseColors = {
 
   red: '#fc3848',
   redPlus1: '#fa707d',
+  redPlus2: '#f77884',
   orange: '#ffb86c',
   green: '#19f9d8',
   blue: '#45a9f9',
@@ -52,10 +53,7 @@ const themeLight = css`
 
     --Typography-headlineFontFamily: 'Raleway', sans-serif;
     --Typography-headlineWeight: 600;
-    --Typography-headline1Color: ${baseColors.black};
-    --Typography-headline2Color: ${baseColors.black};
-    --Typography-headline3Color: ${baseColors.black};
-    --Typography-headline4Color: ${baseColors.black};
+    --Typography-headlineColor: ${baseColors.black};
     --Typography-sublineColor: 'inherit';
 
     --Typography-hr: ${baseColors.brand};
@@ -100,10 +98,7 @@ const themeDark = css`
     --Typography-linkHover: ${baseColors.white};
     --Typography-linkActive: ${baseColors.white};
 
-    --Typography-headline1Color: ${baseColors.white};
-    --Typography-headline2Color: ${baseColors.white};
-    --Typography-headline3Color: ${baseColors.white};
-    --Typography-headline4Color: ${baseColors.white};
+    --Typography-headlineColor: ${baseColors.white};
 
     --Typography-blockquoteBackground: ${baseColors.blacklight};
 
