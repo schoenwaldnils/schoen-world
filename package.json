@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev -p 3002",
+    "start": "next build && next start -p 3002",
     "prebuild": "npm run generate-contentful-types",
     "build": "next build",
     "export": "NODE_ENV=production next build && next export",
@@ -90,7 +91,7 @@
     "typescript": "4.3.4",
     "url-loader": "4.1.1",
     "use-http": "1.0.21",
-    "web-vitals-react-hook": "1.0.2"
+    "web-vitals-react-hook": "1.0.4"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "11.0.0",
