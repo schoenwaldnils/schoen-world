@@ -113,7 +113,7 @@
     "cli-real-favicon": "0.0.8",
     "contentful-management": "7.25.1",
     "dotenv-flow": "3.2.0",
-    "eslint": "7.29.0",
+    "eslint": "7.30.0",
     "eslint-config-next": "11.0.0",
     "lint-staged": "11.0.0",
     "prettier": "2.3.1",
