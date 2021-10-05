@@ -6,8 +6,8 @@ import { ICodePenEmbedFields } from '../../@types/generated/contentful'
 import { Link } from '../Typography'
 
 const HiddenScript = styled.div`
-  visibility: hidden;
   height: 0;
+  visibility: hidden;
 `
 
 export const CodePenEmbed: FC<ICodePenEmbedFields> = ({

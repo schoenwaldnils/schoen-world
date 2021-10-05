@@ -7,12 +7,12 @@ const ToggleContainer = styled.div<{ isLeft: boolean }>`
   position: relative;
   display: inline-grid;
   grid-template-columns: 1fr 1fr;
-  border-radius: 0.5rem;
   overflow: hidden;
-  cursor: pointer;
-  box-shadow: inset 0 0 0.25em #0005;
   color: var(--Toggle-color);
+  cursor: pointer;
   background-color: var(--Toggle-background);
+  border-radius: 0.5rem;
+  box-shadow: inset 0 0 0.25em #0005;
   transition: color ${timings.transition}ms,
     background-color ${timings.transition}ms;
 

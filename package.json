@@ -10,7 +10,7 @@
     "build": "next build",
     "export": "NODE_ENV=production next build && next export",
     "test": "npm run lint",
-    "lint": "npm run lint:ts && npm run lint:types",
+    "lint": "npm run lint:ts && npm run lint:types && npm run lint:css",
     "lint:css": "stylelint '**/*.tsx'",
     "lint:ts": "eslint . --ext .ts,.tsx",
     "lint:ts-fix": "eslint . --ext .ts,.tsx --fix",
@@ -119,7 +119,7 @@
     "lint-staged": "^11.2.0",
     "prettier": "^2.4.1",
     "stylelint": "^13.13.1",
-    "stylelint-config-schoenwaldnils": "^3.0.0",
+    "stylelint-config-schoenwaldnils": "^4.0.0",
     "stylelint-processor-styled-components": "^1.10.0"
   },
   "husky": {
