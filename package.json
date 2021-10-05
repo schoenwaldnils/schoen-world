@@ -20,7 +20,7 @@
     "generate-favicons": "real-favicon generate faviconDescription.json src/components/Favicons/faviconData.json public/images/favicons",
     "storybook": "start-storybook -p 6007",
     "build-storybook": "build-storybook -o public/storybook --quiet",
-    "snapshot": "build-storybook && percy-storybook --widths=320 -t=500",
+    "snapshot": "build-storybook && percy storybook -t=500 public/storybook",
     "analyze": "cross-env ANALYZE=true next build",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
@@ -95,6 +95,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^11.0.0",
+    "@percy/cli": "^1.0.0-beta.68",
     "@percy/storybook": "^4.0.3",
     "@schoenwald/eslint-config-typescript": "^5.0.1",
     "@storybook/addon-actions": "^6.3.9",
