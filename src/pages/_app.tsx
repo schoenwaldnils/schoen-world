@@ -7,7 +7,7 @@ import { twitter } from '../data/config'
 import { seo } from '../data/seo'
 import { StoreProvider } from '../provider/Store/StoreProvider'
 
-const TimelineApp = ({ Component, pageProps }: AppProps): ReactNode => {
+const SchoenWorldApp = ({ Component, pageProps }: AppProps): ReactNode => {
   return (
     <>
       <DefaultSeo
@@ -40,4 +40,4 @@ const TimelineApp = ({ Component, pageProps }: AppProps): ReactNode => {
   )
 }
 
-export default TimelineApp
+export default SchoenWorldApp
