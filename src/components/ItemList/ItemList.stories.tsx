@@ -11,8 +11,9 @@ export default {
 
 const TestBox = styled.div`
   background-color: #fff;
-  border-radius: 10px;
   border: 1px solid #808080;
+  border-radius: 10px;
+
   img {
     display: block;
     border-radius: 8px;

@@ -18,10 +18,10 @@ const Input = styled.input`
   height: 1.35em;
   margin: 0;
   color: var(--Radio-color, inherit);
+  cursor: pointer;
   border: 1px solid var(--Radio-borderColor, currentcolor);
   border-radius: 1em;
   appearance: none;
-  cursor: pointer;
 
   ::after {
     content: '';
@@ -30,11 +30,11 @@ const Input = styled.input`
     width: 0.75em;
     height: 0.75em;
     margin: auto;
+    cursor: pointer;
     background-color: var(--Radio-colorActive, var(--Theme-themeColor, red));
     border-radius: 1em;
     opacity: 0;
     transition: opacity 150ms;
-    cursor: pointer;
   }
 
   :checked::after {
@@ -47,8 +47,8 @@ const Input = styled.input`
   }
 
   :disabled::after {
-    background-color: var(--Radio-colorDisabled, #aaa);
     cursor: default;
+    background-color: var(--Radio-colorDisabled, #aaa);
   }
 
   :disabled + ${Label} {

@@ -74,7 +74,7 @@ export const base = css`
 
   button {
     color: inherit;
-    appearance: none;
     border: 0;
+    appearance: none;
   }
 `

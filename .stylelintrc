@@ -5,7 +5,8 @@
     "declaration-colon-newline-after": null,
     "declaration-block-semicolon-newline-after": null,
     "rule-empty-line-before": null,
-    "value-list-comma-newline-after": null
+    "value-list-comma-newline-after": null,
+    "max-line-length": 100
   },
   "processors": [
     "stylelint-processor-styled-components"

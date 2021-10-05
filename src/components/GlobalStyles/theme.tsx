@@ -1,3 +1,5 @@
+/* stylelint-disable suitcss/root-no-standard-properties */
+
 import { css } from '@emotion/react'
 
 export const baseColors = {
@@ -151,3 +153,4 @@ export const theme = css`
     ${themeDark}
   }
 `
+/* stylelint-enable suitcss/root-no-standard-properties */

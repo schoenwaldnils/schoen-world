@@ -16,10 +16,10 @@ const Input = styled.input`
   width: 1.35em;
   height: 1.35em;
   color: var(--Checkbox-color, inherit);
+  cursor: pointer;
   border: 1px solid var(--Checkbox-borderColor, currentcolor);
   border-radius: 2px;
   appearance: none;
-  cursor: pointer;
 
   ::after {
     content: '';
@@ -27,10 +27,10 @@ const Input = styled.input`
     width: 0.75em;
     height: 0.75em;
     margin: auto;
+    cursor: pointer;
     background-color: var(--Checkbox-colorActive, var(--Theme-themeColor, red));
     opacity: 0;
     transition: opacity 150ms;
-    cursor: pointer;
   }
 
   :checked::after {
@@ -43,8 +43,8 @@ const Input = styled.input`
   }
 
   :disabled::after {
-    background-color: var(--Checkbox-colorDisabled, #aaa);
     cursor: default;
+    background-color: var(--Checkbox-colorDisabled, #aaa);
   }
 
   :disabled + ${Label} {

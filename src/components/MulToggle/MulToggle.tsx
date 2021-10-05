@@ -15,12 +15,12 @@ const MulToggleContainer = styled.div`
   --borderRadius: 0.5em;
   display: inline-block;
   padding: var(--offset);
-  border-radius: var(--borderRadius);
   overflow: hidden;
-  cursor: pointer;
-  box-shadow: inset 0 0 0.25em #0005;
   color: var(--Toggle-color);
+  cursor: pointer;
   background-color: var(--Toggle-background);
+  border-radius: var(--borderRadius);
+  box-shadow: inset 0 0 0.25em #0005;
   transition: color ${timings.transition}ms,
     background-color ${timings.transition}ms;
 `
@@ -37,9 +37,9 @@ const Toggle = styled.div<{ numberItems: number; left: number }>`
   left: 0;
   width: calc(100% / ${(p) => p.numberItems});
   height: 100%;
-  transform: translateX(calc(100% * ${(p) => p.left - 1}));
   background-color: var(--Theme-themeColor);
   border-radius: calc(var(--borderRadius) - var(--offset));
+  transform: translateX(calc(100% * ${(p) => p.left - 1}));
   transition: transform ${timings.animation}ms;
 `
 
