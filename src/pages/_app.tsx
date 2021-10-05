@@ -1,4 +1,4 @@
-import { AppProps } from 'next/dist/next-server/lib/router/router'
+import { AppProps } from 'next/app'
 import { DefaultSeo } from 'next-seo'
 import { ReactNode } from 'react'
 

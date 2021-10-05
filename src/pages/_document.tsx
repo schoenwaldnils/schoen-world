@@ -20,6 +20,4 @@ const SchoenWorldDoc = (): ReactNode => {
 
 SchoenWorldDoc.getInitialProps = Document.getInitialProps
 
-SchoenWorldDoc.renderDocument = Document.renderDocument
-
 export default SchoenWorldDoc
