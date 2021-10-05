@@ -6,5 +6,7 @@ node_modules/
 /infrastructure/
 bundles/
 scripts/
+.percyrc
+
 
 generated
