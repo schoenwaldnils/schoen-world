@@ -20,7 +20,7 @@
     "generate-favicons": "real-favicon generate faviconDescription.json src/components/Favicons/faviconData.json public/images/favicons",
     "storybook": "start-storybook -p 6007",
     "build-storybook": "build-storybook -o public/storybook --quiet",
-    "snapshot": "build-storybook && percy storybook -t=500 public/storybook",
+    "snapshot": "npm run build-storybook && percy storybook -t=500 ./public/storybook",
     "analyze": "cross-env ANALYZE=true next build",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
