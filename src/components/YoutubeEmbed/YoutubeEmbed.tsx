@@ -18,7 +18,6 @@ export const YoutubeEmbed: FC<{ id: string; title?: string }> = ({
       title={title || ''}
       playlist={false}
       params={qs.stringify(params)}
-      announce="Watch" // TODO: remove when released https://github.com/ibrahimcesar/react-lite-youtube-embed/pull/34
     />
   )
 }
