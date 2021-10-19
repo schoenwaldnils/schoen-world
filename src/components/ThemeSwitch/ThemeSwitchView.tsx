@@ -39,7 +39,7 @@ export const ThemeSwitchView: FC<ThemeSwitchViewProps> = ({
     },
     {
       id: 'auto',
-      node: 'Auto',
+      node: 'auto',
     },
   ]
 
