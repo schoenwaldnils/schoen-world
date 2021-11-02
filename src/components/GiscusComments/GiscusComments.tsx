@@ -23,6 +23,19 @@ export const GiscusComments: FC = () => {
 
   useEffect(() => {
     if (anchor.current) {
+      let theme = store.theme
+
+      if (theme === 'auto') {
+        if (
+          window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches
+        ) {
+          theme = 'dark'
+        } else {
+          theme = 'light'
+        }
+      }
+
       const script = document.createElement('script')
       script.setAttribute('src', 'https://giscus.app/client.js')
       script.setAttribute('data-repo', 'schoenwaldnils/schoen-world')
@@ -32,10 +45,7 @@ export const GiscusComments: FC = () => {
         'MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMzMDM4MjA1',
       )
       script.setAttribute('data-mapping', 'pathname')
-      script.setAttribute(
-        'data-theme',
-        store.theme === 'dark' ? 'dark' : 'light',
-      )
+      script.setAttribute('data-theme', theme)
       script.setAttribute('crossorigin', 'anonymous')
       script.setAttribute('async', 'true')
       anchor.current.appendChild(script)
