@@ -67,7 +67,7 @@
     "husky": "^7.0.2",
     "isomorphic-unfetch": "^3.1.0",
     "lodash": "^4.17.21",
-    "next": "^11.1.2",
+    "next": "^12.0.2",
     "next-seo": "^4.28.1",
     "preact": "^10.5.14",
     "preact-render-to-string": "^5.1.19",
@@ -94,7 +94,7 @@
     "web-vitals-react-hook": "^1.0.4"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^11.1.2",
+    "@next/bundle-analyzer": "^12.0.2",
     "@percy/cli": "^1.0.0-beta.68",
     "@percy/storybook": "^4.0.3",
     "@schoenwald/eslint-config-typescript": "^5.0.1",
@@ -115,7 +115,7 @@
     "contentful-management": "^7.42.1",
     "dotenv-flow": "^3.2.0",
     "eslint": "^7.32.0",
-    "eslint-config-next": "^11.1.2",
+    "eslint-config-next": "^12.0.2",
     "lint-staged": "^11.2.0",
     "prettier": "^2.4.1",
     "stylelint": "^13.13.1",

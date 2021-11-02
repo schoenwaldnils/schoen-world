@@ -8,6 +8,7 @@ let config = {
   webpack: sharedConfig,
   images: {
     domains: ['ctfassets.net', 'images.ctfassets.net'],
+    formats: ['image/avif', 'image/webp'],
   },
 }
 
