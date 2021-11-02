@@ -1,3 +1,4 @@
+import { UserProvider } from '@auth0/nextjs-auth0'
 import { AppProps } from 'next/app'
 import { DefaultSeo } from 'next-seo'
 import { ReactNode } from 'react'
@@ -31,11 +32,13 @@ const SchoenWorldApp = ({ Component, pageProps }: AppProps): ReactNode => {
         }}
       />
 
-      <StoreProvider>
-        <GlobalStyles />
+      <UserProvider>
+        <StoreProvider>
+          <GlobalStyles />
 
-        <Component {...pageProps} />
-      </StoreProvider>
+          <Component {...pageProps} />
+        </StoreProvider>
+      </UserProvider>
     </>
   )
 }
