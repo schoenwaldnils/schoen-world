@@ -3,12 +3,16 @@ import styled from '@emotion/styled'
 
 import { upFromBreakpoint } from '../../utils/mixins'
 
-export const h1Styles = css`
+const baseStyles = css`
   font-family: var(--Typography-headlineFontFamily);
-  font-size: 2rem;
   font-weight: var(--Typography-headlineWeight);
-  line-height: 1.1;
   color: var(--Typography-headlineColor, inherit);
+`
+
+export const h1Styles = css`
+  ${baseStyles}
+  font-size: 2rem;
+  line-height: 1.1;
 
   ${upFromBreakpoint('small')} {
     font-size: 2.75rem;
@@ -20,11 +24,9 @@ export const Headline1 = styled.h1`
 `
 
 export const h2Styles = css`
-  font-family: var(--Typography-headlineFontFamily);
+  ${baseStyles}
   font-size: 1.75rem;
-  font-weight: var(--Typography-headlineWeight);
   line-height: 1.2;
-  color: var(--Typography-headlineColor, inherit);
 
   ${upFromBreakpoint('small')} {
     font-size: 2.25rem;
@@ -36,11 +38,9 @@ export const Headline2 = styled.h2`
 `
 
 export const h3Styles = css`
-  font-family: var(--Typography-headlineFontFamily);
+  ${baseStyles}
   font-size: 1.5rem;
-  font-weight: var(--Typography-headlineWeight);
   line-height: 1.3;
-  color: var(--Typography-headlineColor, inherit);
 
   ${upFromBreakpoint('small')} {
     font-size: 1.75rem;
@@ -52,11 +52,9 @@ export const Headline3 = styled.h3`
 `
 
 export const h4Styles = css`
-  font-family: var(--Typography-headlineFontFamily);
+  ${baseStyles}
   font-size: 1.25rem;
-  font-weight: var(--Typography-headlineWeight);
   line-height: 1.2;
-  color: var(--Typography-headlineColor, inherit);
 
   ${upFromBreakpoint('small')} {
     font-size: 1.5rem;
@@ -68,12 +66,10 @@ export const Headline4 = styled.h4`
 `
 
 export const sublineStyles = css`
-  font-family: var(--Typography-headlineFontFamily);
+  ${baseStyles}
   font-size: 0.75rem;
-  font-weight: var(--Typography-headlineWeight);
   line-height: 1.4;
   letter-spacing: 0.15em;
-  color: var(--Typography-headlineColor, inherit);
   text-transform: uppercase;
 `
 

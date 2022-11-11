@@ -136,7 +136,7 @@ export const Footer: FC = () => {
       </Content>
 
       <Content>
-        <Headline4>Web Vitals</Headline4>
+        <Headline4 as="h2">Web Vitals</Headline4>
         <StyledWebVitals LinkComponent={Link} className="hide-in-percy" />
       </Content>
     </FooterContainer>
