@@ -2,6 +2,7 @@ import { AppProps } from 'next/app'
 import { DefaultSeo } from 'next-seo'
 import { ReactNode } from 'react'
 
+import { ContainerTest } from '../components/ContainerTest'
 import { GlobalStyles } from '../components/GlobalStyles'
 import { twitter } from '../data/config'
 import { seo } from '../data/seo'
@@ -33,6 +34,8 @@ const SchoenWorldApp = ({ Component, pageProps }: AppProps): ReactNode => {
 
       <StoreProvider>
         <GlobalStyles />
+
+        <ContainerTest />
 
         <Component {...pageProps} />
       </StoreProvider>
