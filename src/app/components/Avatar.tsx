@@ -8,8 +8,8 @@ const Avatar = () => {
         src={nilsPhoto}
         alt="Nils Schönwald"
         width={200}
-        height={2006}
-        className="rounded-full grayscale contrast-[1.05] brightness-[1.15] hover:grayscale-[0.25] transition-all"
+        height={200}
+        className="rounded-full grayscale contrast-[1.05] brightness-[1.15] hover:grayscale-[0.25] transition-all border-2 border-charcoal dark:border-white"
         priority
       />
     </div>

@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en" className={`${inter.variable} ${raleway.variable}`}>
-        <body className="flex flex-col min-h-svh antialiased">
+        <body className="flex flex-col min-h-svh max-w-6xl mx-auto antialiased">
           <Header />
           <main className="flex-grow max-w-2xl mx-auto px-4 py-20">
             <Avatar />
