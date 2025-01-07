@@ -1,18 +1,30 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss'
 
 export default {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/components/**/*.{ts,tsx,mdx}',
+    './src/app/**/*.{ts,tsx,mdx}',
   ],
   theme: {
+    colors: {
+      accentColor: '#ba3e48',
+      white: '#fafafa',
+      black: '#0c0c0c',
+    },
+    fontFamily: {
+      sans: ['Inter', 'Arial', 'Helvetica', 'sans-serif'],
+    },
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        brand: '#ba3e48',
+        charcoal: '#272727',
       },
     },
   },
+  // corePlugins: {
+  //   float: false,
+  //   textOpacity: false,
+  //   backgroundOpacity: false,
+  // },
   plugins: [],
-} satisfies Config;
+} satisfies Config

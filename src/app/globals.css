@@ -1,21 +1,28 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --font-heading: 'Raleway', 'sans-serif';
+  --font-body: 'Inter', 'sans-serif';
+  --color-brand-light: #d05861;
+  --color-brand: #ba3e48;
+  --color-brand-dark: #8a2e35;
+  /* ... */
+}
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --text-color: #101212;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #161618;
+    --text-color: #dfe0e2;
   }
 }
 
 body {
-  color: var(--foreground);
+  color: var(--text-color);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
 }
