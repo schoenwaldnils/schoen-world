@@ -1,9 +1,8 @@
 import './globals.css'
-
 import type { Metadata } from 'next'
-
 import { Inter, Raleway } from 'next/font/google'
 import { ViewTransitions } from 'next-view-transitions'
+import Header from './components/Header'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -29,12 +28,12 @@ export default function RootLayout({
 }>) {
   return (
     <ViewTransitions>
-      <html
-        lang="en"
-        className={`${inter.className} ${raleway.variable} bg-white text-charcoal`}
-      >
+      <html lang="en" className={`${inter.variable} ${raleway.variable}`}>
         <body className="flex flex-col min-h-svh antialiased">
-          <main className="flex-grow max-w-2xl mx-auto">{children}</main>
+          <Header />
+          <main className="flex-grow max-w-2xl mx-auto px-4 py-20">
+            {children}
+          </main>
           <Footer />
         </body>
       </html>
@@ -57,7 +56,7 @@ const Footer = () => {
           href={link.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 hover:text-brand transition-colors duration-200"
+          className="text-gray-500 dark:text-gray-400  hover:text-brand-light hover:dark:text-brand-lighter transition-colors duration-200"
         >
           {link.name}
         </a>

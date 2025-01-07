@@ -11,42 +11,34 @@ type BlockquoteProps = ComponentPropsWithoutRef<'blockquote'>
 
 const components = {
   h1: (props: HeadingProps) => (
-    <h1
-      className="font-heading text-2xl font-bold pt-12 mb-0 fade-in"
-      {...props}
-    />
+    <h1 className="font-heading text-4xl font-medium mb-6 fade-in" {...props} />
   ),
   h2: (props: HeadingProps) => (
-    <h2
-      className="font-heading text-gray-800 font-medium mt-8 mb-3"
-      {...props}
-    />
+    <h2 className="font-heading text-2xl font-medium mt-8 mb-3" {...props} />
   ),
   h3: (props: HeadingProps) => (
-    <h3
-      className="font-heading text-gray-800 font-medium mt-8 mb-3"
-      {...props}
-    />
+    <h3 className="font-heading text-xl font-medium mt-8 mb-3" {...props} />
   ),
   h4: (props: HeadingProps) => (
-    <h4 className="font-heading font-medium" {...props} />
+    <h4 className="font-heading text-lg font-medium" {...props} />
   ),
-  p: (props: ParagraphProps) => <p className="" {...props} />,
+  p: (props: ParagraphProps) => <p className="mb-4" {...props} />,
   ol: (props: ListProps) => (
-    <ol className="text-gray-800 list-decimal pl-5 space-y-2" {...props} />
+    <ol className="list-decimal pl-5 space-y-2" {...props} />
   ),
   ul: (props: ListProps) => (
-    <ul className="text-gray-800 list-disc pl-5 space-y-1" {...props} />
+    <ul className="list-disc pl-5 space-y-1" {...props} />
   ),
   li: (props: ListItemProps) => <li className="pl-1" {...props} />,
   em: (props: ComponentPropsWithoutRef<'em'>) => (
-    <em className="font-medium" {...props} />
+    <em className="font-medium text-white" {...props} />
   ),
   strong: (props: ComponentPropsWithoutRef<'strong'>) => (
-    <strong className="font-medium" {...props} />
+    <strong className="font-medium text-white" {...props} />
   ),
   a: ({ href, children, ...props }: AnchorProps) => {
-    const className = 'text-brand-light hover:text-brand'
+    const className =
+      'text-brand dark:text-brand-light hover:text-brand-light hover:dark:text-brand-lighter'
     if (href?.startsWith('/')) {
       return (
         <Link href={href} className={className} {...props}>
@@ -75,14 +67,22 @@ const components = {
   },
   code: ({ children, ...props }: ComponentPropsWithoutRef<'code'>) => {
     const codeHTML = highlight(children as string)
-    return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
+    return (
+      <code
+        className="bg-gray-800 px-2 py-1 rounded text-sm"
+        dangerouslySetInnerHTML={{ __html: codeHTML }}
+        {...props}
+      />
+    )
   },
   Table: ({ data }: { data: { headers: string[]; rows: string[][] } }) => (
-    <table>
+    <table className="w-full text-gray-300">
       <thead>
         <tr>
           {data.headers.map((header, index) => (
-            <th key={index}>{header}</th>
+            <th key={index} className="text-left p-2 border-b border-gray-700">
+              {header}
+            </th>
           ))}
         </tr>
       </thead>
@@ -90,7 +90,9 @@ const components = {
         {data.rows.map((row, index) => (
           <tr key={index}>
             {row.map((cell, cellIndex) => (
-              <td key={cellIndex}>{cell}</td>
+              <td key={cellIndex} className="p-2 border-b border-gray-700">
+                {cell}
+              </td>
             ))}
           </tr>
         ))}
@@ -99,7 +101,7 @@ const components = {
   ),
   blockquote: (props: BlockquoteProps) => (
     <blockquote
-      className="ml-[0.075em] border-l-3 border-gray-300 pl-4 text-gray-700"
+      className="ml-[0.075em] border-l-3 border-gray-700 pl-4 text-gray-400"
       {...props}
     />
   ),
