@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Inter, Raleway } from 'next/font/google'
 import { ViewTransitions } from 'next-view-transitions'
 import Header from './components/Header'
+import Avatar from './components/Avatar'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -32,6 +33,7 @@ export default function RootLayout({
         <body className="flex flex-col min-h-svh antialiased">
           <Header />
           <main className="flex-grow max-w-2xl mx-auto px-4 py-20">
+            <Avatar />
             {children}
           </main>
           <Footer />
