@@ -65,6 +65,9 @@ const components = {
       </a>
     )
   },
+  img: (props: ComponentPropsWithoutRef<'img'>) => (
+    <img className="w-full h-auto" {...props} />
+  ),
   code: ({ children, ...props }: ComponentPropsWithoutRef<'code'>) => {
     const codeHTML = highlight(children as string)
     return (

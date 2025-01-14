@@ -4,14 +4,12 @@ import createMDX, { NextMDXOptions } from '@next/mdx'
 const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'mdx'],
   experimental: {
-    mdxRs: true,
+    mdxRs: {
+      mdxType: 'gfm', // Configure what kind of mdx syntax will be used to parse & transform
+    },
   },
 }
 
-const withMDX = createMDX({
-  options: {
-    remarkPlugins: [['remark-gfm', { strict: true, throwOnError: true }]],
-  },
-} satisfies NextMDXOptions)
+const withMDX = createMDX({} satisfies NextMDXOptions)
 
 export default withMDX(nextConfig)
