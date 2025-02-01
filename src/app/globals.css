@@ -1,8 +1,10 @@
-@import 'tailwindcss';
+@import 'tailwindcss/theme';
+@import 'tailwindcss/preflight';
+@import 'tailwindcss/utilities';
 
 @theme {
+  --font-body: Inter, sans-serif;
   --font-heading: 'Raleway', 'sans-serif';
-  --font-body: 'Inter', 'sans-serif';
   --color-brand-lighter: #ff7680;
   --color-brand-light: #d05861;
   --color-brand: #ba3e48;
@@ -35,7 +37,6 @@ html {
 body {
   color: var(--foreground);
   background-color: var(--background);
-  font-family: var(--font-body);
   box-shadow: 0 0 0 4px var(--color-brand);
 }
 

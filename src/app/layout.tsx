@@ -2,7 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter, Raleway } from 'next/font/google'
 import { ViewTransitions } from 'next-view-transitions'
-import Header from '@/components/Header'
+import { Header } from '@/components/Header'
 import Avatar from '@/components/Avatar'
 import Footer from '@/components/Footer'
 

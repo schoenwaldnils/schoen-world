@@ -1,9 +1,11 @@
-import Link from 'next/link'
-import Logo from './Logo'
+// import Link from 'next/link'
+import { Logo } from '@/components/Logo'
 
-const Header = () => {
+import css from './Header.module.css'
+
+export const Header = () => {
   return (
-    <header className="flex justify-between items-center py-4 px-6">
+    <header className={css.Header}>
       <Logo />
       {/* <nav>
         <ul className="flex gap-6">
@@ -28,5 +30,3 @@ const Header = () => {
     </header>
   )
 }
-
-export default Header
