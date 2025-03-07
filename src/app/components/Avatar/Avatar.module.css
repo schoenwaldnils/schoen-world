@@ -1,0 +1,24 @@
+.avatarContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.avatarImage {
+  --size: 10rem;
+  border-radius: calc(var(--size) / 2);
+  filter: grayscale(1) contrast(1.05) brightness(1.15);
+  transition: filter 300ms;
+  width: var(--size);
+  height: var(--size);
+  aspect-ratio: 1 / 1;
+}
+
+.avatarImage:hover {
+  filter: grayscale(0);
+}
+
+@media (prefers-color-scheme: dark) {
+  .avatarImage {
+    border-color: #fff;
+  }
+}

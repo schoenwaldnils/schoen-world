@@ -1,0 +1,28 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
+  gap: 1rem;
+}
+
+.footerLink {
+  color: #6b7280;
+  position: relative;
+  text-decoration: none;
+  transition: color 150ms;
+}
+
+.footerLink:hover {
+  color: #d05861;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .footerLink {
+    color: #9ca3af;
+  }
+
+  .footerLink:hover {
+    color: #ff7680;
+  }
+}

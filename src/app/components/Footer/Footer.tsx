@@ -1,4 +1,6 @@
-const Footer = () => {
+import css from './Footer.module.css'
+
+export const Footer = () => {
   const links = [
     { name: '@schoenwaldnils', url: 'https://x.com/schoenwaldnils' },
     { name: 'github', url: 'https://github.com/schoenwaldnils' },
@@ -6,14 +8,14 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="flex justify-center mt-12 mb-12 space-x-4">
+    <footer className={css.footer}>
       {links.map((link) => (
         <a
           key={link.name}
+          className={css.footerLink}
           href={link.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-500 dark:text-gray-400 hover:text-brand-light hover:dark:text-brand-lighter link-underline"
         >
           {link.name}
         </a>
@@ -21,5 +23,3 @@ const Footer = () => {
     </footer>
   )
 }
-
-export default Footer

@@ -1,6 +1,9 @@
 import React, { ComponentPropsWithoutRef } from 'react'
 import { Link } from 'next-view-transitions'
 import { highlight } from 'sugar-high'
+import css from '@/MDXComponents.module.css'
+
+import { Avatar } from './src/app/components/Avatar'
 
 type HeadingProps = ComponentPropsWithoutRef<'h1'>
 type ParagraphProps = ComponentPropsWithoutRef<'p'>
@@ -10,35 +13,22 @@ type AnchorProps = ComponentPropsWithoutRef<'a'>
 type BlockquoteProps = ComponentPropsWithoutRef<'blockquote'>
 
 const components = {
-  h1: (props: HeadingProps) => (
-    <h1 className="font-heading text-4xl font-medium mb-6 fade-in" {...props} />
-  ),
-  h2: (props: HeadingProps) => (
-    <h2 className="font-heading text-2xl font-medium mt-8 mb-3" {...props} />
-  ),
-  h3: (props: HeadingProps) => (
-    <h3 className="font-heading text-xl font-medium mt-8 mb-3" {...props} />
-  ),
-  h4: (props: HeadingProps) => (
-    <h4 className="font-heading text-lg font-medium" {...props} />
-  ),
-  p: (props: ParagraphProps) => <p className="mb-4" {...props} />,
-  ol: (props: ListProps) => (
-    <ol className="list-decimal pl-5 space-y-2" {...props} />
-  ),
-  ul: (props: ListProps) => (
-    <ul className="list-disc pl-5 space-y-1" {...props} />
-  ),
-  li: (props: ListItemProps) => <li className="pl-1" {...props} />,
+  h1: (props: HeadingProps) => <h1 className={css.h1} {...props} />,
+  h2: (props: HeadingProps) => <h2 className={css.h2} {...props} />,
+  h3: (props: HeadingProps) => <h3 className={css.h3} {...props} />,
+  h4: (props: HeadingProps) => <h4 className={css.h4} {...props} />,
+  p: (props: ParagraphProps) => <p className={css.p} {...props} />,
+  ol: (props: ListProps) => <ol className={css.ol} {...props} />,
+  ul: (props: ListProps) => <ul className={css.ul} {...props} />,
+  li: (props: ListItemProps) => <li className={css.li} {...props} />,
   em: (props: ComponentPropsWithoutRef<'em'>) => (
-    <em className="font-medium text-white" {...props} />
+    <em className={css.em} {...props} />
   ),
   strong: (props: ComponentPropsWithoutRef<'strong'>) => (
-    <strong className="font-medium text-white" {...props} />
+    <strong className={css.strong} {...props} />
   ),
   a: ({ href, children, ...props }: AnchorProps) => {
-    const className =
-      'text-brand dark:text-brand-light hover:text-brand-light hover:dark:text-brand-lighter link-underline'
+    const className = css.link
     if (href?.startsWith('/')) {
       return (
         <Link href={href} className={className} {...props}>
@@ -66,24 +56,27 @@ const components = {
     )
   },
   img: (props: ComponentPropsWithoutRef<'img'>) => (
-    <img className="w-full h-auto" {...props} />
+    <img className={css.img} {...props} />
+  ),
+  blockquote: (props: BlockquoteProps) => (
+    <blockquote className={css.blockquote} {...props} />
   ),
   code: ({ children, ...props }: ComponentPropsWithoutRef<'code'>) => {
     const codeHTML = highlight(children as string)
     return (
       <code
-        className="bg-gray-800 px-2 py-1 rounded text-sm"
+        className={css.code}
         dangerouslySetInnerHTML={{ __html: codeHTML }}
         {...props}
       />
     )
   },
   Table: ({ data }: { data: { headers: string[]; rows: string[][] } }) => (
-    <table className="w-full text-gray-300">
+    <table className={css.table}>
       <thead>
         <tr>
           {data.headers.map((header, index) => (
-            <th key={index} className="text-left p-2 border-b border-gray-700">
+            <th key={index} className={css.th}>
               {header}
             </th>
           ))}
@@ -93,7 +86,7 @@ const components = {
         {data.rows.map((row, index) => (
           <tr key={index}>
             {row.map((cell, cellIndex) => (
-              <td key={cellIndex} className="p-2 border-b border-gray-700">
+              <td key={cellIndex} className={css.td}>
                 {cell}
               </td>
             ))}
@@ -102,11 +95,8 @@ const components = {
       </tbody>
     </table>
   ),
-  blockquote: (props: BlockquoteProps) => (
-    <blockquote
-      className="ml-[0.075em] border-l-3 border-gray-700 pl-4 text-gray-400"
-      {...props}
-    />
+  Avatar: (props: ComponentPropsWithoutRef<'div'>) => (
+    <Avatar className={css.avatar} {...props} />
   ),
 }
 

@@ -1,0 +1,24 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  row-gap: 2rem;
+  min-height: 100svh;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 var(--container-padding-horizontal, 2rem);
+}
+
+@media (--md) {
+  .main {
+    row-gap: 4rem;
+  }
+}
+
+.mainContent {
+  margin: 0 auto;
+}
+
+.avatar {
+  margin-bottom: 4rem;
+}

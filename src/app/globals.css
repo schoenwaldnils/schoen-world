@@ -1,8 +1,8 @@
-@import 'tailwindcss/theme';
-@import 'tailwindcss/preflight';
-@import 'tailwindcss/utilities';
+@custom-media --md (min-width: 768px);
+@custom-media --lg (min-width: 1280px);
 
-@theme {
+:root {
+  /* Colors */
   --font-body: Inter, sans-serif;
   --font-heading: 'Raleway', 'sans-serif';
   --color-brand-lighter: #ff7680;
@@ -11,11 +11,14 @@
   --color-brand-dark: #8a2e35;
   --color-charcoal: #101212;
   --color-charcoal-light: #202222;
+
+  --background: light-dark(#ffffff, #161618);
+  --foreground: light-dark(#101212, #dfe0e2);
 }
 
 :root {
-  --background: light-dark(#ffffff, #161618);
-  --foreground: light-dark(#101212, #dfe0e2);
+  /* Layout */
+  --container-padding-horizontal: 2rem;
 }
 
 html {
@@ -31,15 +34,22 @@ html[data-theme='dark'] {
 }
 
 html {
-  background-color: light-dark(#101212, var(--color-charcoal-light));
+  background-color: var(--color-brand);
+  font-family: var(--font-body);
+  font-size: clamp(16px, 1.5vw, 20px);
+  font-weight: 400;
 }
 
 body {
   color: var(--foreground);
   background-color: var(--background);
-  box-shadow: 0 0 0 4px var(--color-brand);
 }
 
+p {
+  max-width: 72ch;
+}
+
+/* TODO: Move to link component */
 @utility link-underline {
   position: relative;
   text-decoration: none;
