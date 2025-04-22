@@ -1,19 +1,37 @@
 .footer {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
   margin: 3rem 0;
-  gap: 1rem;
+  font-size: var(--font-size-small);
+  color: #6b7280;
+}
+
+.footerNav {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .footerLink {
-  color: #6b7280;
-  position: relative;
-  text-decoration: none;
-  transition: color 150ms;
-}
+  padding: 0.5rem;
 
-.footerLink:hover {
-  color: #d05861;
+  color: inherit;
+
+  &::before {
+    opacity: 0;
+    transition: opacity 150ms;
+    animation-delay: 0ms;
+  }
+
+  &:hover::before {
+    opacity: 1;
+    animation-delay: 0ms;
+  }
+
+  &::after {
+    content: unset;
+  }
 }
 
 /* Dark mode styles */

@@ -1,9 +1,9 @@
 import React, { ComponentPropsWithoutRef } from 'react'
-import { Link } from 'next-view-transitions'
 import { highlight } from 'sugar-high'
 import css from '@/MDXComponents.module.css'
 
 import { Avatar } from './src/app/components/Avatar'
+import { Link } from './src/app/components/Link'
 
 type HeadingProps = ComponentPropsWithoutRef<'h1'>
 type ParagraphProps = ComponentPropsWithoutRef<'p'>
@@ -27,34 +27,8 @@ const components = {
   strong: (props: ComponentPropsWithoutRef<'strong'>) => (
     <strong className={css.strong} {...props} />
   ),
-  a: ({ href, children, ...props }: AnchorProps) => {
-    const className = css.link
-    if (href?.startsWith('/')) {
-      return (
-        <Link href={href} className={className} {...props}>
-          {children}
-        </Link>
-      )
-    }
-    if (href?.startsWith('#')) {
-      return (
-        <a href={href} className={className} {...props}>
-          {children}
-        </a>
-      )
-    }
-    return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={className}
-        {...props}
-      >
-        {children}
-      </a>
-    )
-  },
+  a: ({ href, ...props }: AnchorProps) =>
+    href ? <Link href={href} {...props} /> : null,
   img: (props: ComponentPropsWithoutRef<'img'>) => (
     <img className={css.img} {...props} />
   ),
