@@ -3,22 +3,28 @@
   justify-content: flex-end;
 }
 
-.avatarImage {
-  --size: 10rem;
-  border-radius: calc(var(--size) / 2);
-  filter: grayscale(1) contrast(1.05) brightness(1.15);
-  transition: filter 300ms;
-  width: var(--size);
-  height: var(--size);
-  aspect-ratio: 1 / 1;
+@property --border-color {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: var(--color-white-ish);
 }
 
-.avatarImage:hover {
-  filter: grayscale(0);
+.avatarImage {
+  --size: 10rem;
+  width: var(--size);
+  height: var(--size);
+  border-radius: calc(var(--size) / 2);
+  aspect-ratio: 1 / 1;
 }
 
 @media (prefers-color-scheme: dark) {
   .avatarImage {
-    border-color: #fff;
+    --border-color: var(--color-white-ish);
+    box-shadow: 0 0 0 0.2rem var(--border-color);
+    transition: box-shadow 150ms;
+  }
+
+  .avatarImage:hover {
+    --border-color: var(--color-brand);
   }
 }

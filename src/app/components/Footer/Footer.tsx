@@ -3,9 +3,10 @@ import css from './Footer.module.css'
 
 export const Footer = () => {
   const socialLinks = [
+    { name: 'github', href: 'https://github.com/schoenwaldnils', newTab: true },
     {
-      name: 'x',
-      href: 'https://x.com/schoenwaldnils',
+      name: 'linkedin',
+      href: 'https://www.linkedin.com/in/schoenwaldnils',
       newTab: true,
     },
     {
@@ -18,10 +19,9 @@ export const Footer = () => {
       href: 'https://mastodon.social/@schoenwaldnils',
       newTab: true,
     },
-    { name: 'github', href: 'https://github.com/schoenwaldnils', newTab: true },
     {
-      name: 'linkedin',
-      href: 'https://www.linkedin.com/in/schoenwaldnils',
+      name: 't̶w̶i̶t̶t̶e̶r̶ x',
+      href: 'https://x.com/schoenwaldnils',
       newTab: true,
     },
   ]

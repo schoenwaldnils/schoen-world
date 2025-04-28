@@ -1,6 +1,7 @@
 import './normalize.css'
-import './design-tokens.css'
+import './theme.css'
 import './globals.css'
+import './typography.css'
 import type { Metadata } from 'next'
 import { ViewTransitions } from 'next-view-transitions'
 import { Header } from '@/components/Header'

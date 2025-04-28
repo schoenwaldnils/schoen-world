@@ -8,39 +8,19 @@
   color: #6b7280;
 }
 
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .footer {
+    color: #9ca3af;
+  }
+}
+
 .footerNav {
   display: flex;
   flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .footerLink {
-  padding: 0.5rem;
-
   color: inherit;
-
-  &::before {
-    opacity: 0;
-    transition: opacity 150ms;
-    animation-delay: 0ms;
-  }
-
-  &:hover::before {
-    opacity: 1;
-    animation-delay: 0ms;
-  }
-
-  &::after {
-    content: unset;
-  }
-}
-
-/* Dark mode styles */
-@media (prefers-color-scheme: dark) {
-  .footerLink {
-    color: #9ca3af;
-  }
-
-  .footerLink:hover {
-    color: #ff7680;
-  }
 }
