@@ -1,7 +1,9 @@
-import { Link } from '@/components/Link/Link'
+import { Link } from '@/components/Link'
+import { Theme, ThemeSwitch } from '@/components/ThemeSwitch'
 import css from './Footer.module.css'
+import { cookies } from 'next/headers'
 
-export const Footer = () => {
+export const Footer = ({ theme }: { theme: Theme }) => {
   const socialLinks = [
     { name: 'github', href: 'https://github.com/schoenwaldnils', newTab: true },
     {
@@ -45,9 +47,11 @@ export const Footer = () => {
         })}
       </div>
 
-      <p className={css.footerText}>
-        &copy; {new Date().getFullYear()} Nils Schönwald
-      </p>
+      <div className="flex items-center">
+        <p className={css.footerText}>
+          &copy; {new Date().getFullYear()} Nils Schönwald
+        </p>
+      </div>
 
       <div className={css.footerNav}>
         {legalLinks.map((link) => (
@@ -56,6 +60,8 @@ export const Footer = () => {
           </Link>
         ))}
       </div>
+
+      <ThemeSwitch theme={theme} />
     </footer>
   )
 }

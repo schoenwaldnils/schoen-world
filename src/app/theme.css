@@ -11,7 +11,7 @@
   /* Colors - Charcoal */
   --color-charcoal: oklch(0.18 0.003 197);
   --color-charcoal-light: oklch(0.25 0.003 197);
-  --color-white-ish: oklch(0.91 0.0029 264.54);
+  --color-white: oklch(0.91 0.0029 264.54);
 
   /* Typography - Font Families */
   --font-heading:
@@ -51,36 +51,27 @@
   }
 
   :root[data-theme='light'],
-  :root:has(option[id='theme-light']:checked) {
+  :root:has(input[id='theme-light']:checked) {
     color-scheme: light;
   }
 
   :root[data-theme='dark'],
-  :root:has(option[id='theme-dark']:checked) {
+  :root:has(input[id='theme-dark']:checked) {
     color-scheme: dark;
   }
 
   :root {
     /* Theme */
-    --background: linear-gradient(to bottom, oklch(0.93 0 0), oklch(0.86 0 0));
-    --foreground: var(--color-charcoal);
-    --primary: var(--color-brand);
-
-    --blob-color: #ffffff;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: linear-gradient(
-        to bottom,
-        oklch(0.2 0.01 286),
-        oklch(0.15 0 286)
-      );
-      --foreground: var(--color-white-ish);
-      --primary: var(--color-brand-light);
-
-      --blob-color: oklch(0.54 0.1591 19.64 / 8.24%);
-    }
+    --background-from: light-dark(oklch(0.93 0 0), oklch(0.2 0.01 286));
+    --background-to: light-dark(oklch(0.86 0 0), oklch(0.15 0 286));
+    --body-background: linear-gradient(
+      to bottom,
+      var(--background-from),
+      var(--background-to)
+    );
+    --foreground: light-dark(var(--color-charcoal), var(--color-white));
+    --background: light-dark(var(--color-white), var(--color-charcoal));
+    --primary: light-dark(var(--color-brand), var(--color-brand-light));
   }
 }
 
@@ -102,7 +93,6 @@
   }
 
   body {
-    background-color: var(--background);
     color: var(--foreground);
   }
 }
