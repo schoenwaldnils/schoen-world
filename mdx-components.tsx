@@ -1,9 +1,9 @@
-import React, { ComponentPropsWithoutRef } from 'react'
+import { ComponentPropsWithoutRef } from 'react'
 import { highlight } from 'sugar-high'
-import css from '@/MDXComponents.module.css'
 
-import { Avatar } from './src/app/components/Avatar'
-import { Link } from './src/app/components/Link'
+import { Link } from '@/components/Link'
+import { StageHome } from '@/components/StageHome'
+import css from '@/MDXComponents.module.css'
 
 type HeadingProps = ComponentPropsWithoutRef<'h1'>
 type ParagraphProps = ComponentPropsWithoutRef<'p'>
@@ -69,8 +69,8 @@ const components = {
       </tbody>
     </table>
   ),
-  Avatar: (props: ComponentPropsWithoutRef<'div'>) => (
-    <Avatar className={css.avatar} {...props} />
+  StageHome: (props: ComponentPropsWithoutRef<'div'>) => (
+    <StageHome className={css.stageHome} {...props} />
   ),
 }
 

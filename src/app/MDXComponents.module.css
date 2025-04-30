@@ -34,10 +34,6 @@
   font-size: var(--font-size-small);
 }
 
-.avatar {
-  margin-bottom: 2rem;
-
-  @media (min-height: 1000px) {
-    margin-top: -14rem;
-  }
+.stageHome {
+  margin-bottom: 3rem;
 }

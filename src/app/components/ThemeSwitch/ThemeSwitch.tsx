@@ -1,11 +1,10 @@
 'use client'
 
-import { Fragment, useCallback, useEffect, useState } from 'react'
-import { SunIcon, MoonIcon, SunMoonIcon } from 'lucide-react'
+import { deleteCookie, setCookie } from 'cookies-next/client'
+import { MoonIcon, SunIcon, SunMoonIcon } from 'lucide-react'
+import { Fragment, useCallback, useState } from 'react'
+
 import css from './ThemeSwitch.module.css'
-import { cookies } from 'next/headers'
-import { setCookie } from '@/actions'
-import { deleteCookie } from '@/actions'
 
 export type Theme = 'dark' | 'light' | 'system'
 
@@ -27,12 +26,12 @@ const items: { id: Theme; icon: typeof SunIcon }[] = [
 export const ThemeSwitch = ({ theme: initialTheme }: { theme: Theme }) => {
   const [theme, setTheme] = useState<Theme>(initialTheme)
 
-  const handleSetTheme = useCallback(async (newTheme: Theme) => {
+  const handleSetTheme = useCallback((newTheme: Theme) => {
     if (newTheme === 'system') {
-      await deleteCookie('theme')
+      deleteCookie('theme')
       document.documentElement.removeAttribute('data-theme')
     } else {
-      await setCookie('theme', newTheme)
+      setCookie('theme', newTheme)
       document.documentElement.setAttribute('data-theme', newTheme)
     }
 
@@ -45,7 +44,7 @@ export const ThemeSwitch = ({ theme: initialTheme }: { theme: Theme }) => {
         <Fragment key={id}>
           <input
             type="radio"
-            onChange={() => handleSetTheme(id as Theme)}
+            onChange={() => handleSetTheme(id)}
             id={`theme-${id}`}
             name="theme"
             checked={theme === id}

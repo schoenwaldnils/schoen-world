@@ -1,8 +1,3 @@
-.avatarContainer {
-  display: flex;
-  justify-content: flex-end;
-}
-
 @property --border-color {
   syntax: '<color>';
   inherits: false;

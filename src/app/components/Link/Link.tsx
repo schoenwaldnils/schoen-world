@@ -1,9 +1,8 @@
 import clsx from 'clsx/lite'
 import { Link as NextLink } from 'next-view-transitions'
-import { LinkProps } from 'next/link'
+import { AnchorHTMLAttributes } from 'react'
 
 import css from './Link.module.css'
-import { AnchorHTMLAttributes } from 'react'
 
 export const Link = ({
   className,

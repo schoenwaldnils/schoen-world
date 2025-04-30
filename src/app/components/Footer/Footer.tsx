@@ -1,7 +1,7 @@
 import { Link } from '@/components/Link'
 import { Theme, ThemeSwitch } from '@/components/ThemeSwitch'
+
 import css from './Footer.module.css'
-import { cookies } from 'next/headers'
 
 export const Footer = ({ theme }: { theme: Theme }) => {
   const socialLinks = [

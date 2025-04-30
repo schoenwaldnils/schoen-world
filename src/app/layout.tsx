@@ -1,14 +1,16 @@
+import './globals.css'
 import './normalize.css'
 import './theme.css'
-import './globals.css'
 import './typography.css'
+
+import { getCookie } from 'cookies-next/server'
 import type { Metadata } from 'next'
-import { ViewTransitions } from 'next-view-transitions'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
-import css from './layout.module.css'
-import { Theme, ThemeInitializer } from '@/components/ThemeSwitch'
 import { cookies } from 'next/headers'
+import { ViewTransitions } from 'next-view-transitions'
+
+import { Footer } from '@/components/Footer'
+import { Header } from '@/components/Header'
+import { Theme } from '@/components/ThemeSwitch'
 
 export const metadata: Metadata = {
   title: 'Nils Schönwald - Frontend Developer',
@@ -20,20 +22,16 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const cookieStore = await cookies()
-  const theme = cookieStore.get('theme')
+  const theme = await getCookie('theme', { cookies })
 
   return (
     <ViewTransitions>
-      <html lang="en" data-theme={theme?.value || null}>
-        <head>
-          <ThemeInitializer />
-        </head>
+      <html lang="en" data-theme={theme || null}>
         <body>
-          <div className={css.main}>
+          <div className="mx-auto flex min-h-screen max-w-6xl flex-col justify-between gap-8 px-8 md:gap-16">
             <Header />
-            <main className={css.mainContent}>{children}</main>
-            <Footer theme={theme?.value as Theme} />
+            <main className="mx-auto">{children}</main>
+            <Footer theme={theme as Theme} />
           </div>
         </body>
       </html>

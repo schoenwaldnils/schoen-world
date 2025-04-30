@@ -1,7 +1,12 @@
 @import 'tailwindcss';
-@import 'tw-animate-css';
+
+@import './viewports.css';
 
 @theme {
+  --breakpoint-sm: 30rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 80rem;
+
   /* Colors - Brand */
   --color-brand: #ba3e48;
   --color-brand-dark: hsl(from var(--color-brand) h s calc(l - 20));
@@ -74,9 +79,6 @@
     --primary: light-dark(var(--color-brand), var(--color-brand-light));
   }
 }
-
-@custom-media --md (min-width: 768px);
-@custom-media --lg (min-width: 1280px);
 
 /* :root {
   --tint-or-shade: color-mix(in oklab, var(--foreground), transparent 95%);
