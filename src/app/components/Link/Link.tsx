@@ -1,4 +1,4 @@
-import clsx from 'clsx/lite'
+import clsx from 'clsx'
 import { Link as NextLink } from 'next-view-transitions'
 import { AnchorHTMLAttributes } from 'react'
 

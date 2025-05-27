@@ -1,5 +1,5 @@
-import './globals.css'
 import './normalize.css'
+import './globals.css'
 import './theme.css'
 import './typography.css'
 
@@ -30,7 +30,7 @@ export default async function RootLayout({
         <body>
           <div className="mx-auto flex min-h-screen max-w-6xl flex-col justify-between gap-8 px-8 md:gap-16">
             <Header />
-            <main className="mx-auto">{children}</main>
+            <main className="mx-auto max-w-2xl">{children}</main>
             <Footer theme={theme as Theme} />
           </div>
         </body>

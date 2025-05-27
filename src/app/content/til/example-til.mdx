@@ -1,0 +1,35 @@
+---
+title: 'How to use CSS Grid for responsive layouts'
+publishedAt: '2024-01-15'
+summary: 'Learned about CSS Grid properties that make responsive design easier without media queries.'
+---
+
+Today I learned about CSS Grid's `auto-fit` and `minmax()` functions that can create responsive layouts without media queries.
+
+## The Problem
+
+I was trying to create a responsive card layout that would automatically adjust the number of columns based on the available space.
+
+## The Solution
+
+Using CSS Grid with `auto-fit` and `minmax()`:
+
+```css
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+```
+
+## How it works
+
+- `repeat()` creates repeating grid tracks
+- `auto-fit` automatically fits as many columns as possible
+- `minmax(300px, 1fr)` sets minimum width of 300px and maximum of 1fr (equal distribution)
+
+This creates a layout that automatically adjusts from 1 column on mobile to multiple columns on larger screens, all without media queries!
+
+## Browser Support
+
+CSS Grid has excellent browser support (95%+ globally), making this a reliable solution for modern web development. 

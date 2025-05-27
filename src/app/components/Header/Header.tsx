@@ -1,4 +1,5 @@
-// import Link from 'next/link'
+import Link from 'next/link'
+
 import { Logo } from '@/components/Logo'
 
 import css from './Header.module.css'
@@ -7,26 +8,18 @@ export const Header = () => {
   return (
     <header className={css.Header}>
       <Logo />
-      {/* <nav>
+      <nav>
         <ul className="flex gap-6">
           <li>
             <Link
-              href="/"
-              className="text-gray-500 dark:text-gray-300 hover:text-white transition-colors"
+              href="/til"
+              className="text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
             >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/blog"
-              className="text-gray-500 dark:text-gray-300 hover:text-white transition-colors"
-            >
-              Blog
+              TIL
             </Link>
           </li>
         </ul>
-      </nav> */}
+      </nav>
     </header>
   )
 }

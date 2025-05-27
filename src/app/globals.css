@@ -97,3 +97,9 @@ body {
     var(--body-background);
   transition: background-color 300ms ease-in-out;
 }
+
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  font-size: 0.875rem;
+}

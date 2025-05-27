@@ -1,0 +1,55 @@
+---
+title: 'TypeScript Utility Types: Pick and Omit'
+publishedAt: '2024-01-20'
+summary: 'Discovered how Pick and Omit utility types can help create cleaner type definitions.'
+---
+
+Today I learned about TypeScript's `Pick` and `Omit` utility types and how they can make type definitions more maintainable.
+
+## The Scenario
+
+I had a large interface and needed to create variations of it for different use cases:
+
+```typescript
+interface User {
+  id: string
+  name: string
+  email: string
+  password: string
+  createdAt: Date
+  updatedAt: Date
+  isActive: boolean
+}
+```
+
+## Using Pick
+
+`Pick<T, K>` creates a new type by picking specific properties from an existing type:
+
+```typescript
+// Only pick the properties we need for display
+type UserDisplay = Pick<User, 'id' | 'name' | 'email' | 'isActive'>
+
+// For user creation (no id, timestamps)
+type UserCreate = Pick<User, 'name' | 'email' | 'password'>
+```
+
+## Using Omit
+
+`Omit<T, K>` creates a new type by excluding specific properties:
+
+```typescript
+// Exclude sensitive data
+type PublicUser = Omit<User, 'password'>
+
+// Exclude system-generated fields
+type UserInput = Omit<User, 'id' | 'createdAt' | 'updatedAt'>
+```
+
+## Why This Matters
+
+- **DRY Principle**: No need to duplicate type definitions
+- **Maintainability**: Changes to the base type automatically propagate
+- **Type Safety**: Compiler ensures consistency across related types
+
+These utility types are game-changers for maintaining large TypeScript codebases! 

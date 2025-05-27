@@ -2,6 +2,20 @@
 
 @import './viewports.css';
 
+@custom-variant dark {
+  /* 1. data-theme (global control) */
+  &:where([data-theme='dark'], [data-theme='dark'] *) {
+    @slot;
+  }
+
+  /* 2. System preference (fallback, excluded by any data-theme) */
+  @media (prefers-color-scheme: dark) {
+    &:where(:not([data-theme] *)) {
+      @slot;
+    }
+  }
+}
+
 @theme {
   --breakpoint-sm: 30rem;
   --breakpoint-md: 48rem;
@@ -32,8 +46,8 @@
   --font-weight-regular: 400;
 
   /* Typography - Font Sizes */
-  --font-size-h1: 3rem;
-  --font-size-h2: 2.25rem;
+  --font-size-h1: 2.25rem;
+  --font-size-h2: 1.75rem;
   --font-size-h3: 1.5rem;
   --font-size-h4: 1.25rem;
   --font-size-body: 1rem;
@@ -74,7 +88,7 @@
       var(--background-from),
       var(--background-to)
     );
-    --foreground: light-dark(var(--color-charcoal), var(--color-white));
+    --foreground: light-dark(var(--color-charcoal-light), var(--color-white));
     --background: light-dark(var(--color-white), var(--color-charcoal));
     --primary: light-dark(var(--color-brand), var(--color-brand-light));
   }
