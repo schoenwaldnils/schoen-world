@@ -15,7 +15,7 @@ export const Header = () => {
               href="/til"
               className="text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
             >
-              TIL
+              /til
             </Link>
           </li>
         </ul>

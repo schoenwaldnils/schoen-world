@@ -1,8 +1,10 @@
 import fs from 'fs'
+import { evaluate } from 'next-mdx-remote-client/rsc'
+import { getFrontmatter } from 'next-mdx-remote-client/utils'
 import path from 'path'
 
 // Base metadata that all content types share
-interface BaseMetadata {
+interface BaseMetadata extends Record<string, unknown> {
   title: string
 }
 
@@ -75,62 +77,87 @@ export function formatDate(
   return `${fullDate} (${relativeTime})`
 }
 
-// Generic frontmatter parser
-function parseFrontmatter<T extends BaseMetadata>(
-  fileContent: string,
-): { metadata: T; content: string } {
-  const frontmatterRegex = /---\s*([\s\S]*?)\s*---/
-  const match = frontmatterRegex.exec(fileContent)
-  const frontMatterBlock = match![1]
-  const content = fileContent.replace(frontmatterRegex, '').trim()
-  const frontMatterLines = frontMatterBlock.trim().split('\n')
-  const metadata: Partial<T> = {}
-
-  frontMatterLines.forEach((line) => {
-    const [key, ...valueArr] = line.split(': ')
-    let value = valueArr.join(': ').trim()
-    value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
-    metadata[key.trim() as keyof T] = value as T[keyof T]
-  })
-
-  return { metadata: metadata as T, content }
-}
-
 // Generic file utilities
 function getMDXFiles(dir: string): string[] {
   return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx')
 }
 
-function readMDXFile<T extends BaseMetadata>(
-  filePath: string,
-): {
-  metadata: T
-  content: string
-} {
+// Fast frontmatter-only extraction (for listing pages)
+function readMDXMetadata<T extends BaseMetadata>(filePath: string): T {
   const rawContent = fs.readFileSync(filePath, 'utf-8')
-  return parseFrontmatter<T>(rawContent)
+  const { frontmatter } = getFrontmatter<T>(rawContent)
+  return frontmatter
 }
 
-function getMDXData<T extends BaseMetadata>(dir: string): ContentItem<T>[] {
+// Full MDX processing with frontmatter (for individual pages)
+async function readMDXFile<T extends BaseMetadata>(
+  filePath: string,
+): Promise<{
+  metadata: T
+  content: string
+}> {
+  const rawContent = fs.readFileSync(filePath, 'utf-8')
+
+  // Use evaluate to parse frontmatter properly
+  const result = await evaluate({
+    source: rawContent,
+    options: {
+      parseFrontmatter: true,
+    },
+  })
+
+  return {
+    metadata: result.frontmatter as T,
+    content: rawContent,
+  }
+}
+
+// Fast metadata extraction for listing pages
+function getMDXMetadata<T extends BaseMetadata>(dir: string): ContentItem<T>[] {
   const mdxFiles = getMDXFiles(dir)
   return mdxFiles.map((file) => {
-    const { metadata, content } = readMDXFile<T>(path.join(dir, file))
+    const metadata = readMDXMetadata<T>(path.join(dir, file))
     const slug = path.basename(file, path.extname(file))
     return {
       metadata,
       slug,
-      content,
+      content: '', // Empty content for metadata-only queries
     }
   })
 }
 
+async function getMDXData<T extends BaseMetadata>(
+  dir: string,
+): Promise<ContentItem<T>[]> {
+  const mdxFiles = getMDXFiles(dir)
+  const results = await Promise.all(
+    mdxFiles.map(async (file) => {
+      const { metadata, content } = await readMDXFile<T>(path.join(dir, file))
+      const slug = path.basename(file, path.extname(file))
+      return {
+        metadata,
+        slug,
+        content,
+      }
+    }),
+  )
+  return results
+}
+
 // TIL-specific functions
-export function getTilPosts(): ContentItem<TilMetadata>[] {
+export function getTilPostsMetadata(): ContentItem<TilMetadata>[] {
+  const tilDirectory = path.join(process.cwd(), 'src', 'app', 'content', 'til')
+  return getMDXMetadata<TilMetadata>(tilDirectory)
+}
+
+export async function getTilPosts(): Promise<ContentItem<TilMetadata>[]> {
   const tilDirectory = path.join(process.cwd(), 'src', 'app', 'content', 'til')
   return getMDXData<TilMetadata>(tilDirectory)
 }
 
-export function getTilPost(slug: string): ContentItem<TilMetadata> | null {
+export async function getTilPost(
+  slug: string,
+): Promise<ContentItem<TilMetadata> | null> {
   const tilDirectory = path.join(process.cwd(), 'src', 'app', 'content', 'til')
   const filePath = path.join(tilDirectory, `${slug}.mdx`)
 
@@ -138,12 +165,25 @@ export function getTilPost(slug: string): ContentItem<TilMetadata> | null {
     return null
   }
 
-  const { metadata, content } = readMDXFile<TilMetadata>(filePath)
+  const { metadata, content } = await readMDXFile<TilMetadata>(filePath)
   return { metadata, slug, content }
 }
 
 // Static page functions
-export function getPageContent(slug: string): ContentItem<PageMetadata> | null {
+export function getAllPagesMetadata(): ContentItem<PageMetadata>[] {
+  const pagesDirectory = path.join(
+    process.cwd(),
+    'src',
+    'app',
+    'content',
+    'pages',
+  )
+  return getMDXMetadata<PageMetadata>(pagesDirectory)
+}
+
+export async function getPageContent(
+  slug: string,
+): Promise<ContentItem<PageMetadata> | null> {
   const pagesDirectory = path.join(
     process.cwd(),
     'src',
@@ -157,11 +197,11 @@ export function getPageContent(slug: string): ContentItem<PageMetadata> | null {
     return null
   }
 
-  const { metadata, content } = readMDXFile<PageMetadata>(filePath)
+  const { metadata, content } = await readMDXFile<PageMetadata>(filePath)
   return { metadata, slug, content }
 }
 
-export function getAllPages(): ContentItem<PageMetadata>[] {
+export async function getAllPages(): Promise<ContentItem<PageMetadata>[]> {
   const pagesDirectory = path.join(
     process.cwd(),
     'src',

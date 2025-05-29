@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation'
 
-import { CustomMDX } from '@/components/mdx'
-import { getAllPages, getPageContent } from '@/lib/utils/content'
+import { MDX } from '@/components/MDX'
+import { getAllPagesMetadata, getPageContent } from '@/lib/utils/content'
 
 export function generateStaticParams() {
-  const pages = getAllPages()
+  const pages = getAllPagesMetadata()
 
   return pages.map((page) => ({
     slug: page.slug,
@@ -17,27 +17,28 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const page = getPageContent(slug)
+  const page = await getPageContent(slug)
 
   if (!page) {
-    return null
+    return {
+      title: 'Not Found',
+      description: 'The page you are looking for does not exist.',
+    }
   }
 
-  const { title, description } = page.metadata
-
   return {
-    title,
-    description,
+    title: page.metadata.title,
+    description: page.metadata.description,
     openGraph: {
-      title,
-      description,
+      title: page.metadata.title,
+      description: page.metadata.description,
       type: 'website',
-      url: `/${slug}`,
+      url: page.slug === 'home' ? '' : `/${page.slug}`,
     },
     twitter: {
-      card: 'summary',
-      title,
-      description,
+      card: 'summary_large_image',
+      title: page.metadata.title,
+      description: page.metadata.description,
     },
   }
 }
@@ -48,7 +49,7 @@ export default async function DynamicPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const page = getPageContent(slug)
+  const page = await getPageContent(slug)
 
   if (!page) {
     notFound()
@@ -65,7 +66,7 @@ export default async function DynamicPage({
             '@type': 'WebPage',
             headline: page.metadata.title,
             description: page.metadata.description,
-            url: `/${page.slug}`,
+            url: page.slug === 'home' ? '' : `/${page.slug}`,
             author: {
               '@type': 'Person',
               name: 'Nils Schönwald',
@@ -74,7 +75,7 @@ export default async function DynamicPage({
         }}
       />
       <article className="prose mt-8">
-        <CustomMDX source={page.content} />
+        <MDX source={page.content} />
       </article>
     </>
   )

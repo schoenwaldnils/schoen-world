@@ -1,10 +1,14 @@
 import { notFound } from 'next/navigation'
 
-import { CustomMDX } from '@/components/mdx'
-import { formatDate, getTilPost, getTilPosts } from '@/lib/utils/content'
+import { MDX } from '@/components/MDX'
+import {
+  formatDate,
+  getTilPost,
+  getTilPostsMetadata,
+} from '@/lib/utils/content'
 
 export function generateStaticParams() {
-  const posts = getTilPosts()
+  const posts = getTilPostsMetadata()
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -17,40 +21,41 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const post = getTilPost(slug)
+  const post = await getTilPost(slug)
+
   if (!post) {
-    return null
+    return {
+      title: 'Not Found',
+      description: 'The post you are looking for does not exist.',
+    }
   }
 
-  const {
-    title,
-    publishedAt: publishedTime,
-    summary: description,
-    image,
-  } = post.metadata
-
-  const ogImage = image ? image : `/og?title=${encodeURIComponent(title)}`
-
   return {
-    title,
-    description,
+    title: post.metadata.title,
+    description: post.metadata.summary,
     openGraph: {
-      title,
-      description,
+      title: post.metadata.title,
+      description: post.metadata.summary,
       type: 'article',
-      publishedTime,
+      publishedTime: post.metadata.publishedAt,
       url: `/til/${post.slug}`,
       images: [
         {
-          url: ogImage,
+          url: post.metadata.image
+            ? post.metadata.image
+            : `/og?title=${encodeURIComponent(post.metadata.title)}`,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title,
-      description,
-      images: [ogImage],
+      title: post.metadata.title,
+      description: post.metadata.summary,
+      images: [
+        post.metadata.image
+          ? post.metadata.image
+          : `/og?title=${encodeURIComponent(post.metadata.title)}`,
+      ],
     },
   }
 }
@@ -61,14 +66,14 @@ export default async function TilPost({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const post = getTilPost(slug)
+  const post = await getTilPost(slug)
 
   if (!post) {
     notFound()
   }
 
   return (
-    <section>
+    <article>
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -91,17 +96,13 @@ export default async function TilPost({
           }),
         }}
       />
-      <h1 className="title text-2xl font-semibold tracking-tighter">
-        {post.metadata.title}
-      </h1>
+      <h1 className="h1">{post.metadata.title}</h1>
       <div className="mt-2 mb-8 flex items-center justify-between text-sm">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.metadata.publishedAt)}
         </p>
       </div>
-      <article className="prose">
-        <CustomMDX source={post.content} />
-      </article>
-    </section>
+      <MDX source={post.content} />
+    </article>
   )
 }

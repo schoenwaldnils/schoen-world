@@ -53,8 +53,8 @@ The key insight was understanding CSS selector specificity and descendant matchi
 
 ## How It Works
 
-1. **`&:where([data-theme='dark'], [data-theme='dark'] *)`** - Matches elements with `data-theme="dark"` OR descendants of such elements
-2. **`&:where(:not([data-theme] *))`** - Matches elements that are NOT descendants of any element with a `data-theme` attribute. This is our fallback to use the system preference.
+1. `&:where([data-theme='dark'], [data-theme='dark'] *)` - Matches elements with `data-theme="dark"` OR descendants of such elements
+2. `&:where(:not([data-theme] *))` - Matches elements that are NOT descendants of any element with a `data-theme` attribute. This is our fallback to use the system preference.
 
 ## What Doesn't Work
 

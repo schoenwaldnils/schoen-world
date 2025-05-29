@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
-import { formatDate, getTilPosts } from '@/lib/utils/content'
+import { formatDate, getTilPostsMetadata } from '@/lib/utils/content'
 
 export function TilPosts() {
-  const allTils = getTilPosts()
+  const allTils = getTilPostsMetadata()
 
   return (
     <div>

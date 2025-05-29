@@ -1,10 +1,8 @@
-import createMDX, { NextMDXOptions } from '@next/mdx'
 import type { NextConfig } from 'next'
-import remarkGfm from 'remark-gfm'
-import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 
 const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'mdx'],
+  transpilePackages: ['next-mdx-remote-client'],
   turbopack: {
     rules: {
       '*.svg': {
@@ -32,17 +30,6 @@ const nextConfig: NextConfig = {
       },
     },
   },
-  // experimental: {
-  //   mdxRs: {
-  //     mdxType: 'gfm', // Configure what kind of mdx syntax will be used to parse & transform
-  //   },
-  // },
 }
 
-const withMDX = createMDX({
-  options: {
-    remarkPlugins: [remarkMdxFrontmatter, remarkGfm],
-  },
-} satisfies NextMDXOptions)
-
-export default withMDX(nextConfig)
+export default nextConfig
