@@ -2,6 +2,7 @@ import './normalize.css'
 import './globals.css'
 import './theme.css'
 import './typography.css'
+import './highlightjs.css'
 
 import { getCookie } from 'cookies-next/server'
 import type { Metadata } from 'next'
@@ -27,12 +28,10 @@ export default async function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en" data-theme={theme || null}>
-        <body>
-          <div className="mx-auto flex min-h-screen max-w-6xl flex-col justify-between gap-8 px-8 md:gap-16">
-            <Header />
-            <main className="mx-auto max-w-2xl">{children}</main>
-            <Footer theme={theme as Theme} />
-          </div>
+        <body className="flex min-h-screen flex-col justify-between gap-8 px-8 md:gap-16">
+          <Header className="mx-auto w-full max-w-4xl" />
+          <main className="mx-auto w-full max-w-2xl">{children}</main>
+          <Footer theme={theme as Theme} className="mx-auto w-full max-w-4xl" />
         </body>
       </html>
     </ViewTransitions>

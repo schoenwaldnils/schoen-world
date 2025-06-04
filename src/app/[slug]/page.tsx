@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 
 import { MDX } from '@/components/MDX'
-import { getAllPagesMetadata, getPageContent } from '@/lib/utils/content'
+import { getAllPagesMetadata, getPage } from '@/lib/utils/content'
 
 export function generateStaticParams() {
   const pages = getAllPagesMetadata()
@@ -17,7 +17,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const page = await getPageContent(slug)
+  const page = await getPage(slug)
 
   if (!page) {
     return {
@@ -49,7 +49,7 @@ export default async function DynamicPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const page = await getPageContent(slug)
+  const page = await getPage(slug)
 
   if (!page) {
     notFound()

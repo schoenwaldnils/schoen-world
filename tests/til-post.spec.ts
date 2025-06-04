@@ -1,11 +1,11 @@
 import { expect, test } from '@playwright/test'
 
-test.describe('TIL Individual Post', () => {
-  // Test with a known TIL post from the error logs
-  const testSlug = 'typescript-utility-types'
+// Test with the known hello-world TIL post
+const TEST_SLUG = 'hello-world'
 
+test.describe('TIL Individual Post', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(`/til/${testSlug}`)
+    await page.goto(`/til/${TEST_SLUG}`)
   })
 
   test('should load successfully', async ({ page }) => {
@@ -85,20 +85,17 @@ test.describe('TIL Post Navigation', () => {
     await page.goto('/til')
     await page.waitForLoadState('networkidle')
 
-    // Find first TIL post link
-    const postLinks = page.locator('a[href^="/til/"]')
-    const linkCount = await postLinks.count()
+    // Find the hello-world post link specifically
+    const postLink = page.locator(`a[href="/til/${TEST_SLUG}"]`)
 
-    if (linkCount > 0) {
-      const firstPostLink = postLinks.first()
-      const href = await firstPostLink.getAttribute('href')
+    // Ensure the specific link exists and is clickable
+    await expect(postLink).toBeVisible()
+    await expect(postLink).toBeEnabled()
 
-      // Click the link and verify navigation
-      await firstPostLink.click()
-      await page.waitForLoadState('networkidle')
+    await postLink.click()
+    await page.waitForLoadState('networkidle')
 
-      expect(page.url()).toContain(href!)
-    }
+    expect(page.url()).toContain(`/til/${TEST_SLUG}`)
   })
 
   test('should handle non-existent TIL posts gracefully', async ({ page }) => {

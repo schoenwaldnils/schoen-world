@@ -1,7 +1,6 @@
 ---
 title: 'Flexible Dark Mode with Tailwind CSS v4 Custom Variants'
-publishedAt: '2025-05-27'
-summary: 'How to create a custom dark variant that respects both data-theme attributes and system preferences with proper CSS selector logic.'
+description: 'How to create a custom dark variant that respects both data-theme attributes and system preferences with proper CSS selector logic.'
 ---
 
 Today I learned how to create a flexible dark mode system in Tailwind CSS v4 that combines explicit theme selection with system preference fallback.
@@ -63,7 +62,7 @@ My first attempt used `:not([data-theme]) *` which matches the wrong elements - 
 ```html
 <!-- WRONG! Do not use this! -->
 <html data-theme="light">
-  <body> <!-- This element would match the :not([data-theme]) * selector -->
+  <body> <!-- This element would match the :not([data-theme]) selector -->
     <div class="dark:bg-gray-800">
         <!-- This div would get dark styles -->
     </div>
@@ -131,4 +130,4 @@ The CSS specificity and selector logic ensures:
 - **No conflicts** between manual theme switching and system preferences
 - **Predictable cascade** with clear priority order
 - **Simple implementation** without JavaScript complexity
-- **System preferences** are respected when no explicit theme is set
+- **System preferences** are respected when no explicit theme is set 

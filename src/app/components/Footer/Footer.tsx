@@ -1,9 +1,16 @@
 import { Link } from '@/components/Link'
 import { Theme, ThemeSwitch } from '@/components/ThemeSwitch'
+import { cn } from '@/lib/utils/cn'
 
 import css from './Footer.module.css'
 
-export const Footer = ({ theme }: { theme: Theme }) => {
+export const Footer = ({
+  theme,
+  className,
+}: {
+  theme: Theme
+  className?: string
+}) => {
   const socialLinks = [
     { name: 'github', href: 'https://github.com/schoenwaldnils', newTab: true },
     {
@@ -31,7 +38,7 @@ export const Footer = ({ theme }: { theme: Theme }) => {
   const legalLinks = [{ name: 'imprint', href: '/imprint', newTab: false }]
 
   return (
-    <footer className={css.footer}>
+    <footer className={cn(css.footer, className)}>
       <div className={css.footerNav}>
         {socialLinks.map((link) => {
           const props = {

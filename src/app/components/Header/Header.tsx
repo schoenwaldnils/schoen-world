@@ -1,12 +1,13 @@
 import Link from 'next/link'
 
 import { Logo } from '@/components/Logo'
+import { cn } from '@/lib/utils/cn'
 
 import css from './Header.module.css'
 
-export const Header = () => {
+export const Header = ({ className }: { className?: string }) => {
   return (
-    <header className={css.Header}>
+    <header className={cn(css.Header, className)}>
       <Logo />
       <nav>
         <ul className="flex gap-6">

@@ -21,6 +21,8 @@
   --breakpoint-md: 48rem;
   --breakpoint-lg: 80rem;
 
+  /* --default-transition-duration: 150ms; */
+
   /* Colors - Brand */
   --color-brand: #ba3e48;
   --color-brand-dark: hsl(from var(--color-brand) h s calc(l - 20));
@@ -91,17 +93,6 @@
     --foreground: light-dark(var(--color-charcoal-light), var(--color-white));
     --background: light-dark(var(--color-white), var(--color-charcoal));
     --primary: light-dark(var(--color-brand), var(--color-brand-light));
-
-    /* Sugar-high syntax highlighting colors */
-    --sh-class: #8d85ff;
-    --sh-identifier: #74c0fc;
-    --sh-sign: #ff9ff3;
-    --sh-property: #4e8fdf;
-    --sh-entity: #6eafad;
-    --sh-jsxliterals: #bf7db6;
-    --sh-string: #4ecdc4;
-    --sh-keyword: #ff6b6b;
-    --sh-comment: #6c7b7f;
   }
 }
 
@@ -121,5 +112,13 @@
 
   body {
     color: var(--foreground);
+  }
+
+  ::selection {
+    background-color: #ba3e4820;
+  }
+
+  :focus {
+    outline-color: var(--color-brand);
   }
 }

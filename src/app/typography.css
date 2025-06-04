@@ -45,7 +45,6 @@
     font-size: var(--font-size-body);
     margin-block-start: 1em;
     margin-block-end: 1.5em;
-    max-width: 64ch;
   }
 
   .mdx ul,

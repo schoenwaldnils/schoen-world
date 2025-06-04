@@ -6,7 +6,7 @@ export const StageHome = ({ className }: { className?: string }) => {
   return (
     <div
       className={clsx(
-        'flex flex-col-reverse items-center justify-between gap-6 md:flex-row md:items-end md:gap-8',
+        'mb-8 flex flex-col-reverse items-center justify-between gap-6 md:flex-row md:items-end md:gap-8',
         className,
       )}
     >
@@ -14,7 +14,7 @@ export const StageHome = ({ className }: { className?: string }) => {
         <p>
           Hello there <span className="text-primary">🖖</span>, I'm
         </p>
-        <h1>Nils Schönwald</h1>
+        <h1 className="my-0">Nils Schönwald</h1>
       </div>
       <Avatar />
     </div>

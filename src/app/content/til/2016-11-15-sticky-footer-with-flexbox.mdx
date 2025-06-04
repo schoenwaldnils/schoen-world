@@ -1,0 +1,80 @@
+---
+title: 'Sticky footer with flexbox'
+description: 'With flexbox there is now a simple way to let your footer stick to the bottom, when there is not enough content, and make it static when there is.'
+modifiedAt: '2021-05-27T11:27:51.543'
+---
+
+With flexbox there is now a simple way to let your footer stick to the bottom, when there is not enough content, and make it static when there is.
+
+## HTML Structure
+
+At first we need the HTML-skeleton. One wrapper, in this case the body-element itself, and at least 2 child-elements. I'm also including the header here, because it is often used in this kind of arrangement.
+
+```html
+<body>
+  <div class="Header"></div>
+  <div class="Content"></div>
+  <div class="Footer"></div>
+</body>
+```
+
+## Container Setup
+
+And now give the `body` `display: flex` and `flex-direction: column` to stack the three child elements vertically.  
+To support IE 11 we also need those styles on the `html` element.  
+Also the `body` elements need to be at least `100vh` in height.
+
+```css
+html,
+body {
+  display: flex;
+  flex-direction: column;
+}
+body {
+  min-height: 100vh;
+}
+```
+
+## The Magic Touch
+
+The trick now is to give the `.Content`-element the `flex-grow: 1` so the footer gets pushed to the bottom.  
+You can also add `flex-shrink: 0` to the other elements so that they don't get squished when the viewport is too small.
+
+```css
+.Header,
+.Footer {
+  flex-shrink: 0;
+}
+.Content {
+  flex-grow: 1;
+}
+```
+
+And voilá your footer is at the bottom all the time.
+
+## The Complete Result
+
+The complete CSS solution:
+
+```css
+html,
+body {
+  display: flex;
+  flex-direction: column;
+}
+body {
+  min-height: 100vh;
+}
+.Header,
+.Footer {
+  flex-shrink: 0;
+}
+.Content {
+  flex-grow: 1;
+}
+```
+
+## Related Links
+
+- [caniuse.com/#feat=viewport-units](https://caniuse.com/#feat=viewport-units)
+- [caniuse.com/#feat=flexbox](https://caniuse.com/#feat=flexbox) 

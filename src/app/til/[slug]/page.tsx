@@ -1,11 +1,8 @@
 import { notFound } from 'next/navigation'
 
 import { MDX } from '@/components/MDX'
-import {
-  formatDate,
-  getTilPost,
-  getTilPostsMetadata,
-} from '@/lib/utils/content'
+import { getTilPost, getTilPostsMetadata } from '@/lib/utils/content'
+import { formatDate } from '@/lib/utils/formatDate'
 
 export function generateStaticParams() {
   const posts = getTilPostsMetadata()
@@ -32,10 +29,10 @@ export async function generateMetadata({
 
   return {
     title: post.metadata.title,
-    description: post.metadata.summary,
+    description: post.metadata.description,
     openGraph: {
       title: post.metadata.title,
-      description: post.metadata.summary,
+      description: post.metadata.description,
       type: 'article',
       publishedTime: post.metadata.publishedAt,
       url: `/til/${post.slug}`,
@@ -50,7 +47,7 @@ export async function generateMetadata({
     twitter: {
       card: 'summary_large_image',
       title: post.metadata.title,
-      description: post.metadata.summary,
+      description: post.metadata.description,
       images: [
         post.metadata.image
           ? post.metadata.image
@@ -84,7 +81,7 @@ export default async function TilPost({
             headline: post.metadata.title,
             datePublished: post.metadata.publishedAt,
             dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
+            description: post.metadata.description,
             image: post.metadata.image
               ? post.metadata.image
               : `/og?title=${encodeURIComponent(post.metadata.title)}`,
@@ -96,12 +93,13 @@ export default async function TilPost({
           }),
         }}
       />
+
       <h1 className="h1">{post.metadata.title}</h1>
-      <div className="mt-2 mb-8 flex items-center justify-between text-sm">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          {formatDate(post.metadata.publishedAt)}
-        </p>
-      </div>
+
+      <p className="mt-2 mb-8 text-sm text-neutral-600 dark:text-neutral-400">
+        {formatDate(post.metadata.publishedAt)}
+      </p>
+
       <MDX source={post.content} />
     </article>
   )

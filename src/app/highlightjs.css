@@ -1,0 +1,139 @@
+@layer highlightjs {
+  :root {
+    --hljs-gray: var(--color-gray-400);
+    --hljs-gray-light: var(--color-gray-500);
+    --hljs-charcoal: var(--color-charcoal);
+    --hljs-charcoal-light: var(--color-charcoal-light);
+    --hljs-red: var(--color-red-400);
+    --hljs-orange: var(--color-orange-400);
+    --hljs-yellow: var(--color-yellow-400);
+    --hljs-green: var(--color-green-500);
+    --hljs-blue: var(--color-blue-400);
+    --hljs-purple: var(--color-purple-400);
+    --hljs-cyan: var(--color-cyan-400);
+    --hljs-white: var(--color-white);
+  }
+
+  /* code blocks */
+  .hljs::after {
+    color: var(--hljs-gray);
+  }
+
+  .hljs.css::after {
+    content: 'css';
+  }
+
+  .hljs.html::after {
+    content: 'html';
+  }
+
+  .hljs.yaml::after {
+    content: 'yaml';
+  }
+
+  .hljs.ts::after {
+    content: 'ts';
+  }
+
+  .hljs.tsx::after {
+    content: 'tsx';
+  }
+
+  .hljs {
+    color: light-dark(var(--hljs-charcoal), var(--hljs-white));
+  }
+
+  /* purposely do not highlight these things */
+  .hljs-formula,
+  .hljs-params,
+  .hljs-property {
+  }
+  .hljs-comment {
+    color: var(--hljs-gray);
+  }
+  .hljs-tag {
+    color: var(--hljs-gray-light);
+  }
+  .hljs-subst,
+  .hljs-punctuation,
+  .hljs-operator {
+    color: var(--hljs-gray);
+  }
+  .hljs-operator {
+    opacity: 0.7;
+  }
+  .hljs-bullet,
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-selector-tag,
+  .hljs-name,
+  .hljs-deletion {
+    color: var(--hljs-red);
+  }
+  .hljs-symbol,
+  .hljs-number,
+  .hljs-link,
+  .hljs-attr,
+  .hljs-selector-pseudo,
+  .hljs-variable.constant_,
+  .hljs-selector-class,
+  .hljs-literal {
+    color: var(--hljs-orange);
+  }
+  .hljs-title,
+  .hljs-class .hljs-title,
+  .hljs-title.class_ {
+    color: var(--hljs-yellow);
+  }
+  .hljs-strong {
+    font-weight: bold;
+    color: var(--hljs-yellow);
+  }
+  .hljs-code,
+  .hljs-addition,
+  .hljs-title.class_.inherited__,
+  .hljs-string {
+    color: var(--hljs-green);
+  }
+  /* guessing */
+  .hljs-built_in,
+  .hljs-doctag,
+  .hljs-quote,
+  .hljs-keyword.hljs-atrule,
+  .hljs-regexp {
+    color: var(--hljs-cyan);
+  }
+  .hljs-function .hljs-title,
+  .hljs-attribute,
+  .ruby .hljs-property,
+  .hljs-title.function_,
+  .hljs-section {
+    color: var(--hljs-blue);
+  }
+  /* .hljs-selector-id, */
+  /* .hljs-selector-attr, */
+  .hljs-type,
+  .hljs-template-tag,
+  .diff .hljs-meta,
+  .hljs-keyword {
+    color: var(--hljs-purple);
+  }
+  .hljs-emphasis {
+    color: var(--hljs-purple);
+    font-style: italic;
+  }
+  /*
+      prevent top level .keyword and .string scopes
+      from leaking into meta by accident
+    */
+  .hljs-meta,
+  .hljs-meta .hljs-keyword,
+  .hljs-meta .hljs-string {
+    color: var(--hljs-orange);
+  }
+  /* for v10 compatible themes */
+  .hljs-meta .hljs-keyword,
+  .hljs-meta-keyword {
+    font-weight: bold;
+  }
+}

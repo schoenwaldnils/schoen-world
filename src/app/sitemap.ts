@@ -1,7 +1,8 @@
 import { promises as fs } from 'fs'
+import type { MetadataRoute } from 'next'
 import path from 'path'
 
-async function getMdxSlugs(dir: string) {
+async function getMdxSlugs(dir: string): Promise<string[]> {
   const entries = await fs.readdir(dir, {
     recursive: true,
     withFileTypes: true,
@@ -21,11 +22,11 @@ async function getMdxSlugs(dir: string) {
     .map((slug) => slug.replace(/\\/g, '/'))
 }
 
-export default async function sitemap() {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const searchDirectory = path.join(process.cwd(), 'src', 'app')
   const slugs = await getMdxSlugs(searchDirectory)
 
-  const pages = slugs.map((slug) => ({
+  const pages: MetadataRoute.Sitemap = slugs.map((slug) => ({
     url: `https://schoen.world${slug ? `/${slug}` : ''}`,
     lastModified: new Date().toISOString(),
   }))

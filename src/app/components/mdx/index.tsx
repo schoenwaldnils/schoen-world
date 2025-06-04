@@ -1,8 +1,9 @@
 import { MDXRemote } from 'next-mdx-remote-client/rsc'
 import React from 'react'
-import highlight from 'remark-sugar-high'
+import remarkGfm from 'remark-gfm'
 
 import { Blockquote } from './Blockquote'
+import { Code, Pre } from './Code'
 import { H1, H2, H3, H4 } from './Headings'
 import { MDXImage } from './MDXImage'
 import { MDXLink } from './MDXLink'
@@ -20,6 +21,8 @@ const components = {
   Image: MDXImage,
   Table,
   StageHome: MDXStageHome,
+  code: Code,
+  pre: Pre,
 }
 
 export function MDX({ source }: { source: string }) {
@@ -30,7 +33,7 @@ export function MDX({ source }: { source: string }) {
         components={components}
         options={{
           mdxOptions: {
-            remarkPlugins: [highlight],
+            remarkPlugins: [remarkGfm],
           },
           parseFrontmatter: true,
         }}

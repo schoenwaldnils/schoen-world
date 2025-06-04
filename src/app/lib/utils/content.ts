@@ -6,12 +6,12 @@ import path from 'path'
 // Base metadata that all content types share
 interface BaseMetadata extends Record<string, unknown> {
   title: string
+  publishedAt: string
 }
 
 // TIL-specific metadata
 export interface TilMetadata extends BaseMetadata {
-  publishedAt: string
-  summary: string
+  description: string
   image?: string
 }
 
@@ -27,54 +27,15 @@ export interface ContentItem<T extends BaseMetadata> {
   content: string
 }
 
-// Date formatting utilities
-export function formatDate(
-  date: string,
-  options: {
-    includeRelative?: boolean
-    style?: 'short' | 'long' | 'narrow'
-    locale?: string
-  } = {},
-) {
-  const { includeRelative = false, style = 'long', locale = 'en-US' } = options
+// Extract date from filename (format: YYYY-MM-DD-slug.mdx)
+function extractDateFromFilename(filename: string): string {
+  const dateMatch = filename.match(/^(\d{4}-\d{2}-\d{2})-/)
+  return dateMatch ? dateMatch[1] : new Date().toISOString().split('T')[0]
+}
 
-  const targetDate = new Date(date)
-  const fullDate = targetDate.toLocaleDateString(locale, {
-    year: 'numeric',
-    month: style,
-    day: 'numeric',
-  })
-
-  if (!includeRelative) {
-    return fullDate
-  }
-
-  const now = new Date()
-  const diffInSeconds = (now.getTime() - targetDate.getTime()) / 1000
-
-  // Convert to appropriate time unit
-  const rtf = new Intl.RelativeTimeFormat(locale, {
-    numeric: 'auto',
-    style: 'long',
-  })
-
-  let relativeTime: string
-
-  if (Math.abs(diffInSeconds) < 60) {
-    relativeTime = rtf.format(-Math.round(diffInSeconds), 'second')
-  } else if (Math.abs(diffInSeconds) < 3600) {
-    relativeTime = rtf.format(-Math.round(diffInSeconds / 60), 'minute')
-  } else if (Math.abs(diffInSeconds) < 86400) {
-    relativeTime = rtf.format(-Math.round(diffInSeconds / 3600), 'hour')
-  } else if (Math.abs(diffInSeconds) < 2592000) {
-    relativeTime = rtf.format(-Math.round(diffInSeconds / 86400), 'day')
-  } else if (Math.abs(diffInSeconds) < 31536000) {
-    relativeTime = rtf.format(-Math.round(diffInSeconds / 2592000), 'month')
-  } else {
-    relativeTime = rtf.format(-Math.round(diffInSeconds / 31536000), 'year')
-  }
-
-  return `${fullDate} (${relativeTime})`
+// Extract slug from filename (remove date prefix and extension)
+function extractSlugFromFilename(filename: string): string {
+  return filename.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.mdx$/, '')
 }
 
 // Generic file utilities
@@ -115,15 +76,26 @@ async function readMDXFile<T extends BaseMetadata>(
 // Fast metadata extraction for listing pages
 function getMDXMetadata<T extends BaseMetadata>(dir: string): ContentItem<T>[] {
   const mdxFiles = getMDXFiles(dir)
-  return mdxFiles.map((file) => {
-    const metadata = readMDXMetadata<T>(path.join(dir, file))
-    const slug = path.basename(file, path.extname(file))
-    return {
-      metadata,
-      slug,
-      content: '', // Empty content for metadata-only queries
-    }
-  })
+  return mdxFiles
+    .map((file) => {
+      const metadata = readMDXMetadata<T>(path.join(dir, file))
+      const slug = extractSlugFromFilename(file)
+      const publishedAt = extractDateFromFilename(file)
+      return {
+        metadata: {
+          ...metadata,
+          publishedAt: metadata.publishedAt || publishedAt,
+        },
+        slug,
+        content: '', // Empty content for metadata-only queries
+      }
+    })
+    .sort((a, b) => {
+      if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
+        return -1
+      }
+      return 1
+    })
 }
 
 async function getMDXData<T extends BaseMetadata>(
@@ -133,9 +105,13 @@ async function getMDXData<T extends BaseMetadata>(
   const results = await Promise.all(
     mdxFiles.map(async (file) => {
       const { metadata, content } = await readMDXFile<T>(path.join(dir, file))
-      const slug = path.basename(file, path.extname(file))
+      const slug = extractSlugFromFilename(file)
+      const publishedAt = extractDateFromFilename(file)
       return {
-        metadata,
+        metadata: {
+          ...metadata,
+          publishedAt: metadata.publishedAt || publishedAt,
+        },
         slug,
         content,
       }
@@ -158,15 +134,14 @@ export async function getTilPosts(): Promise<ContentItem<TilMetadata>[]> {
 export async function getTilPost(
   slug: string,
 ): Promise<ContentItem<TilMetadata> | null> {
-  const tilDirectory = path.join(process.cwd(), 'src', 'app', 'content', 'til')
-  const filePath = path.join(tilDirectory, `${slug}.mdx`)
+  const files = await getTilPosts()
+  const matchingFile = files.find((file) => file.slug === slug)
 
-  if (!fs.existsSync(filePath)) {
+  if (!matchingFile) {
     return null
   }
 
-  const { metadata, content } = await readMDXFile<TilMetadata>(filePath)
-  return { metadata, slug, content }
+  return matchingFile
 }
 
 // Static page functions
@@ -181,26 +156,6 @@ export function getAllPagesMetadata(): ContentItem<PageMetadata>[] {
   return getMDXMetadata<PageMetadata>(pagesDirectory)
 }
 
-export async function getPageContent(
-  slug: string,
-): Promise<ContentItem<PageMetadata> | null> {
-  const pagesDirectory = path.join(
-    process.cwd(),
-    'src',
-    'app',
-    'content',
-    'pages',
-  )
-  const filePath = path.join(pagesDirectory, `${slug}.mdx`)
-
-  if (!fs.existsSync(filePath)) {
-    return null
-  }
-
-  const { metadata, content } = await readMDXFile<PageMetadata>(filePath)
-  return { metadata, slug, content }
-}
-
 export async function getAllPages(): Promise<ContentItem<PageMetadata>[]> {
   const pagesDirectory = path.join(
     process.cwd(),
@@ -210,4 +165,17 @@ export async function getAllPages(): Promise<ContentItem<PageMetadata>[]> {
     'pages',
   )
   return getMDXData<PageMetadata>(pagesDirectory)
+}
+
+export async function getPage(
+  slug: string,
+): Promise<ContentItem<PageMetadata> | null> {
+  const pages = await getAllPages()
+  const matchingPage = pages.find((page) => page.slug === slug)
+
+  if (!matchingPage) {
+    return null
+  }
+
+  return matchingPage
 }
