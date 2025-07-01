@@ -1,25 +1,7 @@
-@property --border-color {
-  syntax: '<color>';
-  inherits: false;
-  initial-value: var(--color-white);
-}
-
 .avatarImage {
   --size: 10rem;
   width: var(--size);
   height: var(--size);
   border-radius: calc(var(--size) / 2);
   aspect-ratio: 1 / 1;
-}
-
-@media (prefers-color-scheme: dark) {
-  .avatarImage {
-    --border-color: var(--color-white);
-    box-shadow: 0 0 0 0.2rem var(--border-color);
-    transition: box-shadow 150ms;
-  }
-
-  .avatarImage:hover {
-    --border-color: var(--color-brand);
-  }
 }

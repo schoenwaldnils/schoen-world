@@ -1,3 +1,4 @@
+import { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { MDX } from '@/components/MDX'
@@ -12,11 +13,14 @@ export function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({
-  params,
-}: {
+type Props = {
   params: Promise<{ slug: string }>
-}) {
+}
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const { slug } = await params
   const post = await getTilPost(slug)
 
@@ -27,33 +31,31 @@ export async function generateMetadata({
     }
   }
 
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || []
+
   return {
+    metadataBase: new URL(
+      process.env.NEXT_PUBLIC_URL || 'https://schoen.world',
+    ),
     title: post.metadata.title,
     description: post.metadata.description,
     openGraph: {
-      title: post.metadata.title,
-      description: post.metadata.description,
       type: 'article',
       publishedTime: post.metadata.publishedAt,
       url: `/til/${post.slug}`,
       images: [
         {
-          url: post.metadata.image
-            ? post.metadata.image
-            : `/og?title=${encodeURIComponent(post.metadata.title)}`,
+          url: `/opengraph-image?type=til&slug=${post.slug}`,
         },
+        ...previousImages,
       ],
     },
-    twitter: {
-      card: 'summary_large_image',
-      title: post.metadata.title,
-      description: post.metadata.description,
-      images: [
-        post.metadata.image
-          ? post.metadata.image
-          : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-      ],
-    },
+    // twitter: {
+    //   card: 'summary_large_image',
+    //   title: post.metadata.title,
+    //   description: post.metadata.description,
+    // },
   }
 }
 

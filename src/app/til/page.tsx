@@ -1,12 +1,56 @@
 import { Rss } from 'lucide-react'
+import { Metadata } from 'next'
 import Link from 'next/link'
 
 import { TilPosts } from '@/components/TilPosts'
 
-export const metadata = {
-  title: 'Today I Learned',
-  description: 'Things I learn and want to remember.',
+const title = 'Today I Learned'
+const description = 'Things I learn and want to remember.'
+
+export const metadata: Metadata = {
+  title,
+  description,
+  openGraph: {
+    type: 'website',
+    url: `/til`,
+    images: [
+      {
+        url: `/opengraph-image?title=${title}&description=${description}`,
+      },
+    ],
+  },
 }
+
+// export async function generateMetadata(
+//   props: unknown,
+//   parent: ResolvingMetadata,
+// ): Promise<Metadata> {
+//   // optionally access and extend (rather than replace) parent metadata
+//   const previousImages = (await parent).openGraph?.images || []
+
+//   return {
+//     metadataBase: new URL(
+//       process.env.NEXT_PUBLIC_URL || 'https://schoen.world',
+//     ),
+//     title: 'Today I Learned',
+//     description: 'Things I learn and want to remember.',
+//     openGraph: {
+//       type: 'website',
+//       url: `/til`,
+//       images: [
+//         {
+//           url: `/opengraph-image?type=page&slug=til`,
+//         },
+//         ...previousImages,
+//       ],
+//     },
+//     // twitter: {
+//     //   card: 'summary_large_image',
+//     //   title: post.metadata.title,
+//     //   description: post.metadata.description,
+//     // },
+//   }
+// }
 
 export default function Page() {
   return (

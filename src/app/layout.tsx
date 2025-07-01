@@ -16,6 +16,7 @@ import { Theme } from '@/components/ThemeSwitch'
 export const metadata: Metadata = {
   title: 'Nils Schönwald - Frontend Developer',
   description: 'Frontend Developer based in Hamburg',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_URL || 'https://schoen.world'),
 }
 
 export default async function RootLayout({
@@ -28,7 +29,7 @@ export default async function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en" data-theme={theme || null}>
-        <body className="flex min-h-screen flex-col justify-between gap-8 px-8 md:gap-16">
+        <body className="flex min-h-screen flex-col justify-between px-8">
           <Header className="mx-auto w-full max-w-4xl" />
           <main className="mx-auto w-full max-w-2xl">{children}</main>
           <Footer theme={theme as Theme} className="mx-auto w-full max-w-4xl" />

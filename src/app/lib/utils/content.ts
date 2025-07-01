@@ -4,20 +4,20 @@ import { getFrontmatter } from 'next-mdx-remote-client/utils'
 import path from 'path'
 
 // Base metadata that all content types share
-interface BaseMetadata extends Record<string, unknown> {
+export interface BaseMetadata extends Record<string, unknown> {
   title: string
-  publishedAt: string
+  description?: string
+  image?: string
 }
 
 // TIL-specific metadata
 export interface TilMetadata extends BaseMetadata {
-  description: string
-  image?: string
+  publishedAt: string
 }
 
 // Static page metadata
 export interface PageMetadata extends BaseMetadata {
-  description: string
+  publishedAt: string
 }
 
 // Generic content item
@@ -91,7 +91,12 @@ function getMDXMetadata<T extends BaseMetadata>(dir: string): ContentItem<T>[] {
       }
     })
     .sort((a, b) => {
-      if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
+      if (
+        a.metadata.publishedAt &&
+        b.metadata.publishedAt &&
+        new Date(a.metadata.publishedAt as string) >
+          new Date(b.metadata.publishedAt as string)
+      ) {
         return -1
       }
       return 1

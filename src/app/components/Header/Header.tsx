@@ -8,7 +8,10 @@ import css from './Header.module.css'
 export const Header = ({ className }: { className?: string }) => {
   return (
     <header className={cn(css.Header, className)}>
-      <Logo />
+      <Link href="/" aria-label="Logo with link to home page">
+        <Logo className="w-3xs" />
+      </Link>
+
       <nav>
         <ul className="flex gap-6">
           <li>

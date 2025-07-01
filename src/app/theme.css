@@ -28,6 +28,7 @@
   --color-brand-dark: hsl(from var(--color-brand) h s calc(l - 20));
   --color-brand-light: hsl(from var(--color-brand) h s calc(l + 10));
   --color-brand-lighter: hsl(from var(--color-brand) h s calc(l + 20));
+  --color-brand-black: #424242;
 
   /* Colors - Charcoal */
   --color-charcoal: oklch(0.18 0.003 197);

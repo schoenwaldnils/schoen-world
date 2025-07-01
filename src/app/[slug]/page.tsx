@@ -34,6 +34,11 @@ export async function generateMetadata({
       description: page.metadata.description,
       type: 'website',
       url: page.slug === 'home' ? '' : `/${page.slug}`,
+      images: [
+        {
+          url: `/opengraph-image?title=${page.metadata.title}&description=${page.metadata.description || ''}`,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
@@ -74,7 +79,7 @@ export default async function DynamicPage({
           }),
         }}
       />
-      <article className="prose mt-8">
+      <article className="prose">
         <MDX source={page.content} />
       </article>
     </>
