@@ -30,8 +30,6 @@ export async function GET(request: NextRequest) {
   const type = searchParams.get('type')
   const slug = searchParams.get('slug')
 
-  console.log({ title, description, type, slug })
-
   if (!title || (type && !slug)) {
     return new Response('Bad Request', { status: 400 })
   }

@@ -7,7 +7,6 @@ export const OgImage = ({
   title?: string
   description?: string | null
 }) => {
-  console.log({ description })
   return (
     <div
       tw="text-white bg-[#131111] w-full h-full flex flex-col justify-between px-12 py-11 font-bold"
