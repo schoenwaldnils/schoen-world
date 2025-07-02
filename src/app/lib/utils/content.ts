@@ -13,6 +13,7 @@ export interface BaseMetadata extends Record<string, unknown> {
 // TIL-specific metadata
 export interface TilMetadata extends BaseMetadata {
   publishedAt: string
+  description: string
 }
 
 // Static page metadata
