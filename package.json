@@ -52,7 +52,6 @@
     "@next/eslint-plugin-next": "^15.3.4",
     "@playwright/test": "^1.53.2",
     "@snyk/protect": "^1.1297.3",
-    "@types/highlight.js": "^10.1.0",
     "@types/mdx": "^2.0.13",
     "@types/node": "^24.0.10",
     "@types/react": "^19.1.8",
