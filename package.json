@@ -28,7 +28,6 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@tailwindcss/postcss": "^4.1.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cookies-next": "^5.1.0",
