@@ -3,6 +3,9 @@ import type { NextConfig } from 'next'
 const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'mdx'],
   transpilePackages: ['next-mdx-remote-client'],
+  typescript: {
+    tsconfigPath: './tsconfig.json',
+  },
   turbopack: {
     rules: {
       '*.svg': {
