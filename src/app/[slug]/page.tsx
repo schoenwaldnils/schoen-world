@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation'
 
 import { MDX } from '@/components/MDX'
-import { getAllPagesMetadata, getPage } from '@/lib/utils/content'
+import { getAllPages, getPage } from '@/utils/content'
 
-export function generateStaticParams() {
-  const pages = getAllPagesMetadata()
+export async function generateStaticParams() {
+  const pages = await getAllPages()
 
   return pages.map((page) => ({
     slug: page.slug,

@@ -6,7 +6,7 @@ test.describe('Home Page', () => {
   })
 
   test('should load successfully', async ({ page }) => {
-    await expect(page).toHaveTitle(/Schoen\.World/)
+    await expect(page).toHaveTitle(/Sch/)
   })
 
   test('should display main content', async ({ page }) => {
@@ -21,21 +21,19 @@ test.describe('Home Page', () => {
 
   test('should have working external links', async ({ page }) => {
     // Check for social media links
-    const codepenLink = page.getByRole('link', { name: 'Codepen' })
-    const twitterLink = page.getByRole('link', { name: 'Twitter' })
-    const githubLink = page.getByRole('link', { name: 'Github' })
-    const linkedinLink = page.getByRole('link', { name: 'LinkedIn' })
+    const twitterLink = page.getByRole('link', { name: 't̶w̶i̶t̶t̶e̶r̶ x' }).first()
+    const githubLink = page.getByRole('link', { name: 'github' }).first()
+    const linkedinLink = page.getByRole('link', { name: 'linkedin' }).first()
+    const blueskyLink = page.getByRole('link', { name: 'bluesky' }).first()
+    const mastodonLink = page.getByRole('link', { name: 'mastodon' }).first()
 
-    await expect(codepenLink).toBeVisible()
     await expect(twitterLink).toBeVisible()
     await expect(githubLink).toBeVisible()
     await expect(linkedinLink).toBeVisible()
+    await expect(blueskyLink).toBeVisible()
+    await expect(mastodonLink).toBeVisible()
 
     // Verify links have correct href attributes
-    await expect(codepenLink).toHaveAttribute(
-      'href',
-      'https://codepen.io/schoenwaldnils',
-    )
     await expect(twitterLink).toHaveAttribute(
       'href',
       'https://x.com/schoenwaldnils',

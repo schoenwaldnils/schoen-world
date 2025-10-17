@@ -1,6 +1,6 @@
 import { Link } from '@/components/Link'
 import { Theme, ThemeSwitch } from '@/components/ThemeSwitch'
-import { cn } from '@/lib/utils/cn'
+import { cn } from '@/utils/cn'
 
 import css from './Footer.module.css'
 

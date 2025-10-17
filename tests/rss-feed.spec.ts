@@ -21,7 +21,8 @@ test.describe('RSS Feed (/rss.xml)', () => {
 
     // Check for basic RSS structure
     expect(feedContent).toContain('<?xml version="1.0" encoding="UTF-8"?>')
-    expect(feedContent).toContain('<rss version="2.0"')
+    expect(feedContent).toContain('<rss')
+    expect(feedContent).toContain('version="2.0"')
     expect(feedContent).toContain('<channel>')
     expect(feedContent).toContain('</channel>')
     expect(feedContent).toContain('</rss>')

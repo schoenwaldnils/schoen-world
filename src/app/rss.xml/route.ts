@@ -1,9 +1,9 @@
 import { default as RSS } from 'rss'
 
-import { getTilPostsMetadata } from '@/lib/utils/content'
+import { getNotes } from '@/utils/content'
 
-export function GET() {
-  const tilPosts = getTilPostsMetadata()
+export async function GET() {
+  const notes = await getNotes()
 
   const feedOptions: RSS.FeedOptions = {
     title: 'Schönwald',
@@ -15,18 +15,22 @@ export function GET() {
     webMaster: 'Nils Schönwald',
     copyright: `${new Date().getFullYear()} Nils Schönwald`,
     language: 'en',
-    categories: ['css', 'javascript', 'typescript', 'web development', 'til'],
+    categories: ['css', 'javascript', 'typescript', 'web development', 'notes'],
     pubDate: new Date(),
     ttl: 60 * 12, // 12 hours
   }
 
   const feed = new RSS(feedOptions)
 
-  tilPosts.forEach((post) => {
+  notes.forEach((post) => {
+    if (!post.metadata.description) {
+      throw new Error('Description is required for RSS feed')
+    }
+
     feed.item({
       title: post.metadata.title,
       description: post.metadata.description,
-      url: `https://schoen.world/til/${post.slug}`,
+      url: `https://schoen.world/n/${post.slug}`,
       author: 'Nils Schönwald',
       date: post.metadata.publishedAt,
     })

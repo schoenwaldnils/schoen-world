@@ -2,11 +2,11 @@ import { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { MDX } from '@/components/MDX'
-import { getTilPost, getTilPostsMetadata } from '@/lib/utils/content'
-import { formatDate } from '@/lib/utils/formatDate'
+import { getNote, getNotes } from '@/utils/content'
+import { formatDate } from '@/utils/formatDate'
 
-export function generateStaticParams() {
-  const posts = getTilPostsMetadata()
+export async function generateStaticParams() {
+  const posts = await getNotes()
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -22,7 +22,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { slug } = await params
-  const post = await getTilPost(slug)
+  const post = await getNote(slug)
 
   if (!post) {
     return {
@@ -59,13 +59,13 @@ export async function generateMetadata(
   }
 }
 
-export default async function TilPost({
+export default async function Notes({
   params,
 }: {
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const post = await getTilPost(slug)
+  const post = await getNote(slug)
 
   if (!post) {
     notFound()

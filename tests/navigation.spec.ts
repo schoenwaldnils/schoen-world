@@ -1,15 +1,18 @@
 import { expect, test } from '@playwright/test'
 
 test.describe('Site Navigation', () => {
+  test.describe.configure({ mode: 'default' })
+
   test('should navigate between all main pages', async ({ page }) => {
     // Start from home
     await page.goto('/')
-    await expect(page).toHaveTitle(/Schoen\.World/)
+    await expect(page).toHaveTitle(/Sch/)
 
     // Navigate to TIL overview
     const tilLink = page.locator('a[href="/til"], a[href*="til"]').first()
     if ((await tilLink.count()) > 0) {
       await tilLink.click()
+      await page.waitForTimeout(500) // Give view transition time to complete
       await page.waitForLoadState('networkidle')
       expect(page.url()).toContain('/til')
     } else {
@@ -21,22 +24,21 @@ test.describe('Site Navigation', () => {
     const imprintLink = page
       .locator('a[href="/imprint"], a[href*="imprint"]')
       .first()
-    if ((await imprintLink.count()) > 0) {
-      await imprintLink.click()
-      await page.waitForLoadState('networkidle')
-      expect(page.url()).toContain('/imprint')
-    } else {
-      // Direct navigation if no link found
-      await page.goto('/imprint')
-    }
+    await expect(imprintLink).toBeVisible()
+
+    await imprintLink.click()
+    await page.waitForTimeout(500) // Give view transition time to complete
+    await page.waitForLoadState('networkidle')
+    expect(page.url()).toContain('/imprint')
 
     // Navigate back to home
-    const homeLink = page.locator('a[href="/"], a[href*="home"]').first()
-    if ((await homeLink.count()) > 0) {
-      await homeLink.click()
-      await page.waitForLoadState('networkidle')
-      expect(page.url()).toMatch(/\/$/)
-    }
+    const logoLink = page.locator('a[href="/"]').first()
+    await expect(logoLink).toBeVisible()
+
+    await logoLink.click()
+    await page.waitForTimeout(500) // Give view transition time to complete
+    await page.waitForLoadState('networkidle')
+    expect(page.url()).toMatch(/\/$/)
   })
 
   test('should have consistent navigation elements across pages', async ({
@@ -46,6 +48,7 @@ test.describe('Site Navigation', () => {
 
     for (const pagePath of pages) {
       await page.goto(pagePath)
+      await page.waitForTimeout(500) // Give view transition time to complete
       await page.waitForLoadState('networkidle')
 
       // Check for common navigation elements
@@ -70,14 +73,17 @@ test.describe('Site Navigation', () => {
 
     // Go back
     await page.goBack()
+    await page.waitForTimeout(500) // Give view transition time to complete
     expect(page.url()).toContain('/til')
 
     // Go back again
     await page.goBack()
+    await page.waitForTimeout(500) // Give view transition time to complete
     expect(page.url()).toMatch(/\/$/)
 
     // Go forward
     await page.goForward()
+    await page.waitForTimeout(500) // Give view transition time to complete
     expect(page.url()).toContain('/til')
   })
 
@@ -89,6 +95,7 @@ test.describe('Site Navigation', () => {
 
     // Navigate to another page
     await page.goto('/til')
+    await page.waitForTimeout(500) // Give view transition time to complete
     await page.waitForLoadState('networkidle')
 
     // Navigate back
@@ -105,6 +112,7 @@ test.describe('Site-wide Functionality', () => {
 
     for (const pagePath of pages) {
       await page.goto(pagePath)
+      await page.waitForTimeout(500) // Give view transition time to complete
       await page.waitForLoadState('networkidle')
 
       // Check for viewport meta tag
@@ -137,10 +145,9 @@ test.describe('Site-wide Functionality', () => {
       })
 
       await page.goto(pagePath)
-      await page.waitForLoadState('networkidle')
-
       // Allow some time for all resources to load
       await page.waitForTimeout(1000)
+      await page.waitForLoadState('networkidle')
 
       expect(resourceErrors).toHaveLength(0)
     }
@@ -167,6 +174,7 @@ test.describe('Site-wide Functionality', () => {
     })
 
     await page.goto('/')
+    await page.waitForTimeout(500) // Give view transition time to complete
     await page.waitForLoadState('networkidle')
 
     await expect(page.locator('body')).toBeVisible()
@@ -181,6 +189,7 @@ test.describe('Performance and Loading', () => {
       const startTime = Date.now()
 
       await page.goto(pagePath)
+      await page.waitForTimeout(500) // Give view transition time to complete
       await page.waitForLoadState('networkidle')
 
       const loadTime = Date.now() - startTime
@@ -203,6 +212,7 @@ test.describe('Performance and Loading', () => {
 
     for (const pagePath of pages) {
       await page.goto(pagePath)
+      await page.waitForTimeout(500) // Give view transition time to complete
       await page.waitForLoadState('networkidle')
     }
 

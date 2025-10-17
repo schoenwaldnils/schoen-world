@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { Logo } from '@/components/Logo'
-import { cn } from '@/lib/utils/cn'
+import { cn } from '@/utils/cn'
 
 import css from './Header.module.css'
 
@@ -17,7 +17,7 @@ export const Header = ({ className }: { className?: string }) => {
           <li>
             <Link
               href="/til"
-              className="text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+              className="p-3 text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
             >
               /til
             </Link>

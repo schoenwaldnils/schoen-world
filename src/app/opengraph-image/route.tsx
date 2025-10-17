@@ -2,22 +2,16 @@ import { ImageResponse } from 'next/og'
 import { NextRequest } from 'next/server'
 
 import { OgImage } from '@/components/OgImage'
-import {
-  ContentItem,
-  getPage,
-  getTilPost,
-  PageMetadata,
-  TilMetadata,
-} from '@/lib/utils/content'
+import { ContentItem, getNote, getPage } from '@/utils/content'
 
 const getOGData = async (
   type: string,
   slug: string,
-): Promise<ContentItem<PageMetadata | TilMetadata> | null> => {
+): Promise<ContentItem | null> => {
   if (type === 'page') {
     return await getPage(slug)
   } else if (type === 'til') {
-    return await getTilPost(slug)
+    return await getNote(slug)
   }
 
   return null

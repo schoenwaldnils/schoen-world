@@ -24,12 +24,12 @@ test.describe('TIL Overview Page', () => {
   })
 
   test('should display TIL posts', async ({ page }) => {
-    // Wait for the TilPosts component to load
+    // Wait for the Notes component to load
     await page.waitForLoadState('networkidle')
 
     // Check if there are any TIL posts displayed
-    const posts = page.locator('article, .til-post, [data-testid="til-post"]')
-    const postLinks = page.locator('a[href^="/til/"]')
+    const posts = page.locator('article')
+    const postLinks = page.locator('a[href^="/n/"]')
 
     // At least one of these should be present if there are posts
     const hasArticles = (await posts.count()) > 0

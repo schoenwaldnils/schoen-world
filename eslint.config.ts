@@ -1,12 +1,27 @@
+import eslint from '@eslint/js'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
+import { defineConfig } from 'eslint/config'
+import jsxA11y from 'eslint-plugin-jsx-a11y'
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+import react from 'eslint-plugin-react'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import tseslint from 'typescript-eslint'
 
-export default tseslint.config(
+const production = process.env.NODE_ENV === 'production'
+
+export default defineConfig(
   {
-    ignores: ['node_modules/**', '*.js', '*.mjs', '.next/**'],
+    ignores: [
+      'node_modules/**',
+      '**/*.js',
+      '**/*.mjs',
+      '**/*.mts',
+      '.next/**',
+      '*.d.ts',
+      'migrations',
+    ],
   },
+  eslint.configs.recommended,
   eslintPluginPrettierRecommended,
   tseslint.configs.recommendedTypeChecked,
   {
@@ -20,9 +35,12 @@ export default tseslint.config(
     },
     plugins: {
       '@typescript-eslint': tsPlugin,
+      react,
       'simple-import-sort': simpleImportSort,
+      jsxA11y,
     },
     rules: {
+      'no-console': [production ? 2 : 1, { allow: ['error', 'warn', 'info'] }],
       'no-unused-vars': ['warn', { args: 'none' }],
       '@typescript-eslint/no-unused-vars': ['warn', { args: 'none' }],
       '@typescript-eslint/ban-ts-comment': 'off',
