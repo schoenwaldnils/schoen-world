@@ -103,7 +103,7 @@ test.describe('RSS Feed (/rss.xml)', () => {
     const feedContent = await response.text()
 
     // Check that XML is well-formed by ensuring basic structure
-    const openTags = feedContent.match(/<[^\/][^>]*>/g) || []
+    const openTags = feedContent.match(/<[^/][^>]*>/g) || []
     const closeTags = feedContent.match(/<\/[^>]*>/g) || []
 
     expect(openTags.length).toBeGreaterThan(0)
