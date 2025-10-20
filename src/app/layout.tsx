@@ -9,6 +9,7 @@ import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import { ViewTransitions } from 'next-view-transitions'
 
+import { BackgroundBlobs } from '@/components/BackgroundBlobs'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { Theme } from '@/components/ThemeSwitch'
@@ -30,6 +31,7 @@ export default async function RootLayout({
     <ViewTransitions>
       <html lang="en" data-theme={theme || null}>
         <body className="flex min-h-screen flex-col justify-between px-8">
+          <BackgroundBlobs />
           <Header className="mx-auto w-full max-w-4xl" />
           <main className="mx-auto w-full max-w-2xl">{children}</main>
           <Footer theme={theme as Theme} className="mx-auto w-full max-w-4xl" />

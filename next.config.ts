@@ -30,6 +30,18 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  redirects: () => [
+    {
+      source: '/blog',
+      destination: '/til',
+      permanent: true,
+    },
+    {
+      source: '/blog/:path*',
+      destination: '/n/:path*',
+      permanent: true,
+    },
+  ],
 }
 
 export default nextConfig
