@@ -1,5 +1,4 @@
 import eslint from '@eslint/js'
-import tsPlugin from '@typescript-eslint/eslint-plugin'
 import { defineConfig } from 'eslint/config'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
@@ -34,7 +33,6 @@ export default defineConfig(
       },
     },
     plugins: {
-      '@typescript-eslint': tsPlugin,
       react,
       'simple-import-sort': simpleImportSort,
       jsxA11y,
