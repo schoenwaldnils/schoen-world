@@ -10,7 +10,7 @@ const getOGData = async (
 ): Promise<ContentItem | null> => {
   if (type === 'page') {
     return await getPage(slug)
-  } else if (type === 'til') {
+  } else if (type === 'n') {
     return await getNote(slug)
   }
 
@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
   const type = searchParams.get('type')
   const slug = searchParams.get('slug')
 
-  if (!title || (type && !slug)) {
+  if (type && !slug) {
     return new Response('Bad Request', { status: 400 })
   }
 

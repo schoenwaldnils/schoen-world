@@ -35,18 +35,15 @@ export async function generateMetadata(
   const previousImages = (await parent).openGraph?.images || []
 
   return {
-    metadataBase: new URL(
-      process.env.NEXT_PUBLIC_URL || 'https://schoen.world',
-    ),
     title: post.metadata.title,
     description: post.metadata.description,
     openGraph: {
       type: 'article',
       publishedTime: post.metadata.publishedAt,
-      url: `/til/${post.slug}`,
+      url: `/n/${post.slug}`,
       images: [
         {
-          url: `/opengraph-image?type=til&slug=${post.slug}`,
+          url: `/opengraph-image?type=n&slug=${post.slug}`,
         },
         ...previousImages,
       ],
