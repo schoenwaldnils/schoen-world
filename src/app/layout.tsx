@@ -14,10 +14,12 @@ import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { Theme } from '@/components/ThemeSwitch'
 
+import { getServerSideURL } from './utils/getURL'
+
 export const metadata: Metadata = {
   title: 'Nils Schönwald - Frontend Developer',
   description: 'Frontend Developer based in Hamburg',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_URL || 'https://schoen.world'),
+  metadataBase: new URL(getServerSideURL()),
 }
 
 export default async function RootLayout({
