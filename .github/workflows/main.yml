@@ -35,31 +35,36 @@ jobs:
       - name: lint types
         run: pnpm lint:types
 
-  build:
-    runs-on: ubuntu-latest
-    env:
-      NODE_ENV: production
-      CONTENTFUL_MANAGEMENT_TOKEN: ${{ secrets.CONTENTFUL_MANAGEMENT_TOKEN }}
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      - name: Notify Vercel
+        uses: vercel/repository-dispatch/actions/status@v1
         with:
-          run_install: false
+          name: 'Vercel - schoen-world: test'
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'pnpm'
+  # build:
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     NODE_ENV: production
+  #     CONTENTFUL_MANAGEMENT_TOKEN: ${{ secrets.CONTENTFUL_MANAGEMENT_TOKEN }}
+  #   steps:
+  #     - name: Checkout Repo
+  #       uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: pnpm install
+  #     - name: Install pnpm
+  #       uses: pnpm/action-setup@v4
+  #       with:
+  #         run_install: false
 
-      - name: build
-        run: pnpm build
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version-file: '.nvmrc'
+  #         cache: 'pnpm'
+
+  #     - name: Install dependencies
+  #       run: pnpm install
+
+  #     - name: build
+  #       run: pnpm build
 
   # visual-regression-test:
   #   runs-on: ubuntu-latest
