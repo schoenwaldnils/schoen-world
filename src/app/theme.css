@@ -1,0 +1,134 @@
+@import 'tailwindcss';
+
+@import './viewports.css';
+
+@custom-variant dark {
+  /* 1. data-theme (global control) */
+  &:where([data-theme='dark'], [data-theme='dark'] *) {
+    @slot;
+  }
+
+  /* 2. System preference (fallback, excluded by any data-theme) */
+  @media (prefers-color-scheme: dark) {
+    &:where(:not([data-theme] *)) {
+      @slot;
+    }
+  }
+}
+
+@theme {
+  --breakpoint-sm: 30rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 80rem;
+
+  /* --default-transition-duration: 150ms; */
+
+  /* Colors - Brand */
+  --color-brand: #ba3e48;
+  --color-brand-50: hsl(from var(--color-brand) h s calc(l + 35));
+  --color-brand-100: hsl(from var(--color-brand) h s calc(l + 30));
+  --color-brand-200: hsl(from var(--color-brand) h s calc(l + 25));
+  --color-brand-300: hsl(from var(--color-brand) h s calc(l + 20));
+  --color-brand-400: hsl(from var(--color-brand) h s calc(l + 15));
+  --color-brand-500: hsl(from var(--color-brand) h s calc(l + 10));
+  --color-brand-600: hsl(from var(--color-brand) h s calc(l + 5));
+  --color-brand-700: hsl(from var(--color-brand) h s l);
+  --color-brand-800: hsl(from var(--color-brand) h s calc(l - 10));
+  --color-brand-900: hsl(from var(--color-brand) h s calc(l - 15));
+  --color-brand-950: hsl(from var(--color-brand) h s calc(l - 20));
+  --color-brand-black: #424242;
+
+  /* Colors - Charcoal */
+  --color-charcoal: oklch(0.18 0.003 197);
+  --color-charcoal-light: oklch(0.25 0.003 197);
+  --color-white: #fafafa;
+
+  /* Typography - Font Families */
+  --font-heading:
+    var(--font-raleway), ui-monospace, Menlo, Monaco, 'Cascadia Mono',
+    'Segoe UI Mono', 'Roboto Mono', 'Oxygen Mono', 'Ubuntu Mono',
+    'Source Code Pro', 'Fira Mono', 'Droid Sans Mono', 'Consolas',
+    'Courier New', monospace;
+  --font-body: system-ui, sans-serif;
+
+  /* Typography - Font Weights */
+  --font-weight-regular: 400;
+
+  /* Typography - Font Sizes */
+  --font-size-h1: 2.25rem;
+  --font-size-h2: 1.75rem;
+  --font-size-h3: 1.5rem;
+  --font-size-h4: 1.25rem;
+  --font-size-body: 1rem;
+  --font-size-small: 0.8rem;
+
+  /* Borders - Width */
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+
+  /* Motion - Durations */
+  --duration-fast: 150ms;
+
+  /* Layout */
+  --container-padding-horizontal: 2rem;
+}
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+
+  :root[data-theme='light'],
+  :root:has(input[id='theme-light']:checked) {
+    color-scheme: light;
+  }
+
+  :root[data-theme='dark'],
+  :root:has(input[id='theme-dark']:checked) {
+    color-scheme: dark;
+  }
+
+  :root {
+    /* Theme */
+    --background-from: light-dark(oklch(0.93 0 0), oklch(0.2 0.01 286));
+    --background-to: light-dark(oklch(0.86 0 0), oklch(0.15 0 286));
+    --body-background: linear-gradient(
+      to bottom,
+      var(--background-from),
+      var(--background-to)
+    );
+    --foreground: light-dark(
+      var(--color-charcoal-light),
+      var(--color-neutral-50)
+    );
+    --background: light-dark(var(--color-neutral-50), var(--color-neutral-950));
+    --primary: light-dark(var(--color-brand), var(--color-brand-light));
+  }
+}
+
+/* :root {
+  --tint-or-shade: color-mix(in oklab, var(--foreground), transparent 95%);
+  --tint-or-shade-harder: color-mix(
+    in oklab,
+    var(--foreground),
+    transparent 90%
+  );
+} */
+
+@layer base {
+  html {
+    background-color: var(--background);
+  }
+
+  body {
+    color: var(--foreground);
+  }
+
+  ::selection {
+    background-color: #ba3e4820;
+  }
+
+  :focus {
+    outline-color: var(--color-brand);
+  }
+}

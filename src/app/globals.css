@@ -1,0 +1,45 @@
+@layer normalize, properties, theme, base, typography, utilities, components, highlightjs;
+
+body {
+  gap: min(5rem, 3vw);
+}
+
+pre,
+code {
+  font-family:
+    'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New',
+    monospace;
+  line-height: 1.6;
+  font-size: 0.875rem;
+  border-radius: 0.5em;
+  border: 0;
+  background-color: light-dark(#cccccc42, #00000042);
+}
+
+.mdx pre {
+  --padding: 1rem;
+  position: relative;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: var(--padding);
+  margin: 1.5rem 0;
+}
+
+.mdx pre code {
+  background: none;
+  padding: 0;
+  border: none;
+  font-size: inherit;
+
+  &::after {
+    position: absolute;
+    top: var(--padding);
+    right: var(--padding);
+  }
+}
+
+/* Inline code styling */
+.mdx code:not(pre > code) {
+  padding: 0.2em 0.4em 0.3em;
+  white-space: nowrap;
+}

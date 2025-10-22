@@ -1,0 +1,7 @@
+.avatarImage {
+  --size: 10rem;
+  width: var(--size);
+  height: var(--size);
+  border-radius: calc(var(--size) / 2);
+  aspect-ratio: 1 / 1;
+}

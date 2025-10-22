@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
-    "jsx": "preserve",
-    "esModuleInterop": true,
-    "target": "es5",
+    "target": "ES2017",
     "lib": [
       "dom",
       "dom.iterable",
@@ -10,34 +8,37 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "noEmit": true,
+    "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
     "plugins": [
       {
-        "name": "typescript-styled-plugin",
-        "lint": {
-          "validProperties": [
-            "color-scheme"
-          ]
-        }
+        "name": "next"
       }
     ],
-    "incremental": true
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/app/*"
+      ]
+    },
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "exclude": [
-    "node_modules",
-    "_serverless"
-  ],
   "include": [
     "next-env.d.ts",
-    "custom.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "**/*.svg"
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

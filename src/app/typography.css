@@ -1,0 +1,80 @@
+@layer typography {
+  html {
+    font-family: var(--font-body);
+    font-size: clamp(16px, 0.735vw + 12.464px, 20px);
+    font-weight: 400;
+    color: var(--foreground);
+  }
+
+  .mdx h1,
+  .mdx h2,
+  .mdx h3,
+  .mdx h4,
+  .h1,
+  .h2,
+  .h3,
+  .h4 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    margin-block-start: 0.8em;
+    margin-block-end: 0.5em;
+  }
+
+  .mdx h1,
+  .h1 {
+    font-size: var(--font-size-h1);
+  }
+
+  .mdx h2,
+  .h2 {
+    font-size: var(--font-size-h2);
+  }
+
+  .mdx h3,
+  .h3 {
+    font-size: var(--font-size-h3);
+  }
+
+  .mdx h4,
+  .h4 {
+    font-size: var(--font-size-h4);
+  }
+
+  .mdx p,
+  .p {
+    font-size: var(--font-size-body);
+    margin-block-start: 1em;
+    margin-block-end: 1.5em;
+  }
+
+  .mdx ul,
+  .mdx ol {
+    margin-block-start: 1em;
+    margin-block-end: 1.5em;
+    padding-inline-start: 1em;
+  }
+
+  .mdx ul li,
+  .mdx ol li {
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+  }
+
+  .mdx ul {
+    list-style-type: disc;
+  }
+
+  .mdx ol {
+    list-style-type: decimal;
+  }
+
+  .mdx ul li::marker,
+  .mdx ol li::marker {
+    color: var(--color-brand);
+  }
+
+  .mdx small,
+  .small {
+    font-size: var(--font-size-small);
+  }
+}

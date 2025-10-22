@@ -1,0 +1,94 @@
+---
+title: 'How to use Github Actions on Vercel Preview deployments'
+modifiedAt: '2021-05-31T12:00+02:00'
+description: 'I recently switched deploying to S3 to deploying to Vercel. But how do you test PRs then?'
+tags: ['til', 'github', 'vercel', 'github-actions', 'lighthouse', 'testing']
+---
+
+## A bit of context
+
+I have a small side project that I use for a lot of research on how to test things, implement custom solutions or test new Contentful or Next.js features. Besides linting and type checking I managed to also have visual regression tests with Percy.io and a Lighthouse check on my pull requests. 
+
+The lighthouse check requires a preview build. This build I previously deployed to S3 and had a serverless function manage the redirect of the subdomain the pull request was using. 
+
+## New and shiny
+
+That being said I recently switched said project from deploying to S3 to deploying to Vercel. With Vercel you automatically get a preview build for each commit and pull request. That is nice! So I don't need my custom preview deployment anymore. 
+
+But there is a catch. I previously setup those tests mentioned above with Github Actions. But since I use the default git integration of Vercel I have no idea when the preview build is deployed so I can run the lighthouse test on it.
+
+## So I did some digging
+
+I found a few promising Github Actions that seem to do the trick. In the end I used await-for-vercel-deployment. This action looks at a Vercel deployment and waits for it to be deployed. 
+
+You also need a `VERCEL_TOKEN` to get the current status of your deployment.
+
+```yaml
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+jobs:
+  wait-for-vercel-deployment:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Retrieve deployment URL (example on how to set an ENV var)
+        run: "echo VERCEL_DEPLOYMENT_URL=nextjs-bzyss249z.vercel.app >> $GITHUB_ENV"
+      - uses: UnlyEd/github-action-await-vercel@v1.1.0
+        id: await-vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        with:
+          deployment-url: ${{ env.VERCEL_DEPLOYMENT_URL }}
+          timeout: 10 # Wait for 10 seconds before failing
+      - name: Displays the deployment name (example on how to read information about the deployment)
+        run: "echo The deployment at ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }} is ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).readyState }}"
+```
+
+The problem here though was that this actions needs a **hardcoded deployment-url** to check. There seem to be a way to get the dynamic deployment-url. But the example itself says it is a bit more complicated
+
+## My solution
+
+Luckily the git integration Vercel is using uses the Github deployment api. So I was able to use the Github Action Get Deployment URL to get the deployment-url even when it wasn't already deployed. 
+
+I just had to fork and modify it to give me the deployment-url without the protocol.
+
+I moved the `await-vercel` into the `lighthouse-check` job. This way the await does not show as its own Github check on your pull request.
+
+And this is what it looks like in the end with `lighthouse-check` using `${{ steps.deployment.outputs.deployment }}`:
+
+```yaml
+jobs:
+  lighthouse-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Get deployment URL
+        id: deployment
+        uses: schoenwaldnils/get-deployment-url@master
+        timeout-minutes: 5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: UnlyEd/github-action-await-vercel@v1.1.0
+        id: await-vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        with:
+          deployment-url: ${{ steps.deployment.outputs.deployment }}
+          timeout: 150 # Wait for 2.5 minutes before failing
+
+      - name: Run Lighthouse
+        uses: foo-software/lighthouse-check-action@v1.0.10
+        id: lighthouseCheck
+        with:
+          urls: 'https://${{ steps.deployment.outputs.deployment }}'
+```
+
+You can find the full config here: [schoen-world/.github/workflows/main.yml](https://github.com/schoenwaldnils/schoen-world/blob/5102a409ccdf72ffe3304768ae6a244e34b1e41e/.github/workflows/main.yml)
+
+With this setup I can run tests on Vercel preview builds before merging the feature I'm working on. Lighthouse is just an example here. There is a lot more that can be tested.
+
+I hope this helps you to run you own tests on your feature previews :) 

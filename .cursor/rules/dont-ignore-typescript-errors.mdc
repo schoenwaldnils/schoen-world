@@ -1,0 +1,6 @@
+---
+description:
+globs: *.tsx,*.ts
+alwaysApply: false
+---
+Do not add ignore comments to fix typescript or linting errors

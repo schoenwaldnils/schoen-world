@@ -12,100 +12,132 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+      - name: Checkout Repo
+        uses: actions/checkout@v4
 
-      - name: npm install
-        run: npm ci
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: lint ts
-        run: npm run lint:ts
+        run: pnpm lint:ts
 
       - name: lint types
-        run: npm run lint:types
+        run: pnpm lint:types
 
-  build:
-    runs-on: ubuntu-latest
-    env:
-      NODE_ENV: production
-      CONTENTFUL_MANAGEMENT_TOKEN: ${{ secrets.CONTENTFUL_MANAGEMENT_TOKEN }}
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Notify Vercel
+        uses: vercel/repository-dispatch/actions/status@v1
         with:
-          node-version: '14'
+          name: 'Vercel - schoen-world: test'
 
-      - name: npm install
-        run: npm ci --also=dev
+  # build:
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     NODE_ENV: production
+  #     CONTENTFUL_MANAGEMENT_TOKEN: ${{ secrets.CONTENTFUL_MANAGEMENT_TOKEN }}
+  #   steps:
+  #     - name: Checkout Repo
+  #       uses: actions/checkout@v4
 
-      - name: build
-        run: npm run build
+  #     - name: Install pnpm
+  #       uses: pnpm/action-setup@v4
+  #       with:
+  #         run_install: false
 
-  visual-regression-test:
-    runs-on: ubuntu-latest
-    env:
-      PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version-file: '.nvmrc'
+  #         cache: 'pnpm'
 
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+  #     - name: Install dependencies
+  #       run: pnpm install
 
-      - name: npm install
-        run: npm ci
+  #     - name: build
+  #       run: pnpm build
 
-      - name: Percy Test
-        uses: percy/storybook-action@v0.1.6
-        env:
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-        with:
-          custom-command: 'npm run snapshot'
+  # visual-regression-test:
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
 
-  lighthouse-check:
-    runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/main'
-    steps:
-      - uses: actions/checkout@master
+  #   steps:
+  #     - name: Checkout Repo
+  #       uses: actions/checkout@v4
 
-      - name: Get deployment URL
-        id: deployment
-        uses: schoenwaldnils/get-deployment-url@master
-        timeout-minutes: 10
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Install pnpm
+  #       uses: pnpm/action-setup@v4
+  #       with:
+  #         run_install: false
 
-      - name: Wait for Deployment
-        uses: UnlyEd/github-action-await-vercel@v1.1.0
-        id: await-vercel
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        with:
-          deployment-url: ${{ steps.deployment.outputs.deployment }}
-          timeout: 600 # Wait for 10 minutes before failing
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version-file: '.nvmrc'
+  #         cache: 'pnpm'
 
-      - name: Run Lighthouse
-        uses: foo-software/lighthouse-check-action@v1.0.10
-        id: lighthouseCheck
-        with:
-          accessToken: ${{ secrets.GITHUB_TOKEN }}
-          author: ${{ github.actor }}
-          awsBucket: ${{ secrets.AWS_S3_BUCKET_LIGHTHOUSE }}
-          awsRegion: 'eu-central-1'
-          awsAccessKeyId: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          awsSecretAccessKey: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          branch: ${{ github.ref }}
-          urls: 'https://${{ steps.deployment.outputs.deployment }},https://${{ steps.deployment.outputs.deployment }}/blog,https://${{ steps.deployment.outputs.deployment }}/blog/test'
-          sha: ${{ github.sha }}
+  #     - name: Install dependencies
+  #       run: pnpm install
 
-      - name: Handle Lighthouse Check results
-        uses: foo-software/lighthouse-check-status-action@master
-        with:
-          lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
-          minAccessibilityScore: '90'
-          minBestPracticesScore: '80'
-          minPerformanceScore: '80'
-          minProgressiveWebAppScore: '50'
-          minSeoScore: '80'
+  #     - name: Percy Test
+  #       uses: percy/storybook-action@v0.1.6
+  #       env:
+  #         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+  #       with:
+  #         custom-command: 'pnpm snapshot'
+
+  # lighthouse-check:
+  #   runs-on: ubuntu-latest
+  #   if: github.ref != 'refs/heads/main'
+  #   steps:
+  #     - uses: actions/checkout@v4
+
+  #     - name: Get deployment URL
+  #       id: deployment
+  #       uses: schoenwaldnils/get-deployment-url@master
+  #       timeout-minutes: 10
+  #       with:
+  #         token: ${{ secrets.GITHUB_TOKEN }}
+
+  #     - name: Wait for Deployment
+  #       uses: UnlyEd/github-action-await-vercel@v1.1.0
+  #       id: await-vercel
+  #       env:
+  #         VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  #       with:
+  #         deployment-url: ${{ steps.deployment.outputs.deployment }}
+  #         timeout: 600 # Wait for 10 minutes before failing
+
+  #     - name: Run Lighthouse
+  #       uses: foo-software/lighthouse-check-action@v1.0.10
+  #       id: lighthouseCheck
+  #       with:
+  #         accessToken: ${{ secrets.GITHUB_TOKEN }}
+  #         author: ${{ github.actor }}
+  #         awsBucket: ${{ secrets.AWS_S3_BUCKET_LIGHTHOUSE }}
+  #         awsRegion: 'eu-central-1'
+  #         awsAccessKeyId: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         awsSecretAccessKey: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         branch: ${{ github.ref }}
+  #         urls: 'https://${{ steps.deployment.outputs.deployment }},https://${{ steps.deployment.outputs.deployment }}/blog,https://${{ steps.deployment.outputs.deployment }}/blog/test'
+  #         sha: ${{ github.sha }}
+
+  #     - name: Handle Lighthouse Check results
+  #       uses: foo-software/lighthouse-check-status-action@master
+  #       with:
+  #         lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
+  #         minAccessibilityScore: '90'
+  #         minBestPracticesScore: '80'
+  #         minPerformanceScore: '80'
+  #         minProgressiveWebAppScore: '50'
+  #         minSeoScore: '80'

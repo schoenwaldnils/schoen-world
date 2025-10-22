@@ -1,0 +1,134 @@
+---
+title: 'Flexible Dark Mode with Tailwind CSS v4 Custom Variants'
+description: 'How to create a custom dark variant that respects both data-theme attributes and system preferences with proper CSS selector logic.'
+tags: ['til', 'tailwind', 'css', 'dark-mode']
+---
+
+Today I learned how to create a flexible dark mode system in Tailwind CSS v4 that combines explicit theme selection with system preference fallback.
+
+## The Challenge
+
+I needed a dark mode system that:
+- Uses `data-theme="dark"` when users explicitly choose dark mode
+- Falls back to `prefers-color-scheme: dark` when no theme is set
+- Doesn't conflict when `data-theme="light"` is explicitly set
+
+## The Default Tailwind Approach
+
+According to the [Tailwind CSS documentation](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually), when you want to use a data attribute for manual dark mode toggling, you override the default `dark` variant like this:
+
+```css
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+```
+
+## The Problem with This Approach
+
+While this works for manual theme switching, it **completely overwrites** the default `prefers-color-scheme: dark` behavior. The Tailwind docs do show how you can use JavaScript to detect system preferences and apply the attribute, but this approach has significant drawbacks:
+
+- ✅ Dark mode works when `data-theme="dark"` is set
+- ⚠️ System preference support requires JavaScript or server-side rendering
+- ❌ JavaScript-based detection causes page flicker (FOUC - Flash of Unstyled Content)
+- ❌ More complex implementation compared to CSS-only solutions
+
+While you *can* make the Tailwind approach work with system preferences, the CSS `prefers-color-scheme` media query is simpler and flicker-free. The default Tailwind approach hints you toward JavaScript complexity when a pure CSS solution would be more elegant.
+
+## The Solution
+
+The key insight was understanding CSS selector specificity and descendant matching:
+
+```css
+@custom-variant dark {
+  &:where([data-theme='dark'], [data-theme='dark'] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:not([data-theme] *)) {
+      @slot;
+    }
+  }
+}
+```
+
+## How It Works
+
+1. `&:where([data-theme='dark'], [data-theme='dark'] *)` - Matches elements with `data-theme="dark"` OR descendants of such elements
+2. `&:where(:not([data-theme] *))` - Matches elements that are NOT descendants of any element with a `data-theme` attribute. This is our fallback to use the system preference.
+
+## What Doesn't Work
+
+My first attempt used `:not([data-theme]) *` which matches the wrong elements - it selects any descendant without the attribute, even when an ancestor has `data-theme="light"` set.
+
+```html
+<!-- WRONG! Do not use this! -->
+<html data-theme="light">
+  <body> <!-- This element would match the :not([data-theme]) selector -->
+    <div class="dark:bg-gray-800">
+        <!-- This div would get dark styles -->
+    </div>
+  </body>
+</html>
+```
+
+## Testing Strategy
+
+To verify this works:
+
+1. **No data-theme set**: Dark styles apply based on system preference
+2. **`data-theme="dark"`**: Dark styles always apply
+3. **`data-theme="light"`**: Dark styles never apply, even with dark system preference
+
+## Using CSS Classes Instead
+
+You can also adapt this approach to work with CSS classes instead of data attributes:
+
+```css
+@custom-variant dark {
+  &:where(.dark, .dark *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:not(.light *)) {
+      @slot;
+    }
+  }
+}
+```
+
+This handles all three scenarios:
+
+1. **`.dark` class** → Always apply dark styles
+2. **`.light` class** → Never apply dark styles (excluded by `:not(.light *)`)
+3. **No class + system prefers dark** → Apply dark styles
+
+```html
+<!-- Force dark mode -->
+<html class="dark">
+  <body>
+    <div class="bg-white dark:bg-gray-800">Dark styles apply</div>
+  </body>
+</html>
+
+<!-- Force light mode -->
+<html class="light">
+  <body>
+    <div class="bg-white dark:bg-gray-800">Dark styles never apply</div>
+  </body>
+</html>
+
+<!-- Use system preference -->
+<html>
+  <body>    
+    <div class="bg-white dark:bg-gray-800">Dark styles apply if system prefers dark</div>
+  </body>
+</html>
+```
+
+## Why This Approach Works
+
+The CSS specificity and selector logic ensures:
+- **No conflicts** between manual theme switching and system preferences
+- **Predictable cascade** with clear priority order
+- **Simple implementation** without JavaScript complexity
+- **System preferences** are respected when no explicit theme is set 
