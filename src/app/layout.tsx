@@ -6,6 +6,7 @@ import './highlightjs.css'
 
 import { getCookie } from 'cookies-next/server'
 import type { Metadata } from 'next'
+import localFont from 'next/font/local'
 import { cookies } from 'next/headers'
 import { ViewTransitions } from 'next-view-transitions'
 
@@ -15,6 +16,17 @@ import { Header } from '@/components/Header'
 import { Theme } from '@/components/ThemeSwitch'
 
 import { getServerSideURL } from './utils/getURL'
+
+const Raleway = localFont({
+  src: [
+    {
+      path: '/fonts/Raleway/Raleway-VariableFont_wght.ttf',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-raleway',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Nils Schönwald - Frontend Developer',
@@ -31,7 +43,11 @@ export default async function RootLayout({
 
   return (
     <ViewTransitions>
-      <html lang="en" data-theme={theme || null}>
+      <html
+        lang="en"
+        data-theme={theme || null}
+        className={`${Raleway.variable}`}
+      >
         <body className="flex min-h-screen flex-col justify-between px-8">
           <BackgroundBlobs />
           <Header className="mx-auto w-full max-w-4xl" />

@@ -37,13 +37,11 @@
 
   /* Typography - Font Families */
   --font-heading:
-    ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Mono', 'Source Code Pro', 'Fira Mono',
-    'Droid Sans Mono', 'Consolas', 'Courier New', monospace;
-  --font-body:
-    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-    'Helvetica Neue', Arial, sans-serif;
+    var(--font-raleway), ui-monospace, Menlo, Monaco, 'Cascadia Mono',
+    'Segoe UI Mono', 'Roboto Mono', 'Oxygen Mono', 'Ubuntu Mono',
+    'Source Code Pro', 'Fira Mono', 'Droid Sans Mono', 'Consolas',
+    'Courier New', monospace;
+  --font-body: system-ui, sans-serif;
 
   /* Typography - Font Weights */
   --font-weight-regular: 400;

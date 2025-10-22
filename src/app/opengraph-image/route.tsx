@@ -1,3 +1,6 @@
+import { readFile } from 'node:fs/promises'
+import { join } from 'node:path'
+
 import { ImageResponse } from 'next/og'
 import { NextRequest } from 'next/server'
 
@@ -34,18 +37,35 @@ export async function GET(request: NextRequest) {
     return new Response('Not found', { status: 404 })
   }
 
+  const ralewayVariableFont = await readFile(
+    join(process.cwd(), 'src/app/fonts/Raleway/static/Raleway-Bold.ttf'),
+  )
+  const robotoFont = await readFile(
+    join(process.cwd(), 'src/app/fonts/Roboto/static/Roboto-Regular.ttf'),
+  )
+
   return new ImageResponse(
     (
-      <div tw="text-white bg-[#131111] w-full h-full flex items-center justify-center p-16">
-        <OgImage
-          title={title || ogData?.metadata.title}
-          description={description || ogData?.metadata.description}
-        />
-      </div>
+      <OgImage
+        title={title || ogData?.metadata.title}
+        description={description || ogData?.metadata.description}
+      />
     ),
     {
       width: 1200,
       height: 630,
+      fonts: [
+        {
+          name: 'Raleway',
+          data: ralewayVariableFont,
+          style: 'normal',
+        },
+        {
+          name: 'Roboto',
+          data: robotoFont,
+          style: 'normal',
+        },
+      ],
     },
   )
 }

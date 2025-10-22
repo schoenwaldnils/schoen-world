@@ -1,5 +1,3 @@
-import css from './OgImage.module.css'
-
 export const OgImage = ({
   title = 'Nils Schönwald',
   description = null,
@@ -9,16 +7,45 @@ export const OgImage = ({
 }) => {
   return (
     <div
-      tw="text-white bg-[#131111] w-full h-full flex flex-col justify-between px-12 py-11 font-bold"
+      tw="relative text-white w-full h-full flex flex-col justify-between px-18 py-16 font-bold"
       style={{
-        fontFamily:
-          "ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono', 'Roboto Mono', 'Oxygen Mono', 'Ubuntu Mono', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono', 'Consolas', 'Courier New', monospace",
+        backgroundImage: 'linear-gradient(to bottom, #15151a, #0b0b0b)',
       }}
-      className={css.container}
     >
-      <div tw="flex flex-col" style={{ gap: '16px' }}>
-        <h1 style={{ fontSize: '64px', margin: 0 }}>{title}</h1>
-        {description ? <p style={{ fontSize: '48px' }}>{description}</p> : null}
+      <div
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          width: '1800px',
+          height: '1800px',
+          transform: 'translate(-50%, -50%)',
+          backgroundImage:
+            'radial-gradient(circle, #b93d473a, transparent 100%)',
+          backgroundSize: '100% 100%',
+          backgroundPosition: 'center',
+        }}
+      ></div>
+      <div tw="relative z-[10] flex flex-col" style={{ gap: '16px' }}>
+        <h1
+          style={{
+            fontFamily: 'Raleway',
+            fontSize: '66px',
+            margin: 0,
+          }}
+        >
+          {title}
+        </h1>
+        {description ? (
+          <p
+            style={{
+              fontFamily: 'Roboto',
+              fontSize: '48px',
+            }}
+          >
+            {description}
+          </p>
+        ) : null}
       </div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
