@@ -1,6 +1,6 @@
 import { Rss as RssIcon } from 'lucide-react'
 import type { Metadata } from 'next'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 
 import { NotesList } from '@/components/NotesList'
 

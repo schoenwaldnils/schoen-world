@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 
 import { getNotes } from '@/utils/content'
 import { formatDate } from '@/utils/formatDate'

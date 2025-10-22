@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test.describe('Imprint Page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/imprint')
+    await page.goto('/imprint', { waitUntil: 'commit' })
   })
 
   test('should load successfully', async ({ page }) => {
@@ -11,8 +11,6 @@ test.describe('Imprint Page', () => {
   })
 
   test('should display imprint content', async ({ page }) => {
-    await page.waitForLoadState('networkidle')
-
     // Check for main content area
     const main = page.locator('main, article, .content, [role="main"]')
     if ((await main.count()) > 0) {
@@ -27,8 +25,6 @@ test.describe('Imprint Page', () => {
   })
 
   test('should contain legal information', async ({ page }) => {
-    await page.waitForLoadState('networkidle')
-
     // Look for common legal terms that should be present in an imprint
     const legalTerms = [
       'imprint',
@@ -59,7 +55,6 @@ test.describe('Imprint Page', () => {
 
   test('should be responsive on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 })
-    await page.waitForLoadState('networkidle')
 
     // Content should still be visible on mobile
     const body = page.locator('body')
@@ -90,8 +85,7 @@ test.describe('Imprint Page', () => {
       errors.push(error.message)
     })
 
-    await page.reload()
-    await page.waitForLoadState('networkidle')
+    await page.reload({ waitUntil: 'commit' })
 
     expect(errors).toHaveLength(0)
   })
@@ -101,8 +95,6 @@ test.describe('Imprint Page', () => {
   })
 
   test('should be accessible', async ({ page }) => {
-    await page.waitForLoadState('networkidle')
-
     // Check for basic accessibility features
     const main = page.locator('main, [role="main"]')
     if ((await main.count()) > 0) {

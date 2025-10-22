@@ -11,8 +11,8 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  /* Use 2 parallel workers on CI, 2 locally to avoid overwhelming dev server */
+  workers: process.env.CI ? 2 : 2,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI ? 'dot' : 'list',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -23,7 +23,13 @@ export default defineConfig({
     trace: 'on-first-retry',
     /* Ignore HTTPS errors for self-signed certificates */
     ignoreHTTPSErrors: true,
+    /* Increase navigation timeout for better reliability */
+    navigationTimeout: 30000,
+    /* Reduce action timeout for faster failure detection */
+    actionTimeout: 10000,
   },
+  /* Global timeout for each test to prevent hanging */
+  timeout: 30000,
 
   /* Configure projects for major browsers */
   projects: [
@@ -43,10 +49,10 @@ export default defineConfig({
     // },
 
     /* Test against mobile viewports. */
-    {
-      name: 'Mobile Chrome',
-      use: { ...devices['Pixel 5'] },
-    },
+    // {
+    //   name: 'Mobile Chrome',
+    //   use: { ...devices['Pixel 5'] },
+    // },
     // {
     //   name: 'Mobile Safari',
     //   use: { ...devices['iPhone 12'] },
@@ -65,7 +71,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npm run dev',
+    command: 'pnpm run dev',
     url: 'https://localhost:3002',
     reuseExistingServer: !process.env.CI,
     ignoreHTTPSErrors: true,

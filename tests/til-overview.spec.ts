@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test.describe('TIL Overview Page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/til')
+    await page.goto('/til', { waitUntil: 'commit' })
   })
 
   test('should load successfully', async ({ page }) => {
@@ -24,10 +24,10 @@ test.describe('TIL Overview Page', () => {
   })
 
   test('should display TIL posts', async ({ page }) => {
-    // Wait for the Notes component to load
-    await page.waitForLoadState('networkidle')
-
     // Check if there are any TIL posts displayed
+    // Wait for specific content instead of networkidle
+    await page.getByRole('heading', { name: 'Today I Learned' }).waitFor()
+
     const posts = page.locator('article')
     const postLinks = page.locator('a[href^="/n/"]')
 
@@ -43,9 +43,10 @@ test.describe('TIL Overview Page', () => {
   test('should have working navigation to individual posts', async ({
     page,
   }) => {
-    await page.waitForLoadState('networkidle')
+    // Wait for heading to ensure page is loaded
+    await page.getByRole('heading', { name: 'Today I Learned' }).waitFor()
 
-    const postLinks = page.locator('a[href^="/til/"]')
+    const postLinks = page.locator('a[href^="/n/"]')
     const linkCount = await postLinks.count()
 
     if (linkCount > 0) {
@@ -54,7 +55,7 @@ test.describe('TIL Overview Page', () => {
 
       // Test navigation to first post
       const href = await firstPost.getAttribute('href')
-      expect(href).toMatch(/^\/til\/.+/)
+      expect(href).toMatch(/^\/n\/.+/)
     }
   })
 
@@ -76,8 +77,8 @@ test.describe('TIL Overview Page', () => {
       errors.push(error.message)
     })
 
-    await page.reload()
-    await page.waitForLoadState('networkidle')
+    await page.reload({ waitUntil: 'commit' })
+    await page.getByRole('heading', { name: 'Today I Learned' }).waitFor()
 
     expect(errors).toHaveLength(0)
   })

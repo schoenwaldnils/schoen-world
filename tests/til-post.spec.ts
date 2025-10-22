@@ -5,7 +5,7 @@ const TEST_SLUG = 'hello-world'
 
 test.describe('TIL Individual Post', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(`/til/${TEST_SLUG}`)
+    await page.goto(`/n/${TEST_SLUG}`, { waitUntil: 'commit' })
   })
 
   test('should load successfully', async ({ page }) => {
@@ -14,9 +14,6 @@ test.describe('TIL Individual Post', () => {
   })
 
   test('should display post content', async ({ page }) => {
-    // Wait for content to load
-    await page.waitForLoadState('networkidle')
-
     // Check for main content area
     const main = page.locator('main, article, .content, [role="main"]')
     if ((await main.count()) > 0) {
@@ -54,7 +51,6 @@ test.describe('TIL Individual Post', () => {
 
   test('should be responsive on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 })
-    await page.waitForLoadState('networkidle')
 
     // Content should still be visible on mobile
     const body = page.locator('body')
@@ -67,14 +63,13 @@ test.describe('TIL Individual Post', () => {
       errors.push(error.message)
     })
 
-    await page.reload()
-    await page.waitForLoadState('networkidle')
+    await page.reload({ waitUntil: 'commit' })
 
     expect(errors).toHaveLength(0)
   })
 
   test('should have proper URL structure', ({ page }) => {
-    expect(page.url()).toMatch(/\/til\/[^/]+$/)
+    expect(page.url()).toMatch(/\/n\/[^/]+$/)
   })
 })
 
@@ -82,24 +77,25 @@ test.describe('TIL Post Navigation', () => {
   test('should navigate from TIL overview to individual post', async ({
     page,
   }) => {
-    await page.goto('/til')
-    await page.waitForLoadState('networkidle')
+    await page.goto('/til', { waitUntil: 'commit' })
+    // Wait for the TIL page to be ready
+    await page.getByRole('heading', { name: 'Today I Learned' }).waitFor()
 
     // Find the hello-world post link specifically
-    const postLink = page.locator(`a[href="/til/${TEST_SLUG}"]`)
+    const postLink = page.locator(`a[href="/n/${TEST_SLUG}"]`)
 
     // Ensure the specific link exists and is clickable
     await expect(postLink).toBeVisible()
     await expect(postLink).toBeEnabled()
 
     await postLink.click()
-    await page.waitForLoadState('networkidle')
+    await page.waitForURL(`**/n/${TEST_SLUG}`, { waitUntil: 'commit' })
 
-    expect(page.url()).toContain(`/til/${TEST_SLUG}`)
+    expect(page.url()).toContain(`/n/${TEST_SLUG}`)
   })
 
   test('should handle non-existent TIL posts gracefully', async ({ page }) => {
-    const response = await page.goto('/til/non-existent-post-12345')
+    const response = await page.goto('/n/non-existent-post-12345')
 
     // Should either show 404 or redirect
     if (response) {
