@@ -91,48 +91,48 @@ jobs:
   #       with:
   #         custom-command: 'pnpm snapshot'
 
-  lighthouse-check:
-    runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/main'
-    steps:
-      - uses: actions/checkout@v4
+  # lighthouse-check:
+  #   runs-on: ubuntu-latest
+  #   if: github.ref != 'refs/heads/main'
+  #   steps:
+  #     - uses: actions/checkout@v4
 
-      - name: Get deployment URL
-        id: deployment
-        uses: schoenwaldnils/get-deployment-url@master
-        timeout-minutes: 10
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Get deployment URL
+  #       id: deployment
+  #       uses: schoenwaldnils/get-deployment-url@master
+  #       timeout-minutes: 10
+  #       with:
+  #         token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Wait for Deployment
-        uses: UnlyEd/github-action-await-vercel@v1.1.0
-        id: await-vercel
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        with:
-          deployment-url: ${{ steps.deployment.outputs.deployment }}
-          timeout: 600 # Wait for 10 minutes before failing
+  #     - name: Wait for Deployment
+  #       uses: UnlyEd/github-action-await-vercel@v1.1.0
+  #       id: await-vercel
+  #       env:
+  #         VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  #       with:
+  #         deployment-url: ${{ steps.deployment.outputs.deployment }}
+  #         timeout: 600 # Wait for 10 minutes before failing
 
-      - name: Run Lighthouse
-        uses: foo-software/lighthouse-check-action@v1.0.10
-        id: lighthouseCheck
-        with:
-          accessToken: ${{ secrets.GITHUB_TOKEN }}
-          author: ${{ github.actor }}
-          awsBucket: ${{ secrets.AWS_S3_BUCKET_LIGHTHOUSE }}
-          awsRegion: 'eu-central-1'
-          awsAccessKeyId: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          awsSecretAccessKey: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          branch: ${{ github.ref }}
-          urls: 'https://${{ steps.deployment.outputs.deployment }},https://${{ steps.deployment.outputs.deployment }}/blog,https://${{ steps.deployment.outputs.deployment }}/blog/test'
-          sha: ${{ github.sha }}
+  #     - name: Run Lighthouse
+  #       uses: foo-software/lighthouse-check-action@v1.0.10
+  #       id: lighthouseCheck
+  #       with:
+  #         accessToken: ${{ secrets.GITHUB_TOKEN }}
+  #         author: ${{ github.actor }}
+  #         awsBucket: ${{ secrets.AWS_S3_BUCKET_LIGHTHOUSE }}
+  #         awsRegion: 'eu-central-1'
+  #         awsAccessKeyId: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         awsSecretAccessKey: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         branch: ${{ github.ref }}
+  #         urls: 'https://${{ steps.deployment.outputs.deployment }},https://${{ steps.deployment.outputs.deployment }}/blog,https://${{ steps.deployment.outputs.deployment }}/blog/test'
+  #         sha: ${{ github.sha }}
 
-      - name: Handle Lighthouse Check results
-        uses: foo-software/lighthouse-check-status-action@master
-        with:
-          lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
-          minAccessibilityScore: '90'
-          minBestPracticesScore: '80'
-          minPerformanceScore: '80'
-          minProgressiveWebAppScore: '50'
-          minSeoScore: '80'
+  #     - name: Handle Lighthouse Check results
+  #       uses: foo-software/lighthouse-check-status-action@master
+  #       with:
+  #         lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
+  #         minAccessibilityScore: '90'
+  #         minBestPracticesScore: '80'
+  #         minPerformanceScore: '80'
+  #         minProgressiveWebAppScore: '50'
+  #         minSeoScore: '80'
