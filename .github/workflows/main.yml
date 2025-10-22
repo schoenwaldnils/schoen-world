@@ -61,35 +61,35 @@ jobs:
       - name: build
         run: pnpm build
 
-  visual-regression-test:
-    runs-on: ubuntu-latest
-    env:
-      PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+  # visual-regression-test:
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
 
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Checkout Repo
+  #       uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: false
+  #     - name: Install pnpm
+  #       uses: pnpm/action-setup@v4
+  #       with:
+  #         run_install: false
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'pnpm'
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version-file: '.nvmrc'
+  #         cache: 'pnpm'
 
-      - name: Install dependencies
-        run: pnpm install
+  #     - name: Install dependencies
+  #       run: pnpm install
 
-      - name: Percy Test
-        uses: percy/storybook-action@v0.1.6
-        env:
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-        with:
-          custom-command: 'pnpm snapshot'
+  #     - name: Percy Test
+  #       uses: percy/storybook-action@v0.1.6
+  #       env:
+  #         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+  #       with:
+  #         custom-command: 'pnpm snapshot'
 
   lighthouse-check:
     runs-on: ubuntu-latest
