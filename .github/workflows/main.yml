@@ -15,20 +15,25 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-          cache: 'npm'
+          cache: 'pnpm'
 
-      - name: npm install
-        run: npm ci
+      - name: Install dependencies
+        run: pnpm install
 
       - name: lint ts
-        run: npm run lint:ts
+        run: pnpm lint:ts
 
       - name: lint types
-        run: npm run lint:types
+        run: pnpm lint:types
 
   build:
     runs-on: ubuntu-latest
@@ -39,17 +44,22 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-          cache: 'npm'
+          cache: 'pnpm'
 
-      - name: npm install
-        run: npm ci --include=dev
+      - name: Install dependencies
+        run: pnpm install
 
       - name: build
-        run: npm run build
+        run: pnpm build
 
   visual-regression-test:
     runs-on: ubuntu-latest
@@ -60,21 +70,26 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-          cache: 'npm'
+          cache: 'pnpm'
 
-      - name: npm install
-        run: npm ci
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Percy Test
         uses: percy/storybook-action@v0.1.6
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         with:
-          custom-command: 'npm run snapshot'
+          custom-command: 'pnpm snapshot'
 
   lighthouse-check:
     runs-on: ubuntu-latest
