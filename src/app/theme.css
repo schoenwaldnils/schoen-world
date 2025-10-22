@@ -25,15 +25,23 @@
 
   /* Colors - Brand */
   --color-brand: #ba3e48;
-  --color-brand-dark: hsl(from var(--color-brand) h s calc(l - 20));
-  --color-brand-light: hsl(from var(--color-brand) h s calc(l + 10));
-  --color-brand-lighter: hsl(from var(--color-brand) h s calc(l + 20));
+  --color-brand-50: hsl(from var(--color-brand) h s calc(l + 35));
+  --color-brand-100: hsl(from var(--color-brand) h s calc(l + 30));
+  --color-brand-200: hsl(from var(--color-brand) h s calc(l + 25));
+  --color-brand-300: hsl(from var(--color-brand) h s calc(l + 20));
+  --color-brand-400: hsl(from var(--color-brand) h s calc(l + 15));
+  --color-brand-500: hsl(from var(--color-brand) h s calc(l + 10));
+  --color-brand-600: hsl(from var(--color-brand) h s calc(l + 5));
+  --color-brand-700: hsl(from var(--color-brand) h s l);
+  --color-brand-800: hsl(from var(--color-brand) h s calc(l - 10));
+  --color-brand-900: hsl(from var(--color-brand) h s calc(l - 15));
+  --color-brand-950: hsl(from var(--color-brand) h s calc(l - 20));
   --color-brand-black: #424242;
 
   /* Colors - Charcoal */
   --color-charcoal: oklch(0.18 0.003 197);
   --color-charcoal-light: oklch(0.25 0.003 197);
-  --color-white: oklch(0.91 0.0029 264.54);
+  --color-white: #fafafa;
 
   /* Typography - Font Families */
   --font-heading:
@@ -89,8 +97,11 @@
       var(--background-from),
       var(--background-to)
     );
-    --foreground: light-dark(var(--color-charcoal-light), var(--color-white));
-    --background: light-dark(var(--color-white), var(--color-charcoal));
+    --foreground: light-dark(
+      var(--color-charcoal-light),
+      var(--color-neutral-50)
+    );
+    --background: light-dark(var(--color-neutral-50), var(--color-neutral-950));
     --primary: light-dark(var(--color-brand), var(--color-brand-light));
   }
 }
@@ -106,7 +117,7 @@
 
 @layer base {
   html {
-    background-color: var(--color-brand);
+    background-color: var(--background);
   }
 
   body {

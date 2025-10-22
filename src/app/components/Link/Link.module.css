@@ -9,11 +9,11 @@
   display: inline-block;
   text-decoration: none;
   white-space: nowrap;
-  color: light-dark(#ba3e48, #d05861);
+  color: light-dark(var(--color-brand-800), var(--color-brand-300));
   transition: color var(--duration-fast);
 
   &:hover {
-    color: light-dark(#d05861, #ff7680);
+    color: light-dark(var(--color-brand-800), var(--color-brand-400));
   }
 
   &::before {
@@ -35,7 +35,8 @@
     mask-repeat: repeat-x;
 
     transition-timing-function: cubic-bezier(0, 0, 1, 0);
-    transition: mask-size var(--transition-duration),
+    transition:
+      mask-size var(--transition-duration),
       mask-position-x var(--transition-duration);
   }
 

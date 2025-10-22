@@ -17,7 +17,7 @@ export const Header = ({ className }: { className?: string }) => {
           <li>
             <Link
               href="/til"
-              className="p-3 text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+              className="p-3 text-gray-700 transition-colors hover:text-neutral-900 dark:text-neutral-200 dark:hover:text-white"
             >
               /til
             </Link>

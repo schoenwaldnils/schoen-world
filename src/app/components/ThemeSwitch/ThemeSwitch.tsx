@@ -50,7 +50,6 @@ export const ThemeSwitch = ({ theme: initialTheme }: { theme: Theme }) => {
             checked={theme === id}
             className={css.input}
             aria-label={`Set theme to ${id}`}
-            aria-hidden={true}
           />
           <label htmlFor={`theme-${id}`} title={id} className={css.item}>
             <Icon size="1em" />
