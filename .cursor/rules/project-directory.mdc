@@ -1,0 +1,5 @@
+---
+alwaysApply: true
+---
+
+you are already in the project directory and do not need to `cd` into it
