@@ -32,6 +32,11 @@ const nextConfig: NextConfig = {
   },
   redirects: () => [
     {
+      source: '/home',
+      destination: '/',
+      permanent: true,
+    },
+    {
       source: '/blog',
       destination: '/til',
       permanent: true,
@@ -40,6 +45,12 @@ const nextConfig: NextConfig = {
       source: '/blog/:path*',
       destination: '/n/:path*',
       permanent: true,
+    },
+  ],
+  rewrites: () => [
+    {
+      source: '/',
+      destination: '/home',
     },
   ],
 }
