@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { MDX } from '@/components/MDX'
@@ -11,19 +12,16 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({
+export const generateMetadata = async ({
   params,
 }: {
   params: Promise<{ slug: string }>
-}) {
+}): Promise<Metadata> => {
   const { slug } = await params
   const page = await getPage(slug)
 
   if (!page) {
-    return {
-      title: 'Not Found',
-      description: 'The page you are looking for does not exist.',
-    }
+    notFound()
   }
 
   return {
@@ -45,14 +43,10 @@ export async function generateMetadata({
       title: page.metadata.title,
       description: page.metadata.description,
     },
-  }
+  } satisfies Metadata
 }
 
-export default async function DynamicPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params
   const page = await getPage(slug)
 
@@ -85,3 +79,5 @@ export default async function DynamicPage({
     </>
   )
 }
+
+export default Page
