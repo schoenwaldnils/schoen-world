@@ -1,35 +1,38 @@
-import { promises as fs } from 'fs'
 import type { MetadataRoute } from 'next'
-import path from 'path'
 
-async function getMdxSlugs(dir: string): Promise<string[]> {
-  const entries = await fs.readdir(dir, {
-    recursive: true,
-    withFileTypes: true,
-  })
-  return entries
-    .filter((entry) => entry.isFile() && entry.name === 'page.mdx')
-    .map((entry) => {
-      const relativePath = path.relative(
-        dir,
-        path.join(entry.parentPath, entry.name),
-      )
-      if (relativePath === 'page.mdx') {
-        return ''
-      }
-      return path.dirname(relativePath)
-    })
-    .map((slug) => slug.replace(/\\/g, '/'))
-}
+import { getAllPages, getNotes } from './utils/content'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const searchDirectory = path.join(process.cwd(), 'src', 'app')
-  const slugs = await getMdxSlugs(searchDirectory)
+  // Get all notes and pages
+  const [notes, pages] = await Promise.all([getNotes(), getAllPages()])
 
-  const pages: MetadataRoute.Sitemap = slugs.map((slug) => ({
-    url: `https://schoen.world${slug ? `/${slug}` : ''}`,
-    lastModified: new Date().toISOString(),
-  }))
+  // Map notes to sitemap entries (notes have /n/ prefix)
+  const notesEntries: MetadataRoute.Sitemap = notes.map((note) => {
+    // Use modifiedAt from frontmatter, fallback to updatedAt, then publishedAt
+    const lastModified =
+      (note.metadata as { modifiedAt?: string }).modifiedAt ||
+      note.metadata.updatedAt ||
+      note.metadata.publishedAt
 
-  return pages
+    return {
+      url: `https://schoen.world/n/${note.slug}`,
+      lastModified: new Date(lastModified).toISOString(),
+    }
+  })
+
+  // Map pages to sitemap entries (pages at root level)
+  const pagesEntries: MetadataRoute.Sitemap = pages.map((page) => {
+    // Use modifiedAt from frontmatter, fallback to updatedAt, then publishedAt
+    const lastModified =
+      (page.metadata as { modifiedAt?: string }).modifiedAt ||
+      page.metadata.updatedAt ||
+      page.metadata.publishedAt
+
+    return {
+      url: `https://schoen.world${page.slug === 'home' ? '' : `/${page.slug}`}`,
+      lastModified: new Date(lastModified).toISOString(),
+    }
+  })
+
+  return [...notesEntries, ...pagesEntries]
 }
