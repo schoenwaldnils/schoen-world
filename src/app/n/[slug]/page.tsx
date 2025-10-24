@@ -2,14 +2,14 @@ import { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { MDX } from '@/components/MDX'
-import { getNote, getNotes } from '@/utils/content'
+import { getNote, listNoteSlugs } from '@/utils/content'
 import { formatDate } from '@/utils/formatDate'
 
-export async function generateStaticParams() {
-  const posts = await getNotes()
+export function generateStaticParams() {
+  const slugs = listNoteSlugs()
 
-  return posts.map((post) => ({
-    slug: post.slug,
+  return slugs.map((slug) => ({
+    slug,
   }))
 }
 
@@ -22,7 +22,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { slug } = await params
-  const post = await getNote(slug)
+  const post = getNote(slug)
 
   if (!post) {
     return {
@@ -62,11 +62,16 @@ export default async function Notes({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const post = await getNote(slug)
+  const post = getNote(slug)
 
-  if (!post) {
+  if (!post?.content) {
     notFound()
   }
+
+  const {
+    metadata: { title, description, publishedAt, image },
+    content,
+  } = post
 
   return (
     <article>
@@ -77,29 +82,29 @@ export default async function Notes({
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'BlogPosting',
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.description,
-            image: post.metadata.image
-              ? post.metadata.image
-              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-            url: `/til/${post.slug}`,
+            headline: title,
+            datePublished: publishedAt,
+            dateModified: publishedAt,
+            description: description,
+            image: image || `/og?title=${encodeURIComponent(title)}`,
+            url: `/n/${post.slug}`,
             author: {
               '@type': 'Person',
               name: 'Nils Schönwald',
             },
-          }),
+          }).replace(/</g, '\\u003c'),
         }}
       />
 
-      <h1 className="h1">{post.metadata.title}</h1>
+      <h1 className="h1">{title}</h1>
 
-      <p className="mt-2 mb-8 text-sm text-neutral-600 dark:text-neutral-400">
-        {formatDate(post.metadata.publishedAt)}
-      </p>
+      {publishedAt && (
+        <p className="mt-2 mb-8 text-sm text-neutral-600 dark:text-neutral-400">
+          {formatDate(publishedAt)}
+        </p>
+      )}
 
-      <MDX source={post.content} />
+      <MDX source={content} />
     </article>
   )
 }

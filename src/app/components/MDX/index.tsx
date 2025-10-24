@@ -1,5 +1,4 @@
 import { MDXRemote } from 'next-mdx-remote-client/rsc'
-import React from 'react'
 import remarkGfm from 'remark-gfm'
 
 import { Blockquote } from './Blockquote'
@@ -35,7 +34,7 @@ export function MDX({ source }: { source: string }) {
           mdxOptions: {
             remarkPlugins: [remarkGfm],
           },
-          parseFrontmatter: true,
+          parseFrontmatter: false,
         }}
       />
     </section>

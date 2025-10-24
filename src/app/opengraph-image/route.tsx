@@ -9,11 +9,11 @@ import { ContentItem, getNote, getPage } from '@/utils/content'
 
 const getOGData = async (
   type: string,
-  slug: string,
+  slug: string | string[],
 ): Promise<ContentItem | null> => {
-  if (type === 'page') {
+  if (type === 'page' && Array.isArray(slug)) {
     return await getPage(slug)
-  } else if (type === 'n') {
+  } else if (type === 'n' && typeof slug === 'string') {
     return await getNote(slug)
   }
 

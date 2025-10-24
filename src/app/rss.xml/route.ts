@@ -2,8 +2,8 @@ import { default as RSS } from 'rss'
 
 import { getNotes } from '@/utils/content'
 
-export async function GET() {
-  const notes = await getNotes()
+export const GET = () => {
+  const notes = getNotes()
 
   const feedOptions: RSS.FeedOptions = {
     title: 'Schönwald',
@@ -23,16 +23,25 @@ export async function GET() {
   const feed = new RSS(feedOptions)
 
   notes.forEach((post) => {
-    if (!post.metadata.description) {
+    const {
+      metadata: { title, description, publishedAt },
+      slug,
+    } = post
+
+    if (!description) {
       throw new Error('Description is required for RSS feed')
     }
 
+    if (!publishedAt) {
+      throw new Error('Published at is required for RSS feed')
+    }
+
     feed.item({
-      title: post.metadata.title,
-      description: post.metadata.description,
-      url: `https://schoen.world/n/${post.slug}`,
+      title,
+      description,
+      url: `https://schoen.world/n/${slug}`,
       author: 'Nils Schönwald',
-      date: post.metadata.publishedAt,
+      date: publishedAt,
     })
   })
 

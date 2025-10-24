@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "next-devtools": {
+      "command": "npx -y next-devtools-mcp@latest"
+    }
+  }
+}
