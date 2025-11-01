@@ -23,7 +23,7 @@
 - `[slug]/page.tsx` - Dynamic page routing for static content
 - `n/[slug]/page.tsx` - Blog post routing (notes)
 - `til/page.tsx` - TIL (Today I Learned) overview page
-- `opengraph-image/route.tsx` - Dynamic OpenGraph image generation
+- `og/route.tsx` - Dynamic OpenGraph image generation
 - `rss.xml/route.ts` - RSS feed generation
 - `sitemap.ts` - Sitemap generation
 
