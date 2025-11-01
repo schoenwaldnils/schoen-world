@@ -1,16 +1,18 @@
+import { Suspense } from 'react'
+
 import { Link } from '@/components/Link'
-import { Theme, ThemeSwitch } from '@/components/ThemeSwitch'
+import { ThemeSwitch } from '@/components/ThemeSwitch'
 import { cn } from '@/utils/cn'
 
 import css from './Footer.module.css'
 
-export const Footer = ({
-  theme,
-  className,
-}: {
-  theme: Theme
-  className?: string
-}) => {
+// eslint-disable-next-line @typescript-eslint/require-await
+const currentYear = async () => {
+  'use cache'
+  return new Date().getFullYear()
+}
+
+export const Footer = ({ className }: { className?: string }) => {
   const socialLinks = [
     { name: 'github', href: 'https://github.com/schoenwaldnils', newTab: true },
     {
@@ -55,9 +57,7 @@ export const Footer = ({
       </div>
 
       <div className="flex items-center">
-        <p className={css.footerText}>
-          &copy; {new Date().getFullYear()} Nils Schönwald
-        </p>
+        <p className={css.footerText}>&copy; {currentYear()} Nils Schönwald</p>
       </div>
 
       <div className={css.footerNav}>
@@ -68,7 +68,9 @@ export const Footer = ({
         ))}
       </div>
 
-      <ThemeSwitch theme={theme} />
+      <Suspense>
+        <ThemeSwitch />
+      </Suspense>
     </footer>
   )
 }

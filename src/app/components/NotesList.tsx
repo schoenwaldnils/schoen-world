@@ -3,18 +3,22 @@ import { Link } from 'next-view-transitions'
 import { getNotes } from '@/utils/content'
 import { formatDate } from '@/utils/formatDate'
 
-export const NotesList = ({ tag }: { tag?: string }) => {
-  const allNotes = getNotes()
-    .filter((note) => !tag || note.metadata.tags?.includes(tag))
-    .sort((a, b) => {
-      if (a.metadata.publishedAt && b.metadata.publishedAt) {
-        return (
-          new Date(b.metadata.publishedAt).getTime() -
-          new Date(a.metadata.publishedAt).getTime()
-        )
-      }
-      return 0
-    })
+export type NotesListProps = {
+  tag?: string
+}
+
+export const NotesList = async ({ tag }: NotesListProps) => {
+  const notes = await getNotes(tag)
+
+  const allNotes = notes.sort((a, b) => {
+    if (a.metadata.publishedAt && b.metadata.publishedAt) {
+      return (
+        new Date(b.metadata.publishedAt).getTime() -
+        new Date(a.metadata.publishedAt).getTime()
+      )
+    }
+    return 0
+  })
 
   return (
     <div className="grid grid-cols-[1fr_auto] gap-4 gap-y-8">

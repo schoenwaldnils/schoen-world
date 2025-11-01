@@ -2,8 +2,8 @@ import { default as RSS } from 'rss'
 
 import { getNotes } from '@/utils/content'
 
-export const GET = () => {
-  const notes = getNotes()
+export async function GET() {
+  const notes = await getNotes()
 
   const feedOptions: RSS.FeedOptions = {
     title: 'Schönwald',

@@ -129,7 +129,12 @@ export function listNoteSlugs(): string[] {
 }
 
 // Get a single specific page by path
-export function getPage(pathSegments: string[]): ContentItem | null {
+// eslint-disable-next-line @typescript-eslint/require-await
+export async function getPage(
+  pathSegments: string[],
+): Promise<ContentItem | null> {
+  'use cache'
+
   const contentDirectory = path.join(
     process.cwd(),
     'src',
@@ -160,7 +165,10 @@ export function getPage(pathSegments: string[]): ContentItem | null {
 }
 
 // Get a single specific note by slug
-export function getNote(slug: string): ContentItem | null {
+// eslint-disable-next-line @typescript-eslint/require-await
+export async function getNote(slug: string): Promise<ContentItem | null> {
+  'use cache'
+
   const contentDirectory = path.join(
     process.cwd(),
     'src',
@@ -199,7 +207,10 @@ export function getNote(slug: string): ContentItem | null {
 }
 
 // Get all notes with metadata only (for listings like /til)
-export function getNotes(): ContentMeta[] {
+// eslint-disable-next-line @typescript-eslint/require-await
+export async function getNotes(tag?: string): Promise<ContentMeta[]> {
+  'use cache'
+
   const contentDirectory = path.join(
     process.cwd(),
     'src',
@@ -267,7 +278,9 @@ export function getAllPages(): ContentItem[] {
 }
 
 // Get all content metadata (pages + notes) - for RSS, sitemap, etc.
-export function getAllContent(): ContentMeta[] {
+export async function getAllContent(): Promise<ContentMeta[]> {
+  'use cache'
+
   const contentDirectory = path.join(
     process.cwd(),
     'src',
@@ -295,7 +308,7 @@ export function getAllContent(): ContentMeta[] {
     } satisfies ContentMeta
   })
 
-  const notes = getNotes()
+  const notes = await getNotes()
 
   return [...pages, ...notes]
 }

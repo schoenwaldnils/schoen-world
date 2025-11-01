@@ -18,7 +18,7 @@ export async function generateMetadata({
   params: Promise<{ path: string[] }>
 }): Promise<Metadata> {
   const { path } = await params
-  const page = getPage(path)
+  const page = await getPage(path)
 
   if (!page) {
     return {
@@ -60,7 +60,7 @@ export default async function Page({
   params: Promise<{ path: string[] }>
 }) {
   const { path } = await params
-  const page = getPage(path)
+  const page = await getPage(path)
 
   if (!page) {
     notFound()

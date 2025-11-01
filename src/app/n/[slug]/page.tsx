@@ -22,7 +22,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { slug } = await params
-  const post = getNote(slug)
+  const post = await getNote(slug)
 
   if (!post) {
     return {
@@ -62,7 +62,7 @@ export default async function Notes({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const post = getNote(slug)
+  const post = await getNote(slug)
 
   if (!post?.content) {
     notFound()

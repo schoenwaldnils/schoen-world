@@ -2,9 +2,9 @@ import type { MetadataRoute } from 'next'
 
 import { getAllContent } from './utils/content'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Get all content items
-  const allContent = getAllContent()
+  const allContent = await getAllContent()
 
   // Map all content to sitemap entries with dynamic URLs
   const entries: MetadataRoute.Sitemap = allContent.map((item) => {
