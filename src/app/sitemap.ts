@@ -1,38 +1,33 @@
 import type { MetadataRoute } from 'next'
 
-import { getAllPages, getNotes } from './utils/content'
+import { getAllContent } from './utils/content'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Get all notes and pages
-  const [notes, pages] = await Promise.all([getNotes(), getAllPages()])
+  // Get all content items
+  const allContent = await getAllContent()
 
-  // Map notes to sitemap entries (notes have /n/ prefix)
-  const notesEntries: MetadataRoute.Sitemap = notes.map((note) => {
+  // Map all content to sitemap entries with dynamic URLs
+  const entries: MetadataRoute.Sitemap = allContent.map((item) => {
     // Use modifiedAt from frontmatter, fallback to updatedAt, then publishedAt
     const lastModified =
-      (note.metadata as { modifiedAt?: string }).modifiedAt ||
-      note.metadata.updatedAt ||
-      note.metadata.publishedAt
+      (item.metadata as { modifiedAt?: string }).modifiedAt ||
+      item.metadata.updatedAt ||
+      item.metadata.publishedAt
+
+    // Build URL from path: ['n', 'hello-world'] -> /n/hello-world
+    // Handle special case: ['home'] -> / (root)
+    const urlPath =
+      item.path.length === 1 && item.path[0] === 'home'
+        ? ''
+        : `/${item.path.join('/')}`
 
     return {
-      url: `https://schoen.world/n/${note.slug}`,
-      lastModified: new Date(lastModified).toISOString(),
+      url: `https://schoen.world${urlPath}`,
+      lastModified: lastModified
+        ? new Date(lastModified).toISOString()
+        : undefined,
     }
   })
 
-  // Map pages to sitemap entries (pages at root level)
-  const pagesEntries: MetadataRoute.Sitemap = pages.map((page) => {
-    // Use modifiedAt from frontmatter, fallback to updatedAt, then publishedAt
-    const lastModified =
-      (page.metadata as { modifiedAt?: string }).modifiedAt ||
-      page.metadata.updatedAt ||
-      page.metadata.publishedAt
-
-    return {
-      url: `https://schoen.world${page.slug === 'home' ? '' : `/${page.slug}`}`,
-      lastModified: new Date(lastModified).toISOString(),
-    }
-  })
-
-  return [...notesEntries, ...pagesEntries]
+  return entries
 }

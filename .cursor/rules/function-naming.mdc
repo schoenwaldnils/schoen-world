@@ -1,0 +1,7 @@
+---
+alwaysApply: true
+---
+
+Do not rename or name functions regarding the refactoring or changes you did. name them for what they do. Or do not rename them.
+
+The same for comments. If you write a comment be descriptive but consise and explain what a function does

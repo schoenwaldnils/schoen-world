@@ -1,28 +1,33 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { MDX } from '@/components/MDX'
-import { getAllPages, getPage } from '@/utils/content'
+import { getPage, listPagePaths } from '@/utils/content'
 
-export async function generateStaticParams() {
-  const pages = await getAllPages()
+export function generateStaticParams() {
+  const pagePaths = listPagePaths()
 
-  return pages.map((page) => ({
-    slug: page.slug,
+  return pagePaths.map((path) => ({
+    path,
   }))
 }
 
 export const generateMetadata = async ({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<{ path: string[] }>
 }): Promise<Metadata> => {
-  const { slug } = await params
-  const page = await getPage(slug)
+  const { path } = await params
+  const page = await getPage(path)
 
   if (!page) {
     notFound()
   }
+
+  const urlPath =
+    page.path.length === 1 && page.path[0] === 'home'
+      ? ''
+      : `/${page.path.join('/')}`
 
   return {
     title: page.metadata.title,
@@ -31,7 +36,7 @@ export const generateMetadata = async ({
       title: page.metadata.title,
       description: page.metadata.description,
       type: 'website',
-      url: page.slug === 'home' ? '' : `/${page.slug}`,
+      url: urlPath,
       images: [
         {
           url: `/opengraph-image?title=${page.metadata.title}&description=${page.metadata.description || ''}`,
@@ -46,13 +51,22 @@ export const generateMetadata = async ({
   } satisfies Metadata
 }
 
-const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
-  const { slug } = await params
-  const page = await getPage(slug)
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ path: string[] }>
+}) {
+  const { path } = await params
+  const page = await getPage(path)
 
   if (!page) {
     notFound()
   }
+
+  const urlPath =
+    page.path.length === 1 && page.path[0] === 'home'
+      ? ''
+      : `/${page.path.join('/')}`
 
   return (
     <>
@@ -65,7 +79,7 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
             '@type': 'WebPage',
             headline: page.metadata.title,
             description: page.metadata.description,
-            url: page.slug === 'home' ? '' : `/${page.slug}`,
+            url: urlPath,
             author: {
               '@type': 'Person',
               name: 'Nils Schönwald',
@@ -79,5 +93,3 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
     </>
   )
 }
-
-export default Page

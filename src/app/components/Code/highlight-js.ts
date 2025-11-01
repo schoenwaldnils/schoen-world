@@ -1,3 +1,4 @@
+import bash from 'highlight.js/lib/languages/bash'
 import css from 'highlight.js/lib/languages/css'
 import js from 'highlight.js/lib/languages/javascript'
 import typescript from 'highlight.js/lib/languages/typescript'
@@ -5,6 +6,7 @@ import html from 'highlight.js/lib/languages/xml'
 import yaml from 'highlight.js/lib/languages/yaml'
 import Lowlight from 'react-lowlight'
 
+Lowlight.registerLanguage('bash', bash)
 Lowlight.registerLanguage('css', css)
 Lowlight.registerLanguage('js', js)
 Lowlight.registerLanguage('html', html)

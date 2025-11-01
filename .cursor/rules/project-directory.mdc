@@ -2,4 +2,5 @@
 alwaysApply: true
 ---
 
-you are already in the project directory and do not need to `cd` into it
+you are already in the project directory and do not need to `cd` into it.
+do not use absolute paths but relative to the project directory.

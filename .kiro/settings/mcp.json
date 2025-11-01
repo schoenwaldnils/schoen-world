@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "next-devtools": {
+      "command": "pnpm",
+      "args": ["dlx", "next-devtools-mcp@latest"],
+      "disabled": false,
+      "autoApprove": [
+        "nextjs_runtime",
+        "nextjs_docs",
+        "browser_eval",
+        "enable_cache_components"
+      ]
+    }
+  }
+}

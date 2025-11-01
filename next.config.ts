@@ -3,6 +3,10 @@ import type { NextConfig } from 'next'
 const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'mdx'],
   transpilePackages: ['next-mdx-remote-client'],
+  cacheComponents: true,
+  experimental: {
+    mcpServer: true,
+  },
   turbopack: {
     rules: {
       '*.svg': {

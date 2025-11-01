@@ -3,21 +3,28 @@ import { expect, test } from '@playwright/test'
 
 test.describe('Accessibility Tests', () => {
   // Array of URLs to test for accessibility
-  const urlsToTest = ['/', '/til', '/imprint']
+  const urlsToTest = ['/', '/til', '/n/hello-world']
 
   // Consolidated WCAG compliance tests - run all checks on one page load
   test.describe('WCAG Compliance', () => {
+    const colorSchemes: ('light' | 'dark')[] = ['light', 'dark']
+
     urlsToTest.forEach((url) => {
-      test(`should meet WCAG 2.1 AA standards on ${url}`, async ({ page }) => {
-        await page.goto(url)
-        await page.waitForLoadState('domcontentloaded')
+      colorSchemes.forEach((colorScheme) => {
+        test(`should meet WCAG 2.1 AA standards on ${url} in ${colorScheme} mode`, async ({
+          page,
+        }) => {
+          await page.emulateMedia({ colorScheme })
+          await page.goto(url)
+          await page.waitForLoadState('domcontentloaded')
 
-        // Run comprehensive accessibility scan with all WCAG AA rules
-        const accessibilityScanResults = await new AxeBuilder({ page })
-          .withTags(['wcag2a', 'wcag2aa', 'best-practice'])
-          .analyze()
+          // Run comprehensive accessibility scan with all WCAG AA rules
+          const accessibilityScanResults = await new AxeBuilder({ page })
+            .withTags(['wcag2a', 'wcag2aa', 'best-practice'])
+            .analyze()
 
-        expect(accessibilityScanResults.violations).toEqual([])
+          expect(accessibilityScanResults.violations).toEqual([])
+        })
       })
     })
   })

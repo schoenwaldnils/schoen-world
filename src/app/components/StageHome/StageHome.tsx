@@ -14,7 +14,7 @@ export const StageHome = ({ className }: { className?: string }) => {
         <p>
           Hello there <span className="text-primary">🖖</span>, I'm
         </p>
-        <h1 className="my-0">Nils Schönwald</h1>
+        <h1 className="h1 my-0">Nils Schönwald</h1>
       </div>
       <Avatar />
     </div>
