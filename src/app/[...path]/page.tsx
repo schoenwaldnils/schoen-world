@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import qs from 'query-string'
 
 import { MDX } from '@/components/MDX'
 import { getPage, listPagePaths } from '@/utils/content'
@@ -29,24 +30,28 @@ export const generateMetadata = async ({
       ? ''
       : `/${page.path.join('/')}`
 
+  const {
+    metadata: { title, description },
+  } = page
+
   return {
-    title: page.metadata.title,
-    description: page.metadata.description,
+    title,
+    description,
     openGraph: {
-      title: page.metadata.title,
-      description: page.metadata.description,
+      title,
+      description,
       type: 'website',
       url: urlPath,
       images: [
         {
-          url: `/opengraph-image?title=${page.metadata.title}&description=${page.metadata.description || ''}`,
+          url: `/og?${qs.stringify({ title, description })}`,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: page.metadata.title,
-      description: page.metadata.description,
+      title,
+      description,
     },
   } satisfies Metadata
 }

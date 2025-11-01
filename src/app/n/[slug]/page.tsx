@@ -1,5 +1,6 @@
 import { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
+import qs from 'query-string'
 
 import { MDX } from '@/components/MDX'
 import { getNote, listNoteSlugs } from '@/utils/content'
@@ -34,25 +35,29 @@ export async function generateMetadata(
   // optionally access and extend (rather than replace) parent metadata
   const previousImages = (await parent).openGraph?.images || []
 
+  const {
+    metadata: { title, description, publishedAt },
+  } = post
+
   return {
-    title: post.metadata.title,
-    description: post.metadata.description,
+    title,
+    description,
     openGraph: {
       type: 'article',
-      publishedTime: post.metadata.publishedAt,
-      url: `/n/${post.slug}`,
+      publishedTime: publishedAt,
+      url: `/n/${slug}`,
       images: [
         {
-          url: `/opengraph-image?type=n&slug=${post.slug}`,
+          url: `/og?${qs.stringify({ title, description })}`,
         },
         ...previousImages,
       ],
     },
-    // twitter: {
-    //   card: 'summary_large_image',
-    //   title: post.metadata.title,
-    //   description: post.metadata.description,
-    // },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+    },
   }
 }
 
