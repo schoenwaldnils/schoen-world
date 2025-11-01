@@ -2,6 +2,15 @@
   --size: 10rem;
   width: var(--size);
   height: var(--size);
-  border-radius: calc(var(--size) / 2);
   aspect-ratio: 1 / 1;
+  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+  border-radius: 40%;
+  transition:
+    clip-path 0.3s ease-in-out,
+    border-radius 0.3s ease-in-out;
+}
+
+.avatarImage:hover {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 100% 100%, 0% 100%, 0% 50%);
+  border-radius: 50%;
 }

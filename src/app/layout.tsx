@@ -25,8 +25,11 @@ const Raleway = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'Nils Schönwald - Frontend Developer',
-  description: 'Frontend Developer based in Hamburg',
+  title: {
+    default: 'Nils Schönwald - Frontend Developer',
+    template: '%s | Nils Schönwald',
+  },
+  description: 'Software engineer and tinkerer.',
   metadataBase: new URL(getServerSideURL()),
 }
 

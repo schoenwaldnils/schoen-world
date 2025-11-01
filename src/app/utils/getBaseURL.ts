@@ -10,7 +10,7 @@ export const getServerSideURL = () => {
   }
 
   if (!url) {
-    url = 'https://localhost:3007'
+    url = 'https://localhost:3002'
   }
 
   console.info(`URL: ${url}`)

@@ -12,19 +12,16 @@ export function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({
+export const generateMetadata = async ({
   params,
 }: {
   params: Promise<{ path: string[] }>
-}): Promise<Metadata> {
+}): Promise<Metadata> => {
   const { path } = await params
   const page = await getPage(path)
 
   if (!page) {
-    return {
-      title: 'Not Found',
-      description: 'The page you are looking for does not exist.',
-    }
+    notFound()
   }
 
   const urlPath =
@@ -51,7 +48,7 @@ export async function generateMetadata({
       title: page.metadata.title,
       description: page.metadata.description,
     },
-  }
+  } satisfies Metadata
 }
 
 export default async function Page({
