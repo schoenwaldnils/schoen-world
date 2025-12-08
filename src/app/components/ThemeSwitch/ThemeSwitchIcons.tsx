@@ -7,7 +7,7 @@ import { Fragment, useCallback, useEffect, useState } from 'react'
 
 import css from './ThemeSwitch.module.css'
 
-export type Theme = 'dark' | 'light' | 'system'
+type Theme = 'dark' | 'light' | 'system'
 
 const canUseDOM = !!(
   typeof window !== 'undefined' &&

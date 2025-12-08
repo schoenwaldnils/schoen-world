@@ -3,7 +3,7 @@ import matter from 'gray-matter'
 import path from 'path'
 
 // Base metadata that all content types share
-export interface Metadata extends Record<string, unknown> {
+interface Metadata extends Record<string, unknown> {
   title: string
   description?: string
   image?: string
@@ -13,10 +13,10 @@ export interface Metadata extends Record<string, unknown> {
 }
 
 // Content type based on location
-export type ContentType = 'page' | 'note'
+type ContentType = 'page' | 'note'
 
 // Lightweight item with just metadata (no content)
-export interface ContentMeta {
+interface ContentMeta {
   metadata: Metadata
   slug: string
   path: string[]
@@ -222,29 +222,39 @@ export async function getNotes(tag?: string): Promise<ContentMeta[]> {
 
   const mdxFiles = findMDXFiles(contentDirectory)
 
-  const results = mdxFiles.map((filePath) => {
-    const metadata = readMDXFrontmatter(filePath)
-    const filename = path.basename(filePath)
-    const slug = extractSlugFromFilename(filename)
-    const dateFromFilename = extractDateFromFilename(filename)
+  const results = mdxFiles
+    .map((filePath) => {
+      const metadata = readMDXFrontmatter(filePath)
 
-    return {
-      metadata: {
-        ...metadata,
-        publishedAt: metadata.publishedAt || dateFromFilename || undefined,
-      },
-      slug,
-      path: ['n', slug],
-      type: 'note' as const,
-      filePath,
-    } satisfies ContentMeta
-  })
+      if (tag && !metadata.tags?.includes(tag)) {
+        return null
+      }
+
+      const filename = path.basename(filePath)
+      const slug = extractSlugFromFilename(filename)
+      const dateFromFilename = extractDateFromFilename(filename)
+
+      return {
+        metadata: {
+          ...metadata,
+          publishedAt: metadata.publishedAt || dateFromFilename || undefined,
+        },
+        slug,
+        path: ['n', slug],
+        type: 'note' as const,
+        filePath,
+      } satisfies ContentMeta
+    })
+    .filter(Boolean)
 
   return results
 }
 
 // Get all pages (rarely needed, but kept for completeness)
-export function getAllPages(): ContentItem[] {
+// eslint-disable-next-line @typescript-eslint/require-await
+async function getAllPages(): Promise<ContentItem[]> {
+  'use cache'
+
   const contentDirectory = path.join(
     process.cwd(),
     'src',
@@ -280,34 +290,7 @@ export function getAllPages(): ContentItem[] {
 // Get all content metadata (pages + notes) - for RSS, sitemap, etc.
 export async function getAllContent(): Promise<ContentMeta[]> {
   'use cache'
-
-  const contentDirectory = path.join(
-    process.cwd(),
-    'src',
-    'app',
-    '[...path]',
-    'content',
-  )
-
-  const pageFiles = findMDXFiles(contentDirectory)
-  const pages = pageFiles.map((filePath) => {
-    const metadata = readMDXFrontmatter(filePath)
-    const relativePath = path.relative(contentDirectory, filePath)
-    const pathSegments = relativePath.split(path.sep)
-    const filename = pathSegments[pathSegments.length - 1]
-    const folderPath = pathSegments.slice(0, -1)
-    const slug = extractSlugFromFilename(filename)
-    const urlPath = [...folderPath, slug]
-
-    return {
-      metadata,
-      slug,
-      path: urlPath,
-      type: 'page' as const,
-      filePath,
-    } satisfies ContentMeta
-  })
-
+  const pages = await getAllPages()
   const notes = await getNotes()
 
   return [...pages, ...notes]

@@ -4,6 +4,7 @@ import remarkGfm from 'remark-gfm'
 import { Blockquote } from './Blockquote'
 import { Code, Pre } from './Code'
 import { H1, H2, H3, H4 } from './Headings'
+import { ListItem, OrderedList, UnorderedList } from './Lists'
 import { MDXImage } from './MDXImage'
 import { MDXLink } from './MDXLink'
 import { MDXNotesList } from './MDXNotesList'
@@ -11,6 +12,7 @@ import { MDXStageHome } from './MDXStageHome'
 import { MDXTitle } from './MDXTitle'
 import { Paragraph } from './Paragraph'
 import { Table } from './Table'
+import { Emphasis, Strong } from './TextFormatting'
 
 const components = {
   h1: H1,
@@ -19,6 +21,11 @@ const components = {
   h4: H4,
   p: Paragraph,
   a: MDXLink,
+  ul: UnorderedList,
+  ol: OrderedList,
+  li: ListItem,
+  em: Emphasis,
+  strong: Strong,
   img: MDXImage,
   blockquote: Blockquote,
   Image: MDXImage,
