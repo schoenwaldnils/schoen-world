@@ -44,3 +44,6 @@ certificates
 # playwright
 playwright-report
 test-results
+
+# node compile cache
+node-compile-cache
