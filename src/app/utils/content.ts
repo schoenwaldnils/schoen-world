@@ -290,8 +290,7 @@ async function getAllPages(): Promise<ContentItem[]> {
 // Get all content metadata (pages + notes) - for RSS, sitemap, etc.
 export async function getAllContent(): Promise<ContentMeta[]> {
   'use cache'
-  const pages = await getAllPages()
-  const notes = await getNotes()
+  const [pages, notes] = await Promise.all([getAllPages(), getNotes()])
 
   return [...pages, ...notes]
 }
