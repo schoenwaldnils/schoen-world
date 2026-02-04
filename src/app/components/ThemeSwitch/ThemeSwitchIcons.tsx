@@ -1,4 +1,4 @@
-'use clients'
+'use client'
 
 import { getCookie } from 'cookies-next'
 import { deleteCookie, setCookie } from 'cookies-next/client'
@@ -68,7 +68,7 @@ export const ThemeSwitchIcons = () => {
     if (canUseDOM) {
       handleSetTheme(initialTheme)
     }
-  }, [])
+  }, [handleSetTheme, initialTheme])
 
   return (
     <>

@@ -4,6 +4,7 @@ export const Logo = ({ className }: { className?: string }) => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1940 320"
       className={className}
+      aria-hidden="true"
     >
       <g fillRule="evenodd">
         <g className="fill-brand-black dark:fill-white">

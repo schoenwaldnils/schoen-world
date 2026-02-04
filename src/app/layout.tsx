@@ -4,7 +4,7 @@ import './theme.css'
 import './typography.css'
 import './highlightjs.css'
 
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
 import { ViewTransitions } from 'next-view-transitions'
 
@@ -31,6 +31,11 @@ export const metadata: Metadata = {
   },
   description: 'Software engineer and tinkerer.',
   metadataBase: new URL(getServerSideURL()),
+}
+
+export const viewport: Viewport = {
+  colorScheme: 'dark light',
+  themeColor: '#ba3e48',
 }
 
 export default function RootLayout({
