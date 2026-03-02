@@ -5,6 +5,7 @@ import { ImageResponse } from 'next/og'
 import { NextRequest } from 'next/server'
 
 import { OgImage } from '@/components/OgImage'
+import { compressArrayBuffer } from '@/utils/compressArrayBuffer'
 import { ContentItem, getNote, getPage } from '@/utils/content'
 
 const getOGData = async (
@@ -44,7 +45,7 @@ export async function GET(request: NextRequest) {
     join(process.cwd(), 'src/app/fonts/Roboto/static/Roboto-Regular.ttf'),
   )
 
-  return new ImageResponse(
+  const imageResponse = new ImageResponse(
     (
       <OgImage
         title={title || ogData?.metadata.title}
@@ -68,4 +69,22 @@ export async function GET(request: NextRequest) {
       ],
     },
   )
+
+  // thanks to @carlos-dubon
+  // https://github.com/vercel/next.js/discussions/60366#discussioncomment-11997246
+  const arrayBuffer = await imageResponse.arrayBuffer()
+  const compressedImage = await compressArrayBuffer(arrayBuffer)
+
+  const headers = new Headers()
+  headers.set('Content-Type', 'image/jpeg')
+  // the Cache-Control header was set in the ImageResponse so I copied it here
+  headers.set(
+    'Cache-Control',
+    'public, immutable, no-transform, max-age=604800', // 1 week
+  )
+  return new Response(compressedImage, {
+    status: 200,
+    statusText: 'OK',
+    headers,
+  })
 }
