@@ -51,12 +51,6 @@ const nextConfig: NextConfig = {
       permanent: true,
     },
   ],
-  rewrites: () => [
-    {
-      source: '/',
-      destination: '/home',
-    },
-  ],
 }
 
 export default nextConfig
