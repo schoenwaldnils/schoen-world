@@ -16,8 +16,9 @@ import { getServerSideURL } from '@/utils/getBaseURL'
 const Raleway = localFont({
   src: [
     {
-      path: '/fonts/Raleway/Raleway-VariableFont_wght.ttf',
+      path: './fonts/Raleway/Raleway-VariableFont_wght.woff2',
       style: 'normal',
+      weight: '100 900',
     },
   ],
   variable: '--font-raleway',

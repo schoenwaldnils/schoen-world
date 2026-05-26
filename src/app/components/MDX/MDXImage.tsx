@@ -10,8 +10,10 @@ export const MDXImage = (props: ComponentPropsWithoutRef<'img'>) => {
     <Image
       src={props.src}
       alt={props.alt ?? ''}
-      width={props.width ? Number(props.width) : 800}
-      height={props.height ? Number(props.height) : 600}
+      width={props.width ? Number(props.width) : 1600}
+      height={props.height ? Number(props.height) : 1200}
+      sizes="(max-width: 768px) 100vw, 672px"
+      style={{ width: '100%', height: 'auto' }}
     />
   )
 }
