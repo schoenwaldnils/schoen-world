@@ -1,33 +1,30 @@
 import type { MetadataRoute } from 'next'
 
 import { getAllContent } from './utils/content'
+import { getServerSideURL } from './utils/getBaseURL'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Get all content items
+  const baseURL = getServerSideURL()
   const allContent = await getAllContent()
 
-  // Map all content to sitemap entries with dynamic URLs
-  const entries: MetadataRoute.Sitemap = allContent.map((item) => {
-    // Use modifiedAt from frontmatter, fallback to updatedAt, then publishedAt
+  return allContent.map((item) => {
     const lastModified =
       (item.metadata as { modifiedAt?: string }).modifiedAt ||
       item.metadata.updatedAt ||
       item.metadata.publishedAt
 
-    // Build URL from path: ['n', 'hello-world'] -> /n/hello-world
-    // Handle special case: ['home'] -> / (root)
     const urlPath =
       item.path.length === 1 && item.path[0] === 'home'
         ? ''
         : `/${item.path.join('/')}`
 
     return {
-      url: `https://schoen.world${urlPath}`,
+      url: `${baseURL}${urlPath}`,
       lastModified: lastModified
         ? new Date(lastModified).toISOString()
         : undefined,
+      changeFrequency: item.type === 'note' ? 'monthly' : 'yearly',
+      priority: item.type === 'page' && urlPath === '' ? 1 : 0.7,
     }
   })
-
-  return entries
 }

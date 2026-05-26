@@ -5,6 +5,7 @@ import qs from 'query-string'
 import { MDX } from '@/components/MDX'
 import { getNote, listNoteSlugs } from '@/utils/content'
 import { formatDate } from '@/utils/formatDate'
+import { getServerSideURL } from '@/utils/getBaseURL'
 
 export function generateStaticParams() {
   const slugs = listNoteSlugs()
@@ -39,24 +40,27 @@ export async function generateMetadata(
     metadata: { title, description, publishedAt },
   } = post
 
+  const ogImage = `/og?${qs.stringify({ title, description })}`
+
   return {
     title,
     description,
+    alternates: {
+      canonical: `/n/${slug}`,
+    },
     openGraph: {
       type: 'article',
+      locale: 'en_US',
       publishedTime: publishedAt,
+      modifiedTime: post.metadata.updatedAt || publishedAt,
       url: `/n/${slug}`,
-      images: [
-        {
-          url: `/og?${qs.stringify({ title, description })}`,
-        },
-        ...previousImages,
-      ],
+      images: [{ url: ogImage }, ...previousImages],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
+      images: [ogImage],
     },
   }
 }
@@ -74,9 +78,15 @@ export default async function Notes({
   }
 
   const {
-    metadata: { title, description, publishedAt, image },
+    metadata: { title, description, publishedAt, updatedAt, image },
     content,
   } = post
+
+  const baseURL = getServerSideURL()
+  const url = `${baseURL}/n/${post.slug}`
+  const imageURL = image
+    ? new URL(image, baseURL).toString()
+    : `${baseURL}/og?${qs.stringify({ title, description })}`
 
   return (
     <article>
@@ -89,13 +99,20 @@ export default async function Notes({
             '@type': 'BlogPosting',
             headline: title,
             datePublished: publishedAt,
-            dateModified: publishedAt,
-            description: description,
-            image: image || `/og?title=${encodeURIComponent(title)}`,
-            url: `/n/${post.slug}`,
+            dateModified: updatedAt || publishedAt,
+            description,
+            image: imageURL,
+            url,
+            mainEntityOfPage: { '@type': 'WebPage', '@id': url },
             author: {
               '@type': 'Person',
               name: 'Nils Schönwald',
+              url: baseURL,
+            },
+            publisher: {
+              '@type': 'Person',
+              name: 'Nils Schönwald',
+              url: baseURL,
             },
           }).replace(/</g, '\\u003c'),
         }}

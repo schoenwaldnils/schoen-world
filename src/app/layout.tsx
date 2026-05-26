@@ -43,10 +43,47 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const baseURL = getServerSideURL()
+  const personId = `${baseURL}/#person`
+  const siteJsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Person',
+        '@id': personId,
+        name: 'Nils Schönwald',
+        url: baseURL,
+        jobTitle: 'Frontend Developer',
+        sameAs: [
+          'https://github.com/schoenwaldnils',
+          'https://www.linkedin.com/in/schoenwaldnils',
+          'https://bsky.app/profile/schoen.world',
+          'https://mastodon.social/@schoenwaldnils',
+        ],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${baseURL}/#website`,
+        url: baseURL,
+        name: 'Nils Schönwald',
+        description: 'Software engineer and tinkerer.',
+        publisher: { '@id': personId },
+        inLanguage: 'en',
+      },
+    ],
+  }
+
   return (
     <ViewTransitions>
       <html lang="en" className={`${Raleway.variable}`}>
         <body className="flex min-h-screen flex-col justify-between px-8">
+          <script
+            type="application/ld+json"
+            suppressHydrationWarning
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(siteJsonLd).replace(/</g, '\\u003c'),
+            }}
+          />
           <BackgroundBlobs />
           <Header className="mx-auto w-full max-w-4xl" />
           <main className="mx-auto w-full max-w-2xl">{children}</main>
