@@ -17,9 +17,9 @@
     "test:e2e:debug": "playwright test --debug",
     "test:e2e:report": "playwright show-report",
     "test:e2e:install": "playwright install",
-    "test": "pnpm run lint:ts && pnpm run lint:types",
+    "test": "pnpm lint:ts && pnpm lint:types",
     "snyk-protect": "snyk-protect",
-    "prepare": "npm run snyk-protect",
+    "prepare": "pnpm snyk-protect",
     "knip": "knip"
   },
   "keywords": [],
@@ -87,7 +87,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "NODE_ENV=production lint-staged && npm run lint:types"
+      "pre-commit": "NODE_ENV=production lint-staged && pnpm lint:types"
     }
   },
   "lint-staged": {
@@ -96,5 +96,5 @@
     ]
   },
   "snyk": true,
-  "packageManager": "pnpm@10.14.0"
+  "packageManager": "pnpm@11.3.0"
 }
