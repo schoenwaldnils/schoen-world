@@ -46,12 +46,10 @@ export async function GET(request: NextRequest) {
   )
 
   const imageResponse = new ImageResponse(
-    (
-      <OgImage
-        title={title || ogData?.metadata.title}
-        description={description || ogData?.metadata.description}
-      />
-    ),
+    <OgImage
+      title={title || ogData?.metadata.title}
+      description={description || ogData?.metadata.description}
+    />,
     {
       width: 1200,
       height: 630,
