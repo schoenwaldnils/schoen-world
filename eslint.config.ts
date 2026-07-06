@@ -16,6 +16,7 @@ export default defineConfig(
       '**/*.mjs',
       '**/*.mts',
       '.next/**',
+      '.vercel/**',
       '*.d.ts',
       'migrations',
     ],
