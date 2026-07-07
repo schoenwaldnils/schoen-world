@@ -44,6 +44,13 @@ certificates
 # playwright
 playwright-report
 test-results
+.playwright-cli
 
 # node compile cache
 node-compile-cache
+
+# IDEs/ai
+.claude
+
+# obsidian vault symlink (project docs)
+.docs
